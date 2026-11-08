@@ -6,7 +6,17 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "DimensionManagerMixin",
+    "WorldServerStorageMixin",
+    "WorldMutationMixin",
+    "WorldServerMutationMixin",
+    "RealChunkAccessMixin",
+    "MapStorageAccessMixin",
+    "SaveHandlerAccessMixin",
+    "EntityIdMixin",
+    "BlockTickIdMixin",
     "SimulationEventBusMixin",
+    "OverworldTerrainBudgetMixin",
+    "EndTerrainBudgetMixin",
     "MapGenBaseAccessor",
     "MapGenStructureInvoker"
   ],

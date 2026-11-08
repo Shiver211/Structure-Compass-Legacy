@@ -8,6 +8,9 @@ public final class SimulationSession implements AutoCloseable {
     private SimulationWorld world;
 
     public SimulationSession(WorldServer source) {
+        if (source.getMinecraftServer() != null && !source.getMinecraftServer().isCallingFromMinecraftThread()) {
+            throw new IllegalStateException("Simulation must run on the server thread");
+        }
         if (!GeneratorFactories.supports(source)) {
             throw new UnsupportedOperationException("No isolated generator for " + source.provider.getClass().getName());
         }
@@ -34,14 +37,17 @@ public final class SimulationSession implements AutoCloseable {
     }
 
     public void beginCandidate() {
-        world.clearCandidate();
+        world.beginCandidate();
     }
 
     @Override
     public void close() {
         if (world != null) {
-            world.clearCandidate();
-            world = null;
+            try (SimulationScope ignored = SimulationScope.enter()) {
+                world.clearCandidate();
+            } finally {
+                world = null;
+            }
         }
     }
 }

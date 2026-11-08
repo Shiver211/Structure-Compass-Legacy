@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.BiConsumer;
+import java.util.function.LongSupplier;
 
 import com.shiver.structurecompasslegacy.CompassConfig;
 import com.shiver.structurecompasslegacy.StructureCompassLegacy;
@@ -11,9 +13,14 @@ import com.shiver.structurecompasslegacy.api.SearchBudget;
 import com.shiver.structurecompasslegacy.api.SearchContext;
 import com.shiver.structurecompasslegacy.api.SearchStep;
 import com.shiver.structurecompasslegacy.api.SearchTask;
+import com.shiver.structurecompasslegacy.api.SearchRoute;
+import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
 import com.shiver.structurecompasslegacy.item.CompassTarget;
 import com.shiver.structurecompasslegacy.network.CompassNetwork;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -27,20 +34,42 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 /** 全服单任务，按提交顺序排队；所有 World 调用均发生在服务端 tick。 */
 public final class SearchScheduler {
 
+    private static final Logger LOGGER = LogManager.getLogger("structurecompasslegacy");
+    private final StructureRegistry registry;
+    private final BiConsumer<EntityPlayerMP, NBTTagCompound> sender;
+    private final LongSupplier clock;
+
     private final Map<UUID, Request> waiting = new LinkedHashMap<>();
 
     private Request active;
     private long ticks;
 
+    public SearchScheduler() {
+        this(StructureCompassLegacy.STRUCTURES, CompassNetwork::send, System::nanoTime);
+    }
+
+    SearchScheduler(StructureRegistry registry, BiConsumer<EntityPlayerMP, NBTTagCompound> sender, LongSupplier clock) {
+        this.registry = registry;
+        this.sender = sender;
+        this.clock = clock;
+    }
+
     public void submit(EntityPlayerMP player, EnumHand hand, long id, String structureId) {
         StructureDefinition structure;
         try {
-            structure = StructureCompassLegacy.STRUCTURES.get(structureId);
+            structure = registry.get(structureId);
         } catch (IllegalArgumentException exception) {
+            reject(player, id, "unknown_structure");
             return;
         }
 
-        if (structure == null || !structure.supports(player.getServerWorld())) {
+        if (structure == null) {
+            reject(player, id, "unknown_structure");
+            return;
+        }
+        String reason = structure.unavailableReason(player.getServerWorld());
+        if (!reason.isEmpty()) {
+            reject(player, id, reason);
             return;
         }
 
@@ -48,6 +77,26 @@ public final class SearchScheduler {
         Request request = new Request(player, hand, id, structure);
         waiting.put(player.getUniqueID(), request);
         sendProgress(request, "queued", "");
+    }
+
+    private void reject(EntityPlayerMP player, long requestId, String reason) {
+        NBTTagCompound message = new NBTTagCompound();
+        message.setString("type", "progress");
+        message.setLong("request", requestId);
+        message.setString("status", "error");
+        message.setString("reason", reason);
+        send(player, message);
+    }
+
+    public void cancel(UUID player, long requestId) {
+        Request queued = waiting.get(player);
+        if (queued != null && queued.id == requestId) {
+            waiting.remove(player);
+            sendProgress(queued, "cancelled", "");
+        }
+        if (active != null && active.player.getUniqueID().equals(player) && active.id == requestId) {
+            finish("cancelled", "");
+        }
     }
 
     public void cancel(UUID player) {
@@ -67,6 +116,7 @@ public final class SearchScheduler {
             return;
         }
 
+        long tickStarted = clock.getAsLong();
         ticks++;
         if (active == null) {
             startNext();
@@ -74,16 +124,16 @@ public final class SearchScheduler {
         if (active == null) {
             return;
         }
-        if (active.isValid()) {
+        if (active.contextChanged()) {
             finish("cancelled", "context_changed");
             return;
         }
-        if (System.nanoTime() - active.started >= CompassConfig.timeoutSeconds * 1_000_000_000L) {
+        if (clock.getAsLong() - active.started >= CompassConfig.timeoutSeconds * 1_000_000_000L) {
             finish("limit", "timeout");
             return;
         }
 
-        advance();
+        advance(new SearchBudget(tickStarted, (long) (CompassConfig.tickBudgetMillis * 1_000_000L), clock));
     }
 
     private void startNext() {
@@ -94,33 +144,52 @@ public final class SearchScheduler {
 
         active = iterator.next();
         iterator.remove();
-        active.started = System.nanoTime();
-        if (active.isValid()) {
+        active.started = clock.getAsLong();
+        if (active.contextChanged()) {
             finish("cancelled", "context_changed");
             return;
         }
 
         try {
-            active.task = active.structure.locator.createTask(active.context);
+            String reason = active.structure.unavailableReason(active.world);
+            if (!reason.isEmpty()) {
+                finish("error", reason);
+                return;
+            }
+            active.context = new SearchContext(active.world, active.player.getPosition());
+            active.route = active.structure.selectRoute(active.world);
+            try {
+                active.task = active.route.locator.createTask(active.context);
+            } finally {
+                active.workNanos = clock.getAsLong() - active.started;
+                active.initializationNanos = active.workNanos;
+            }
+            if (active.workNanos > CompassConfig.slowCallMillis * 1_000_000L) {
+                finish("limit", "slow_call");
+                return;
+            }
+            sendProgress(active, "running", "");
         } catch (Exception exception) {
             fail(exception);
         }
     }
 
-    private void advance() {
-        long started = System.nanoTime();
+    private void advance(SearchBudget budget) {
+        if (budget.exhausted()) {
+            return;
+        }
+        long started = clock.getAsLong();
         try {
-            SearchBudget budget = new SearchBudget(started, (long) (CompassConfig.tickBudgetMillis * 1_000_000L));
             SearchStep step;
             try {
                 step = active.task.advance(budget);
             } finally {
                 // 异常和资源超限的调用也计入主线程开销。
-                active.workNanos += System.nanoTime() - started;
+                active.workNanos += clock.getAsLong() - started;
             }
 
             if (step.state == SearchStep.State.FOUND) {
-                CompassTarget.write(active.stack, active.structure, step.target, active.context.dimension);
+                CompassTarget.write(active.stack, active.structure, active.route, step.target, active.context.dimension);
                 active.player.inventory.markDirty();
                 active.target = step.target.position.toLong();
                 finish("found", "");
@@ -139,8 +208,16 @@ public final class SearchScheduler {
     }
 
     private void fail(Exception exception) {
-        StructureCompassLegacy.logger.warn("Structure search failed: {}", active.structure.id, exception);
-        finish("error", exception.getClass().getSimpleName() + ": " + exception.getMessage());
+        if (exception instanceof SearchLimitException && exception.getSuppressed().length == 0) {
+            finish("limit", exception.getMessage());
+            return;
+        }
+        LOGGER.warn("Structure search failed: {}", active.structure.id, exception);
+        String reason = exception.getClass().getSimpleName() + ": " + exception.getMessage();
+        if (exception.getSuppressed().length > 0) {
+            reason += " [suppressed=" + exception.getSuppressed().length + "]";
+        }
+        finish("error", reason);
     }
 
     private void finish(String status, String reason) {
@@ -151,7 +228,7 @@ public final class SearchScheduler {
             sendProgress(finished, status, reason);
         } finally {
             if (finished.task != null) {
-                finished.task.close();
+                closeTask(finished.task);
             }
         }
     }
@@ -162,13 +239,15 @@ public final class SearchScheduler {
         }
 
         // 只记录性能指标，不保存种子、玩家位置或结构坐标。
-        StructureCompassLegacy.logger.info(
+        LOGGER.info(
                 "Structure search {}: status={}, reason={}, elapsedMs={}, workMs={}, longestMs={}, "
-                        + "checked={}, generatedChunks={}, peakCachedChunks={}",
+                        + "checked={}, generatedChunks={}, peakCachedChunks={}, longestOperation={}",
                 request.structure.id, status, reason,
-                (System.nanoTime() - request.started) / 1_000_000L,
-                request.workNanos / 1_000_000L, request.task.longestCallNanos() / 1_000_000L,
-                request.task.checkedCandidates(), request.task.generatedChunks(), request.task.peakCachedChunks());
+                (clock.getAsLong() - request.started) / 1_000_000L,
+                request.workNanos / 1_000_000L, Math.max(request.initializationNanos, request.task.longestCallNanos()) / 1_000_000L,
+                request.task.checkedCandidates(), request.task.generatedChunks(), request.task.peakCachedChunks(),
+                request.initializationNanos > request.task.longestCallNanos()
+                        ? "task.initialize" : request.task.longestOperation());
     }
 
     private void sendProgress(Request request, String status, String reason) {
@@ -182,18 +261,32 @@ public final class SearchScheduler {
         message.setString("status", status);
         message.setString("reason", reason);
         message.setLong("target", request.target);
-        message.setLong("elapsed", request.started == 0 ? 0 : (System.nanoTime() - request.started) / 1_000_000L);
+        message.setLong("elapsed", request.started == 0 ? 0 : (clock.getAsLong() - request.started) / 1_000_000L);
         message.setLong("work", request.workNanos / 1_000_000L);
+        if (request.route != null) {
+            message.setString("structure", request.structure.id.toString());
+            message.setString("method", request.route.translationKey());
+            message.setBoolean("experimental", request.route.experimental);
+            message.setString("limitation", request.route.limitation);
+        }
 
         if (request.task != null) {
             message.setLong("checked", request.task.checkedCandidates());
             message.setLong("total", request.task.totalCandidates());
             message.setInteger("chunks", request.task.generatedChunks());
             message.setInteger("peakChunks", request.task.peakCachedChunks());
-            message.setLong("longest", request.task.longestCallNanos() / 1_000_000L);
+            message.setLong("longest", Math.max(request.initializationNanos, request.task.longestCallNanos()) / 1_000_000L);
         }
 
-        CompassNetwork.send(request.player, message);
+        send(request.player, message);
+    }
+
+    private void send(EntityPlayerMP player, NBTTagCompound message) {
+        try {
+            sender.accept(player, message);
+        } catch (RuntimeException exception) {
+            LOGGER.warn("Cannot send structure search progress", exception);
+        }
     }
 
     @SubscribeEvent
@@ -206,11 +299,19 @@ public final class SearchScheduler {
         cancel(event.player.getUniqueID());
     }
 
+    private void closeTask(SearchTask task) {
+        try {
+            task.close();
+        } catch (RuntimeException exception) {
+            LOGGER.warn("Cannot fully release a structure search", exception);
+        }
+    }
+
     public void clear() {
         waiting.clear();
         if (active != null) {
             if (active.task != null) {
-                active.task.close();
+                closeTask(active.task);
             }
             active = null;
         }
@@ -224,11 +325,13 @@ public final class SearchScheduler {
         private final ItemStack stack;
         private final long id;
         private final StructureDefinition structure;
-        private final SearchContext context;
+        private SearchContext context;
+        private SearchRoute route;
 
         private SearchTask task;
         private long started;
         private long workNanos;
+        private long initializationNanos;
         private long target;
 
         private Request(EntityPlayerMP player, EnumHand hand, long id, StructureDefinition structure) {
@@ -238,11 +341,11 @@ public final class SearchScheduler {
             this.stack = player.getHeldItem(hand);
             this.id = id;
             this.structure = structure;
-            this.context = new SearchContext(world, player.getPosition());
         }
 
-        private boolean isValid() {
-            return player.isDead || player.getServerWorld() != world || player.getHeldItem(hand) != stack;
+        private boolean contextChanged() {
+            return player.isDead || player.getServerWorld() != world || player.getHeldItem(hand) != stack
+                    || player.connection == null || !player.connection.netManager.isChannelOpen();
         }
     }
 }

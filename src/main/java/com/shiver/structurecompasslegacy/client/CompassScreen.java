@@ -155,7 +155,8 @@ public final class CompassScreen extends GuiScreen {
         } else if (!progress.getString("reason").isEmpty()) {
             String reason = progress.getString("reason");
             String key = "structurecompasslegacy.reason." + reason;
-            fontRenderer.drawString(fontRenderer.trimStringToWidth(I18n.hasKey(key) ? I18n.format(key) : reason,
+            String reasonText = I18n.hasKey(reason) ? I18n.format(reason) : I18n.hasKey(key) ? I18n.format(key) : reason;
+            fontRenderer.drawString(fontRenderer.trimStringToWidth(reasonText,
                     panelWidth), left, height - 52, 0xFFCC77);
         }
     }
@@ -163,6 +164,13 @@ public final class CompassScreen extends GuiScreen {
     public void updateProgress(NBTTagCompound message) {
         if (message.getLong("request") == requestId) {
             progress = message;
+            for (NBTTagCompound entry : entries) {
+                if (entry.getString("id").equals(message.getString("structure")) && message.hasKey("method")) {
+                    entry.setString("method", message.getString("method"));
+                    entry.setBoolean("experimental", message.getBoolean("experimental"));
+                    entry.setString("limitation", message.getString("limitation"));
+                }
+            }
         }
     }
 

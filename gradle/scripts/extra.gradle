@@ -5,6 +5,10 @@
 // apply from: 'gradle/scripts/helpers.gradle'
 
 // Optional local dependencies for developing an adapter against a mod's public API.
+dependencies {
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+}
+
 // Example: -PcompatModsDir=D:/path/to/mods -PcompatModJars=Atum-1.12.2-2.0.21.jar
 if (project.hasProperty('compatModsDir') && project.hasProperty('compatModJars')) {
     project.property('compatModJars').toString().split(',').each { name ->
@@ -16,5 +20,29 @@ if (project.hasProperty('compatModsDir') && project.hasProperty('compatModJars')
 if (project.hasProperty('compatModsDir')) {
     tasks.named('test').configure {
         systemProperty 'compatModsDir', project.property('compatModsDir').toString()
+    }
+}
+
+// 独立加载 Minecraft 类及实际 Mixin，补充普通 JUnit 无法执行的注入与会话检查。
+def foundationRuntimeJar = tasks.register('foundationRuntimeJar', Jar) {
+    from sourceSets.main.output
+    archiveFileName = 'foundation-runtime-input.jar'
+    destinationDirectory = layout.buildDirectory.dir('foundation-runtime-input')
+}
+
+tasks.register('verifyFoundationRuntime', JavaExec) {
+    dependsOn 'testClasses', foundationRuntimeJar
+    classpath = (sourceSets.test.runtimeClasspath - sourceSets.main.output) + files(foundationRuntimeJar)
+    mainClass = 'net.minecraft.launchwrapper.Launch'
+    args '--tweakClass', 'com.shiver.structurecompasslegacy.verification.launch.VerificationFMLServerTweaker'
+    javaLauncher.set(javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(8)
+    })
+    systemProperty 'java.awt.headless', 'true'
+    systemProperty 'mixin.env.disableRefMap', 'true'
+    jvmArgs '-Xverify:all'
+    workingDir layout.buildDirectory.dir('foundation-runtime')
+    doFirst {
+        workingDir.mkdirs()
     }
 }

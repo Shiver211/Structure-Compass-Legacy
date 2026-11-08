@@ -12,11 +12,10 @@ public final class StructureDefinition {
     public final String modName;
     public final String englishName;
     public final String chineseName;
-    public final SearchMethod method;
-    public final boolean experimental;
     public final String limitation;
     public final Predicate<WorldServer> dimensions;
-    public final StructureLocator locator;
+    public final SearchRoute prediction;
+    public final SearchRoute simulation;
     private final BooleanSupplier enabled;
 
     public StructureDefinition(
@@ -41,14 +40,31 @@ public final class StructureDefinition {
             StructureLocator locator,
             String limitation,
             BooleanSupplier enabled) {
+        this(id, modName, englishName, chineseName, dimensions,
+                method == SearchMethod.PREDICTION && locator != null
+                        ? new SearchRoute(method, locator, limitation) : null,
+                method == SearchMethod.SIMULATION && locator != null
+                        ? new SearchRoute(method, locator, limitation) : null,
+                limitation, enabled);
+    }
+
+    public StructureDefinition(
+            String id,
+            String modName,
+            String englishName,
+            String chineseName,
+            Predicate<WorldServer> dimensions,
+            SearchRoute prediction,
+            SearchRoute simulation,
+            String limitation,
+            BooleanSupplier enabled) {
         this.id = new ResourceLocation(id);
         this.modName = modName;
         this.englishName = englishName;
         this.chineseName = chineseName;
-        this.method = method;
-        this.experimental = method == SearchMethod.SIMULATION;
         this.dimensions = dimensions;
-        this.locator = locator;
+        this.prediction = prediction;
+        this.simulation = simulation;
         this.limitation = limitation;
         this.enabled = enabled;
     }
@@ -58,7 +74,7 @@ public final class StructureDefinition {
     }
 
     public String unavailableReason(WorldServer world) {
-        if (locator == null) {
+        if (!hasLocator()) {
             return limitation.isEmpty() ? "structurecompasslegacy.method.unsupported" : limitation;
         }
         if (!dimensions.test(world)) {
@@ -67,7 +83,22 @@ public final class StructureDefinition {
         if (!enabled.getAsBoolean()) {
             return "structurecompasslegacy.reason.generation_disabled";
         }
-        return locator.unavailableReason(world);
+        return selectRoute(world).locator.unavailableReason(world);
+    }
+
+    public boolean hasLocator() {
+        return prediction != null || simulation != null;
+    }
+
+    public SearchRoute selectRoute(WorldServer world) {
+        if (prediction != null && prediction.locator.unavailableReason(world).isEmpty()) {
+            return prediction;
+        }
+        if (simulation != null && simulation.locator.unavailableReason(world).isEmpty()) {
+            return simulation;
+        }
+        // 均不可用时保留优先路线，以便显示其具体失败原因。
+        return prediction != null ? prediction : simulation;
     }
 
     public String translationKey() {

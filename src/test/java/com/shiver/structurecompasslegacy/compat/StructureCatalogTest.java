@@ -21,9 +21,8 @@ class StructureCatalogTest {
         String[] structures = {"graveyard", "umbra_tower", "surface_ruin", "underground_ruin"};
         for (String id : structures) {
             StructureDefinition definition = registry.get("theaurorian:" + id);
-            assertEquals(SearchMethod.UNSUPPORTED, definition.method);
-            assertFalse(definition.experimental);
-            assertNull(definition.locator);
+            assertFalse(definition.hasLocator());
+            assertNull(definition.selectRoute(null));
             assertEquals("structurecompasslegacy.limitation.aurorian_unseeded_random",
                     definition.unavailableReason(null));
         }

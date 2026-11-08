@@ -2,6 +2,7 @@ package com.shiver.structurecompasslegacy.item;
 
 import com.shiver.structurecompasslegacy.api.SearchTarget;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
+import com.shiver.structurecompasslegacy.api.SearchRoute;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,12 +38,13 @@ public final class CompassTarget {
         return new CompassTarget(root.getCompoundTag(TARGET_KEY));
     }
 
-    public static void write(ItemStack stack, StructureDefinition structure, SearchTarget target, int dimension) {
+    public static void write(
+            ItemStack stack, StructureDefinition structure, SearchRoute route, SearchTarget target, int dimension) {
         NBTTagCompound tag = new NBTTagCompound();
         tag.setString("structure", structure.id.toString());
         tag.setString("english", structure.englishName);
         tag.setString("chinese", structure.chineseName);
-        tag.setString("method", structure.method.translationKey());
+        tag.setString("method", route.translationKey());
         tag.setInteger("dimension", dimension);
         tag.setLong("position", target.position.toLong());
         stack.setTagInfo(TARGET_KEY, tag);

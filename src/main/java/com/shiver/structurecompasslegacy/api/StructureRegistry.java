@@ -31,17 +31,29 @@ public final class StructureRegistry {
             StructureLocator locator,
             String limitation,
             BooleanSupplier enabled) {
+        SearchRoute route = new SearchRoute(method, locator, limitation);
+        activate(id, dimensions,
+                method == SearchMethod.PREDICTION ? route : null,
+                method == SearchMethod.SIMULATION ? route : null, enabled);
+    }
+
+    public void activate(
+            String id,
+            Predicate<WorldServer> dimensions,
+            SearchRoute prediction,
+            SearchRoute simulation,
+            BooleanSupplier enabled) {
         StructureDefinition declared = get(id);
         if (declared == null) {
             throw new IllegalArgumentException("Undeclared structure: " + id);
         }
-        if (declared.locator != null) {
+        if (declared.hasLocator()) {
             throw new IllegalArgumentException("Structure already bound: " + id);
         }
 
         entries.put(declared.id, new StructureDefinition(
                 id, declared.modName, declared.englishName, declared.chineseName,
-                method, dimensions, locator, limitation, enabled));
+                dimensions, prediction, simulation, declared.limitation, enabled));
     }
 
     public Collection<StructureDefinition> entries() {

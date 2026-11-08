@@ -2,6 +2,8 @@ package com.shiver.structurecompasslegacy.network;
 
 import com.shiver.structurecompasslegacy.StructureCompassLegacy;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
+import com.shiver.structurecompasslegacy.api.SearchMethod;
+import com.shiver.structurecompasslegacy.api.SearchRoute;
 import com.shiver.structurecompasslegacy.item.CompassTarget;
 
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -34,15 +36,16 @@ public final class CompassNetwork {
         NBTTagList structures = new NBTTagList();
 
         for (StructureDefinition structure : StructureCompassLegacy.STRUCTURES.entries()) {
+            SearchRoute route = structure.selectRoute(player.getServerWorld());
             NBTTagCompound entry = new NBTTagCompound();
             entry.setString("id", structure.id.toString());
             entry.setString("english", structure.englishName);
             entry.setString("chinese", structure.chineseName);
             entry.setString("mod", structure.modName);
-            entry.setString("method", structure.method.translationKey());
+            entry.setString("method", route == null ? SearchMethod.UNSUPPORTED.translationKey() : route.translationKey());
             entry.setBoolean("available", structure.supports(player.getServerWorld()));
-            entry.setBoolean("experimental", structure.experimental);
-            entry.setString("limitation", structure.limitation);
+            entry.setBoolean("experimental", route != null && route.experimental);
+            entry.setString("limitation", route == null ? structure.limitation : route.limitation);
             entry.setString("unavailableReason", structure.unavailableReason(player.getServerWorld()));
             structures.appendTag(entry);
         }
@@ -77,10 +80,12 @@ public final class CompassNetwork {
             if (request.action == ClientRequest.SEARCH) {
                 StructureCompassLegacy.SEARCHES.submit(player, hand, request.requestId, request.structureId);
             } else if (request.action == ClientRequest.CANCEL || request.action == ClientRequest.CLEAR_TARGET) {
-                StructureCompassLegacy.SEARCHES.cancel(player.getUniqueID());
                 if (request.action == ClientRequest.CLEAR_TARGET) {
+                    StructureCompassLegacy.SEARCHES.cancel(player.getUniqueID());
                     CompassTarget.clear(player.getHeldItem(hand));
                     player.inventory.markDirty();
+                } else {
+                    StructureCompassLegacy.SEARCHES.cancel(player.getUniqueID(), request.requestId);
                 }
             }
         }

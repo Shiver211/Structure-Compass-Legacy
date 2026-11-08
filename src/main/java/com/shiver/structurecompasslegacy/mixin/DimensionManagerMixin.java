@@ -1,6 +1,7 @@
 package com.shiver.structurecompasslegacy.mixin;
 
 import com.shiver.structurecompasslegacy.simulation.SimulationMarker;
+import com.shiver.structurecompasslegacy.simulation.SimulationAccess;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
@@ -21,6 +22,8 @@ public abstract class DimensionManagerMixin {
             CallbackInfo callback) {
         if (world instanceof SimulationMarker) {
             callback.cancel();
+        } else {
+            SimulationAccess.requireWorld(world);
         }
     }
 }
