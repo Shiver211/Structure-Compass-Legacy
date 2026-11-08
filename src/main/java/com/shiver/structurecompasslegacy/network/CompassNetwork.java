@@ -2,7 +2,6 @@ package com.shiver.structurecompasslegacy.network;
 
 import com.shiver.structurecompasslegacy.StructureCompassLegacy;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
-import com.shiver.structurecompasslegacy.api.SearchMethod;
 import com.shiver.structurecompasslegacy.api.SearchRoute;
 import com.shiver.structurecompasslegacy.item.CompassTarget;
 
@@ -36,17 +35,19 @@ public final class CompassNetwork {
         NBTTagList structures = new NBTTagList();
 
         for (StructureDefinition structure : StructureCompassLegacy.STRUCTURES.entries()) {
+            if (!structure.hasLocator()) {
+                continue;
+            }
             SearchRoute route = structure.selectRoute(player.getServerWorld());
             NBTTagCompound entry = new NBTTagCompound();
             entry.setString("id", structure.id.toString());
             entry.setString("english", structure.englishName);
             entry.setString("chinese", structure.chineseName);
             entry.setString("mod", structure.modName);
-            entry.setString("method", route == null ? SearchMethod.UNSUPPORTED.translationKey() : route.translationKey());
+            entry.setString("method", route.translationKey());
             entry.setBoolean("available", structure.supports(player.getServerWorld()));
-            entry.setBoolean("supported", structure.hasLocator());
-            entry.setBoolean("experimental", route != null && route.experimental);
-            entry.setString("limitation", route == null ? structure.limitation : route.limitation);
+            entry.setBoolean("experimental", route.experimental);
+            entry.setString("limitation", route.limitation);
             entry.setString("unavailableReason", structure.unavailableReason(player.getServerWorld()));
             structures.appendTag(entry);
         }

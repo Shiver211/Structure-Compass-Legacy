@@ -114,14 +114,6 @@
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
-      },
-      {
-        "id": "bronze_dungeon",
-        "english": "Bronze Dungeon",
-        "chinese": "青铜地下城",
-        "method": "UNSUPPORTED",
-        "limitation": "aether_bronze",
-        "status": "PENDING"
       }
     ]
   },
@@ -169,38 +161,6 @@
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
-      },
-      {
-        "id": "ruin",
-        "english": "Ruin",
-        "chinese": "废墟",
-        "method": "UNSUPPORTED",
-        "limitation": "atum_ruin",
-        "status": "PENDING"
-      },
-      {
-        "id": "dungeon",
-        "english": "Atum Dungeon",
-        "chinese": "阿图姆地牢",
-        "method": "UNSUPPORTED",
-        "limitation": "decoration_random",
-        "status": "PENDING"
-      },
-      {
-        "id": "fossil",
-        "english": "Fossil",
-        "chinese": "化石",
-        "method": "UNSUPPORTED",
-        "limitation": "decoration_random",
-        "status": "PENDING"
-      },
-      {
-        "id": "starting_structure",
-        "english": "Starting Structure",
-        "chinese": "初始营地",
-        "method": "UNSUPPORTED",
-        "limitation": "spawn_order",
-        "status": "PENDING"
       }
     ]
   },
@@ -232,14 +192,6 @@
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
-      },
-      {
-        "id": "tofu_building",
-        "english": "Tofu Building",
-        "chinese": "豆腐建筑",
-        "method": "UNSUPPORTED",
-        "limitation": "decoration_random",
-        "status": "PENDING"
       }
     ]
   },
@@ -375,14 +327,6 @@
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
-      },
-      {
-        "id": "hollow_tree",
-        "english": "Hollow Tree",
-        "chinese": "巨型空心树",
-        "method": "UNSUPPORTED",
-        "limitation": "twilight_hollow_tree",
-        "status": "PENDING"
       }
     ]
   },
@@ -421,14 +365,6 @@
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
-      },
-      {
-        "id": "dimensional_fracture",
-        "english": "Dimensional Fracture",
-        "chinese": "维度裂隙",
-        "method": "UNSUPPORTED",
-        "limitation": "dimensional_fracture",
-        "status": "PENDING"
       }
     ]
   },
@@ -460,38 +396,6 @@
         "method": "PREDICTION",
         "limitation": "reference_height",
         "status": "IMPLEMENTED"
-      },
-      {
-        "id": "graveyard",
-        "english": "Graveyard",
-        "chinese": "墓地",
-        "method": "UNSUPPORTED",
-        "limitation": "aurorian_unseeded_random",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "umbra_tower",
-        "english": "Umbra Tower",
-        "chinese": "暗影高塔",
-        "method": "UNSUPPORTED",
-        "limitation": "aurorian_unseeded_random",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "surface_ruin",
-        "english": "Surface Ruin",
-        "chinese": "地表遗迹",
-        "method": "UNSUPPORTED",
-        "limitation": "aurorian_unseeded_random",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "underground_ruin",
-        "english": "Underground Ruin",
-        "chinese": "地下遗迹",
-        "method": "UNSUPPORTED",
-        "limitation": "aurorian_unseeded_random",
-        "status": "UNSUPPORTED"
       }
     ]
   },
@@ -523,142 +427,6 @@
         "method": "PREDICTION",
         "limitation": "reference_height",
         "status": "IMPLEMENTED"
-      },
-      {
-        "id": "darklands_house_1",
-        "english": "Darklands House I",
-        "chinese": "黑暗之地房屋 I",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "darklands_house_2",
-        "english": "Darklands House II",
-        "chinese": "黑暗之地房屋 II",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "darklands_scion_1",
-        "english": "Darklands Scion Ruin I",
-        "chinese": "黑暗之地残迹 I",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "darklands_scion_2",
-        "english": "Darklands Scion Ruin II",
-        "chinese": "黑暗之地残迹 II",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "circular_shrine",
-        "english": "Circular Shrine",
-        "chinese": "环形神龛",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "circular_shrine_columns",
-        "english": "Circular Shrine with Columns",
-        "chinese": "柱式环形神龛",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "ritual_grounds",
-        "english": "Ritual Grounds",
-        "chinese": "仪式场地",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "ritual_grounds_columns",
-        "english": "Ritual Grounds with Columns",
-        "chinese": "柱式仪式场地",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "elevated_shrine",
-        "english": "Elevated Shrine",
-        "chinese": "高台神龛",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "elevated_shrine_large",
-        "english": "Large Elevated Shrine",
-        "chinese": "大型高台神龛",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_darklands",
-        "status": "PENDING"
-      },
-      {
-        "id": "abyssal_pillars",
-        "english": "Abyssal Wasteland Pillars",
-        "chinese": "深渊荒原支柱",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "abyssal_ruin",
-        "english": "Abyssal Wasteland Ruin",
-        "chinese": "深渊荒原废墟",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "shoggoth_lair",
-        "english": "Shoggoth Lair",
-        "chinese": "修格斯巢穴",
-        "method": "UNSUPPORTED",
-        "limitation": "abyssal_shoggoth",
-        "status": "PENDING"
-      },
-      {
-        "id": "omothol_city",
-        "english": "Omothol City",
-        "chinese": "奥穆索城市",
-        "method": "UNSUPPORTED",
-        "limitation": "omothol_spacing",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "omothol_temple",
-        "english": "Omothol Temple",
-        "chinese": "奥穆索散布神殿",
-        "method": "UNSUPPORTED",
-        "limitation": "omothol_spacing",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "omothol_tower",
-        "english": "Omothol Tower",
-        "chinese": "奥穆索高塔",
-        "method": "UNSUPPORTED",
-        "limitation": "omothol_spacing",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "omothol_storage",
-        "english": "Omothol Storage",
-        "chinese": "奥穆索仓库",
-        "method": "UNSUPPORTED",
-        "limitation": "omothol_spacing",
-        "status": "UNSUPPORTED"
       }
     ]
   },
@@ -674,77 +442,6 @@
         "method": "PREDICTION",
         "limitation": "lamented_islands_anchor",
         "status": "AWAITING_VALIDATION"
-      },
-      {
-        "id": "ash_tower",
-        "english": "Ash Tower",
-        "chinese": "灰烬高塔",
-        "method": "UNSUPPORTED",
-        "limitation": "endexpansion_counter",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "ashed_mines",
-        "english": "Ashed Mines",
-        "chinese": "灰烬矿井",
-        "method": "UNSUPPORTED",
-        "limitation": "endexpansion_counter",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "end_vault",
-        "english": "End Vault",
-        "chinese": "末地地牢",
-        "method": "UNSUPPORTED",
-        "limitation": "endexpansion_counter",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "barrend_crypt",
-        "english": "Barrend Crypt",
-        "chinese": "荒芜墓穴",
-        "method": "UNSUPPORTED",
-        "limitation": "endexpansion_counter",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "trader_outcamp",
-        "english": "Avalon Trader Outcamp",
-        "chinese": "阿瓦隆商人营地",
-        "method": "UNSUPPORTED",
-        "limitation": "endexpansion_counter",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "king_fortress",
-        "english": "End King Fortress",
-        "chinese": "末地国王要塞",
-        "method": "UNSUPPORTED",
-        "limitation": "endexpansion_fortress",
-        "status": "PENDING"
-      },
-      {
-        "id": "better_stronghold",
-        "english": "Better Stronghold",
-        "chinese": "强化要塞",
-        "method": "UNSUPPORTED",
-        "limitation": "endexpansion_stronghold",
-        "status": "PENDING"
-      }
-    ]
-  },
-  {
-    "modId": "raids",
-    "modName": "Raids",
-    "version": "1.1.5",
-    "structures": [
-      {
-        "id": "pillager_outpost",
-        "english": "Pillager Outpost",
-        "chinese": "掠夺者前哨站",
-        "method": "UNSUPPORTED",
-        "limitation": "raids_village_state",
-        "status": "UNSUPPORTED"
       }
     ]
   },
@@ -848,284 +545,29 @@
         "method": "PREDICTION",
         "limitation": "divinerpg_template",
         "status": "AWAITING_VALIDATION"
-      },
-      {
-        "id": "livestock_merchant_hut",
-        "english": "Livestock Merchant Hut",
-        "chinese": "牲畜商人小屋",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_hut",
-        "status": "PENDING"
-      },
-      {
-        "id": "workshop_house_1",
-        "english": "Workshop House 1",
-        "chinese": "工坊房屋 1",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "workshop_house_2",
-        "english": "Workshop House 2",
-        "chinese": "工坊房屋 2",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "workshop_house_3",
-        "english": "Workshop House 3",
-        "chinese": "工坊房屋 3",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "workshop_house_4",
-        "english": "Workshop House 4",
-        "chinese": "工坊房屋 4",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "workshop_house_5",
-        "english": "Workshop House 5",
-        "chinese": "工坊房屋 5",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "workshop_house_6",
-        "english": "Workshop House 6",
-        "chinese": "工坊房屋 6",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "hunger_house_1",
-        "english": "Hunger House 1",
-        "chinese": "饥饿者小屋 1",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_hunger_house",
-        "status": "PENDING"
-      },
-      {
-        "id": "hunger_house_2",
-        "english": "Hunger House 2",
-        "chinese": "饥饿者小屋 2",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_hunger_house",
-        "status": "PENDING"
-      },
-      {
-        "id": "hunger_house_3",
-        "english": "Hunger House 3",
-        "chinese": "饥饿者小屋 3",
-        "method": "UNSUPPORTED",
-        "limitation": "divinerpg_hunger_house",
-        "status": "PENDING"
       }
     ]
   },
   {
-    "modId": "journey",
-    "modName": "Journey Into the Light",
-    "version": "1.0.5",
+    "modId": "da",
+    "modName": "Unseen's Dungeon Additions",
+    "version": "1.7.4.1",
     "structures": [
       {
-        "id": "corba_village",
-        "english": "Corba Village",
-        "chinese": "科尔巴村庄",
-        "method": "UNSUPPORTED",
-        "limitation": "journey_village_reload",
-        "status": "UNSUPPORTED"
-      },
-      {
-        "id": "tower_dungeon",
-        "english": "Tower Dungeon",
-        "chinese": "高塔地牢",
-        "method": "UNSUPPORTED",
-        "limitation": "journey_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "cylindrical_tower",
-        "english": "Cylindrical Tower Dungeon",
-        "chinese": "圆柱高塔地牢",
-        "method": "UNSUPPORTED",
-        "limitation": "journey_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "rockite_dungeon",
-        "english": "Rockite Dungeon",
-        "chinese": "岩石地牢",
-        "method": "UNSUPPORTED",
-        "limitation": "journey_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "overworld_ruins",
-        "english": "Overworld Ruins",
-        "chinese": "主世界遗迹",
-        "method": "UNSUPPORTED",
-        "limitation": "journey_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "corba_treehouse",
-        "english": "Corba Treehouse",
-        "chinese": "科尔巴树屋",
-        "method": "UNSUPPORTED",
-        "limitation": "journey_decoration",
-        "status": "PENDING"
-      },
-      {
-        "id": "tordo_village",
-        "english": "Tordo Village",
-        "chinese": "托尔多村庄",
-        "method": "UNSUPPORTED",
-        "limitation": "journey_decoration",
-        "status": "PENDING"
-      }
-    ]
-  },
-  {
-    "modId": "thebetweenlands",
-    "modName": "The Betweenlands / 交错次元",
-    "version": "3.9.6",
-    "structures": [
-      {
-        "id": "floating_island",
-        "english": "Floating Island",
-        "chinese": "浮空岛",
+        "id": "nether_arena",
+        "english": "Burning Flame Arena",
+        "chinese": "炽焰竞技场",
         "method": "PREDICTION",
-        "limitation": "betweenlands_island_anchor",
+        "limitation": "da_arena_anchor",
         "status": "AWAITING_VALIDATION"
       },
       {
-        "id": "giant_root",
-        "english": "Giant Root Arch",
-        "chinese": "巨型树根拱",
+        "id": "obsidilith_arena",
+        "english": "Obsidilith Arena",
+        "chinese": "黑曜石竞技场",
         "method": "PREDICTION",
-        "limitation": "betweenlands_root_anchor",
+        "limitation": "da_arena_anchor",
         "status": "AWAITING_VALIDATION"
-      },
-      {
-        "id": "spirit_tree",
-        "english": "Spirit Tree",
-        "chinese": "灵魂树",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_spirit_tree",
-        "status": "PENDING"
-      },
-      {
-        "id": "sludge_worm_dungeon",
-        "english": "Sludge Worm Dungeon",
-        "chinese": "污泥地牢（泥沼谜塔）",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_sludge_dungeon",
-        "status": "PENDING"
-      },
-      {
-        "id": "cragrock_tower",
-        "english": "Cragrock Tower",
-        "chinese": "碎岩塔",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_decoration_storage",
-        "status": "PENDING"
-      },
-      {
-        "id": "wight_fortress",
-        "english": "Wight Fortress",
-        "chinese": "幽魂要塞（鬼魂城堡）",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_decoration_storage",
-        "status": "PENDING"
-      },
-      {
-        "id": "chiromaw_matriarch_nest",
-        "english": "Chiromaw Matriarch Nest",
-        "chinese": "翼手女王巢穴",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_decoration_storage",
-        "status": "PENDING"
-      },
-      {
-        "id": "sunken_idol_head",
-        "english": "Sunken Idol Head",
-        "chinese": "沉没神像（峭壁岩头颅）",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_decoration_storage",
-        "status": "PENDING"
-      },
-      {
-        "id": "abandoned_shack",
-        "english": "Abandoned Shack",
-        "chinese": "泥砖废弃小屋",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_shack",
-        "status": "PENDING"
-      },
-      {
-        "id": "spawner_structure",
-        "english": "Spawner Structure",
-        "chinese": "刷怪笼建筑（小型神庙）",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_decoration_storage",
-        "status": "PENDING"
-      },
-      {
-        "id": "tar_pool_dungeon",
-        "english": "Tar Pool Dungeon",
-        "chinese": "焦油池地牢",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_decoration_storage",
-        "status": "PENDING"
-      },
-      {
-        "id": "waystone",
-        "english": "Waystone",
-        "chinese": "巨石柱",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_waystone",
-        "status": "PENDING"
-      },
-      {
-        "id": "druid_circle",
-        "english": "Druid Circle",
-        "chinese": "德鲁伊祭坛",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_druid_circle",
-        "status": "PENDING"
-      },
-      {
-        "id": "deepman_simulacrum",
-        "english": "Deepman Simulacrum",
-        "chinese": "洞穴人面雕像",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_simulacrum",
-        "status": "PENDING"
-      },
-      {
-        "id": "lake_cavern_simulacrum",
-        "english": "Lake Cavern Simulacrum",
-        "chinese": "洞穴湖泊雕像",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_simulacrum",
-        "status": "PENDING"
-      },
-      {
-        "id": "rootman_simulacrum",
-        "english": "Rootman Simulacrum",
-        "chinese": "树根人面雕像",
-        "method": "UNSUPPORTED",
-        "limitation": "betweenlands_simulacrum",
-        "status": "PENDING"
       }
     ]
   }

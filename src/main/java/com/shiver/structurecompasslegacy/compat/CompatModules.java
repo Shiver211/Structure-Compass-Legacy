@@ -9,11 +9,11 @@ import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.compat.abyssalcraft.AbyssalCraftModule;
 import com.shiver.structurecompasslegacy.compat.aether.AetherModule;
 import com.shiver.structurecompasslegacy.compat.atum.AtumModule;
-import com.shiver.structurecompasslegacy.compat.betweenlands.BetweenlandsModule;
 import com.shiver.structurecompasslegacy.compat.aurorian.AurorianModule;
 import com.shiver.structurecompasslegacy.compat.draconic.DraconicModule;
 import com.shiver.structurecompasslegacy.compat.divinerpg.DivineRpgModule;
 import com.shiver.structurecompasslegacy.compat.endexpansion.EndExpansionModule;
+import com.shiver.structurecompasslegacy.compat.dungeonadditions.DungeonAdditionsModule;
 import com.shiver.structurecompasslegacy.compat.netherapi.NetherApiModule;
 import com.shiver.structurecompasslegacy.compat.thaumicaugmentation.ThaumicAugmentationModule;
 import com.shiver.structurecompasslegacy.compat.tofu.TofuModule;
@@ -31,7 +31,7 @@ public final class CompatModules {
                 new NetherApiModule(),
                 new EndExpansionModule(),
                 new DivineRpgModule(),
-                new BetweenlandsModule(),
+                new DungeonAdditionsModule(),
                 new AbyssalCraftModule(),
                 new AetherModule(),
                 new AtumModule(),

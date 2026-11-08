@@ -2,6 +2,8 @@ package com.shiver.structurecompasslegacy.simulation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Function;
 
 import net.minecraft.world.WorldServer;
@@ -16,6 +18,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 public final class GeneratorFactories {
 
     private static final Map<String, Function<SimulationWorld, IChunkGenerator>> FACTORIES = new HashMap<>();
+    private static final Set<String> BIOME_PROVIDERS = new HashSet<>();
 
     static {
         register("net.minecraft.world.WorldProviderSurface", GeneratorFactories::overworld);
@@ -33,6 +36,14 @@ public final class GeneratorFactories {
 
     public static boolean supports(WorldServer world) {
         return FACTORIES.containsKey(world.provider.getClass().getName());
+    }
+
+    public static void registerBiomes(String providerClass) {
+        BIOME_PROVIDERS.add(providerClass);
+    }
+
+    public static boolean supportsBiomes(WorldServer world) {
+        return supports(world) || BIOME_PROVIDERS.contains(world.provider.getClass().getName());
     }
 
     public static IChunkGenerator create(SimulationWorld world) {

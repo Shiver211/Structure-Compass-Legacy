@@ -16,7 +16,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.client.config.GuiCheckBox;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -31,8 +30,6 @@ public final class CompassScreen extends GuiScreen {
     private GuiTextField filter;
     private GuiButton search;
     private GuiButton cancel;
-    private GuiCheckBox unsupportedToggle;
-    private boolean showUnsupported;
     private NBTTagCompound selected;
     private NBTTagCompound progress = new NBTTagCompound();
     private long requestId;
@@ -56,16 +53,12 @@ public final class CompassScreen extends GuiScreen {
         left = (width - panelWidth) / 2;
         visibleRows = Math.max(1, (height - 160) / ROW_HEIGHT);
         String query = filter == null ? "" : filter.getText();
-        String toggleLabel = ClientText.translate("show_unsupported");
-        int toggleWidth = fontRenderer.getStringWidth(toggleLabel) + 16;
-        filter = new GuiTextField(0, fontRenderer, left, 30, panelWidth - toggleWidth - 8, 20);
+        filter = new GuiTextField(0, fontRenderer, left, 30, panelWidth, 20);
         filter.setMaxStringLength(100);
         filter.setText(query);
         filter.setFocused(true);
         int buttonWidth = (panelWidth - 12) / 3;
         buttonList.clear();
-        unsupportedToggle = new GuiCheckBox(3, left + panelWidth - toggleWidth, 34, toggleLabel, showUnsupported);
-        buttonList.add(unsupportedToggle);
         search = new GuiButton(0, left, height - 28, buttonWidth, 20, ClientText.translate("search"));
         cancel = new GuiButton(1, left + buttonWidth + 6, height - 28, buttonWidth, 20, ClientText.translate("cancel"));
         buttonList.add(search);
@@ -79,9 +72,6 @@ public final class CompassScreen extends GuiScreen {
         String query = filter.getText().toLowerCase(Locale.ROOT).trim();
         filtered.clear();
         for (NBTTagCompound entry : entries) {
-            if (!showUnsupported && !entry.getBoolean("supported")) {
-                continue;
-            }
             String terms = entry.getString("english") + " " + entry.getString("chinese") + " "
                     + entry.getString("mod") + " " + entry.getString("id");
             if (terms.toLowerCase(Locale.ROOT).contains(query)) {
@@ -210,9 +200,6 @@ public final class CompassScreen extends GuiScreen {
         } else if (button.id == 2) {
             CompassNetwork.CHANNEL.sendToServer(new ClientRequest(ClientRequest.CLEAR_TARGET, hand, requestId, ""));
             progress = new NBTTagCompound();
-        } else if (button.id == 3) {
-            showUnsupported = unsupportedToggle.isChecked();
-            applyFilter();
         }
     }
 

@@ -9,10 +9,23 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.12.4'
 }
 
+// 源文件删除后留下的空目录不应进入发布包或源码包。
+tasks.withType(Jar).configureEach {
+    includeEmptyDirs = false
+}
+
+// 原生布局核查的可选运行时依赖，不随指南针发布。
+if (project.hasProperty('compatModsDir')) {
+    dependencies.add('testRuntimeOnly', modUtils.deobfuscate(files(new File(
+            project.property('compatModsDir').toString(), 'unseens_dungeon_additions-1.7.4.1.jar'))))
+    dependencies.add('testRuntimeOnly', modUtils.deobfuscate(files(new File(
+            project.property('compatModsDir').toString(), 'geckolib-forge-1.12.2-3.0.31.jar'))))
+}
+
 // Example: -PcompatModsDir=D:/path/to/mods -PcompatModJars=Atum-1.12.2-2.0.21.jar
 if (project.hasProperty('compatModsDir') && project.hasProperty('compatModJars')) {
     project.property('compatModJars').toString().split(',').each { name ->
-        dependencies.add('compileOnly', rfg.deobf(files(new File(project.property('compatModsDir').toString(), name))))
+        dependencies.add('compileOnly', modUtils.deobfuscate(files(new File(project.property('compatModsDir').toString(), name))))
     }
 }
 

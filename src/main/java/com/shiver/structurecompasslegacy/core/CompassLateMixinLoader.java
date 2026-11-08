@@ -1,6 +1,6 @@
 package com.shiver.structurecompasslegacy.core;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraftforge.fml.common.Loader;
@@ -10,9 +10,10 @@ public final class CompassLateMixinLoader implements ILateMixinLoader {
 
     @Override
     public List<String> getMixinConfigs() {
+        List<String> configs = new ArrayList<>();
         if (Loader.isModLoaded("nether_api")) {
-            return Collections.singletonList("mixins.structurecompasslegacy.netherapi.json");
+            configs.add("mixins.structurecompasslegacy.netherapi.json");
         }
-        return Collections.emptyList();
+        return configs;
     }
 }

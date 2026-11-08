@@ -49,6 +49,10 @@ public final class SimulationChunkProvider extends ChunkProviderServer {
             return chunk;
         }
 
+        if (chunkGenerator == null) {
+            throw new UnsupportedOperationException("Biome-only simulation cannot generate chunks");
+        }
+
         long key = ChunkPos.asLong(x, z);
         budget.begin(key, loadedChunks.size());
         try {

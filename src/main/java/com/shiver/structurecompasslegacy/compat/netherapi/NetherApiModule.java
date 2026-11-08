@@ -23,6 +23,7 @@ public final class NetherApiModule implements CompatModule {
 
     @Override
     public void register(StructureRegistry registry) {
+        GeneratorFactories.registerBiomes(WORLD_PACKAGE + "WorldProviderNether");
         Class<? extends WorldInfo> infoType = ModConstructor.type(WORLD_PACKAGE + "DerivedWorldInfoMulti")
                 .asSubclass(WorldInfo.class);
         NetherWorldInfo info = new NetherWorldInfo(

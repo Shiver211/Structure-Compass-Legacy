@@ -54,7 +54,11 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     private StructureBoundingBox placementBounds;
 
     SimulationWorld(WorldServer source) {
-        super(source.getMinecraftServer(), new MemorySaveHandler(), WorldInfoCopies.copy(source.getWorldInfo()),
+        this(source, true);
+    }
+
+    SimulationWorld(WorldServer source, boolean terrainEnabled) {
+        super(source.getMinecraftServer(), new MemorySaveHandler(terrainEnabled), WorldInfoCopies.copy(source.getWorldInfo()),
                 source.provider.getDimension(), new Profiler());
         mapStorage = new MapStorage((ISaveHandler) null);
         perWorldStorage = new MapStorage((ISaveHandler) null);
@@ -69,7 +73,8 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     @MethodsReturnNonnullByDefault
     protected IChunkProvider createChunkProvider() {
         // 父类构造期间执行：这里只使用 World 已初始化的 provider 和 worldInfo。
-        return new SimulationChunkProvider(this, GeneratorFactories.create(this));
+        boolean terrainEnabled = ((MemorySaveHandler) saveHandler).terrainEnabled;
+        return new SimulationChunkProvider(this, terrainEnabled ? GeneratorFactories.create(this) : null);
     }
 
     @Override

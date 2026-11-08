@@ -31,11 +31,10 @@ public final class StructureCatalog {
             }
 
             for (Entry entry : module.structures) {
-                String reason = entry.method.equals("UNSUPPORTED") ? entry.limitation : "binding_failed";
                 registry.register(new StructureDefinition(
                         module.modId + ":" + entry.id, module.modName, entry.english, entry.chinese,
                         SearchMethod.UNSUPPORTED, world -> false, null,
-                        "structurecompasslegacy.limitation." + reason));
+                        "structurecompasslegacy.limitation.binding_failed"));
             }
         }
     }
@@ -52,7 +51,5 @@ public final class StructureCatalog {
         private String id;
         private String english;
         private String chinese;
-        private String method;
-        private String limitation;
     }
 }

@@ -20,7 +20,7 @@ import com.shiver.structurecompasslegacy.api.SearchBudget;
 import com.shiver.structurecompasslegacy.api.SearchContext;
 import com.shiver.structurecompasslegacy.api.SearchStep;
 import com.shiver.structurecompasslegacy.api.SearchTask;
-import com.shiver.structurecompasslegacy.compat.betweenlands.BetweenlandsRuntimeCheck;
+import com.shiver.structurecompasslegacy.simulation.SimulationSession;
 import com.shiver.structurecompasslegacy.compat.netherapi.NetherInfoRuntimeCheck;
 import net.minecraft.init.Bootstrap;
 import net.minecraft.profiler.Profiler;
@@ -71,7 +71,7 @@ public final class RuntimeVerificationMain {
             // 本任务核查功能与隔离，不把测试机冷启动/JIT 的墙钟时间当作游戏性能结论。
             CompassConfig.slowCallMillis = 10_000;
             NetherInfoRuntimeCheck.verify(source);
-            BetweenlandsRuntimeCheck.verify();
+            verifyBiomeOnlySession(source);
             RuntimeIdIsolationCheck.verify(source);
             require(run(new FoundationTask(context, false)).state == SearchStep.State.EXHAUSTED, "state task failed");
             require(run(new IsolationGuardTask(context)).state == SearchStep.State.EXHAUSTED, "write guards failed");
@@ -91,6 +91,21 @@ public final class RuntimeVerificationMain {
         ControlledWorldCheck.verify();
         // Anvil 文件线程常驻；存盘与卸载完成后结束独立测试 JVM。
         System.exit(0);
+    }
+
+    private static void verifyBiomeOnlySession(WorldServer source) {
+        try (SimulationSession session = SimulationSession.forBiomes(source)) {
+            require(session.world().getBiomeProvider() != source.getBiomeProvider(), "biome provider was shared");
+            require(session.world().getBiomeProvider().getBiome(BlockPos.ORIGIN) != null, "biome query failed");
+            require(session.generatedChunks() == 0, "biome query generated chunks");
+            try {
+                session.world().getChunk(0, 0);
+                throw new AssertionError("biome-only query allowed terrain generation");
+            } catch (UnsupportedOperationException expected) {
+                require(expected.getMessage().contains("Biome-only"), "unexpected biome-only rejection");
+            }
+        }
+        System.out.println("BIOME_ONLY_PASSED: private_provider, no_chunks, terrain_rejected");
     }
 
     private static void verifyRecurrentRestriction(WorldServer source) throws Exception {
