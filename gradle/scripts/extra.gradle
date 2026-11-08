@@ -3,3 +3,11 @@
 
 // If you wish to use the default helper methods, uncomment the line below
 // apply from: 'gradle/scripts/helpers.gradle'
+
+// Optional local dependencies for developing an adapter against a mod's public API.
+// Example: -PcompatModsDir=D:/path/to/mods -PcompatModJars=Atum-1.12.2-2.0.21.jar
+if (project.hasProperty('compatModsDir') && project.hasProperty('compatModJars')) {
+    project.property('compatModJars').toString().split(',').each { name ->
+        dependencies.add('compileOnly', rfg.deobf(files(new File(project.property('compatModsDir').toString(), name))))
+    }
+}

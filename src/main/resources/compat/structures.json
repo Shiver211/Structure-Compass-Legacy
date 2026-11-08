@@ -1,0 +1,443 @@
+[
+  {
+    "modId": "minecraft",
+    "modName": "Minecraft",
+    "version": "1.12.2",
+    "structures": [
+      {
+        "id": "village",
+        "english": "Village",
+        "chinese": "村庄",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "mineshaft",
+        "english": "Mineshaft",
+        "chinese": "废弃矿井",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "stronghold",
+        "english": "Stronghold",
+        "chinese": "要塞",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "ocean_monument",
+        "english": "Ocean Monument",
+        "chinese": "海底神殿",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "desert_pyramid",
+        "english": "Desert Pyramid",
+        "chinese": "沙漠神殿",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "jungle_temple",
+        "english": "Jungle Temple",
+        "chinese": "丛林神庙",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "swamp_hut",
+        "english": "Swamp Hut",
+        "chinese": "沼泽小屋",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "igloo",
+        "english": "Igloo",
+        "chinese": "雪屋",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "woodland_mansion",
+        "english": "Woodland Mansion",
+        "chinese": "林地府邸",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "nether_fortress",
+        "english": "Nether Fortress",
+        "chinese": "下界要塞",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "end_city",
+        "english": "End City",
+        "chinese": "末地城",
+        "method": "PREDICTION",
+        "limitation": ""
+      }
+    ]
+  },
+  {
+    "modId": "aether_legacy",
+    "modName": "The Aether",
+    "version": "1.5.4.1",
+    "structures": [
+      {
+        "id": "silver_dungeon",
+        "english": "Silver Dungeon",
+        "chinese": "白银地下城",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "golden_dungeon",
+        "english": "Golden Dungeon",
+        "chinese": "黄金地下城",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "bronze_dungeon",
+        "english": "Bronze Dungeon",
+        "chinese": "青铜地下城",
+        "method": "UNSUPPORTED",
+        "limitation": "aether_bronze"
+      }
+    ]
+  },
+  {
+    "modId": "atum",
+    "modName": "Atum 2",
+    "version": "2.0.21",
+    "structures": [
+      {
+        "id": "pyramid",
+        "english": "Pyramid",
+        "chinese": "金字塔",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "tomb",
+        "english": "Tomb",
+        "chinese": "陵墓",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "girafi_tomb",
+        "english": "Girafi Tomb",
+        "chinese": "吉拉菲之墓",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "lighthouse",
+        "english": "Lighthouse",
+        "chinese": "灯塔",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "mineshaft",
+        "english": "Atum Mineshaft",
+        "chinese": "阿图姆矿井",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "ruin",
+        "english": "Ruin",
+        "chinese": "废墟",
+        "method": "UNSUPPORTED",
+        "limitation": "atum_ruin"
+      },
+      {
+        "id": "dungeon",
+        "english": "Atum Dungeon",
+        "chinese": "阿图姆地牢",
+        "method": "UNSUPPORTED",
+        "limitation": "decoration_random"
+      },
+      {
+        "id": "fossil",
+        "english": "Fossil",
+        "chinese": "化石",
+        "method": "UNSUPPORTED",
+        "limitation": "decoration_random"
+      },
+      {
+        "id": "starting_structure",
+        "english": "Starting Structure",
+        "chinese": "初始营地",
+        "method": "UNSUPPORTED",
+        "limitation": "spawn_order"
+      }
+    ]
+  },
+  {
+    "modId": "tofucraft",
+    "modName": "TofuCraft Reload",
+    "version": "0.1.0.9",
+    "structures": [
+      {
+        "id": "village",
+        "english": "Tofu Village",
+        "chinese": "豆腐村庄",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "castle",
+        "english": "Tofu Castle",
+        "chinese": "豆腐城堡",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "mineshaft",
+        "english": "Tofu Mineshaft",
+        "chinese": "豆腐矿井",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "tofu_building",
+        "english": "Tofu Building",
+        "chinese": "豆腐建筑",
+        "method": "UNSUPPORTED",
+        "limitation": "decoration_random"
+      }
+    ]
+  },
+  {
+    "modId": "twilightforest",
+    "modName": "The Twilight Forest",
+    "version": "3.15.1",
+    "structures": [
+      {
+        "id": "small_hill",
+        "english": "Small Hollow Hill",
+        "chinese": "小型空心山丘",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "medium_hill",
+        "english": "Medium Hollow Hill",
+        "chinese": "中型空心山丘",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "large_hill",
+        "english": "Large Hollow Hill",
+        "chinese": "大型空心山丘",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "hedge_maze",
+        "english": "Hedge Maze",
+        "chinese": "树篱迷宫",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "naga_courtyard",
+        "english": "Naga Courtyard",
+        "chinese": "娜迦庭院",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "lich_tower",
+        "english": "Lich Tower",
+        "chinese": "巫妖塔",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "ice_tower",
+        "english": "Aurora Palace",
+        "chinese": "极光宫殿",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "quest_grove",
+        "english": "Quest Grove",
+        "chinese": "探险者树林",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "hydra_lair",
+        "english": "Hydra Lair",
+        "chinese": "九头蛇巢穴",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "labyrinth",
+        "english": "Labyrinth",
+        "chinese": "牛头人迷宫",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "dark_tower",
+        "english": "Dark Tower",
+        "chinese": "黑暗高塔",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "knight_stronghold",
+        "english": "Knight Stronghold",
+        "chinese": "哥布林骑士要塞",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "yeti_cave",
+        "english": "Yeti Cave",
+        "chinese": "雪怪洞穴",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "troll_cave",
+        "english": "Troll Cave",
+        "chinese": "巨魔洞窟",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "final_castle",
+        "english": "Final Castle",
+        "chinese": "最终城堡",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "mushroom_tower",
+        "english": "Mushroom Tower",
+        "chinese": "蘑菇城堡",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "hollow_tree",
+        "english": "Hollow Tree",
+        "chinese": "巨型空心树",
+        "method": "UNSUPPORTED",
+        "limitation": "twilight_hollow_tree"
+      }
+    ]
+  },
+  {
+    "modId": "draconicevolution",
+    "modName": "Draconic Evolution",
+    "version": "2.3.28.193 tweaked-patched",
+    "structures": [
+      {
+        "id": "chaos_island",
+        "english": "Chaos Island",
+        "chinese": "混沌岛",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "ender_comet",
+        "english": "Ender Comet",
+        "chinese": "末影彗星",
+        "method": "PREDICTION",
+        "limitation": ""
+      }
+    ]
+  },
+  {
+    "modId": "thaumicaugmentation",
+    "modName": "Thaumic Augmentation",
+    "version": "2.1.14",
+    "structures": [
+      {
+        "id": "eldritch_spire",
+        "english": "Eldritch Spire",
+        "chinese": "邪术尖塔",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "dimensional_fracture",
+        "english": "Dimensional Fracture",
+        "chinese": "维度裂隙",
+        "method": "UNSUPPORTED",
+        "limitation": "dimensional_fracture"
+      }
+    ]
+  },
+  {
+    "modId": "theaurorian",
+    "modName": "The Aurorian",
+    "version": "1.2",
+    "structures": [
+      {
+        "id": "moon_temple",
+        "english": "Moon Temple",
+        "chinese": "月亮神殿",
+        "method": "PREDICTION",
+        "limitation": ""
+      },
+      {
+        "id": "darkstone_dungeon",
+        "english": "Darkstone Dungeon",
+        "chinese": "暗石地牢",
+        "method": "PREDICTION",
+        "limitation": "reference_height"
+      },
+      {
+        "id": "runestone_tower",
+        "english": "Runestone Tower",
+        "chinese": "符石高塔",
+        "method": "PREDICTION",
+        "limitation": "reference_height"
+      },
+      {
+        "id": "graveyard",
+        "english": "Graveyard",
+        "chinese": "墓地",
+        "method": "UNSUPPORTED",
+        "limitation": "aurorian_unseeded_random"
+      },
+      {
+        "id": "umbra_tower",
+        "english": "Umbra Tower",
+        "chinese": "暗影高塔",
+        "method": "UNSUPPORTED",
+        "limitation": "aurorian_unseeded_random"
+      },
+      {
+        "id": "surface_ruin",
+        "english": "Surface Ruin",
+        "chinese": "地表遗迹",
+        "method": "UNSUPPORTED",
+        "limitation": "aurorian_unseeded_random"
+      },
+      {
+        "id": "underground_ruin",
+        "english": "Underground Ruin",
+        "chinese": "地下遗迹",
+        "method": "UNSUPPORTED",
+        "limitation": "aurorian_unseeded_random"
+      }
+    ]
+  }
+]

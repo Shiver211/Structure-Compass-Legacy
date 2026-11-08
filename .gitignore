@@ -23,3 +23,6 @@ build
 # other
 eclipse
 run
+logs
+tools
+IMPLEMENTATION.md

@@ -1,21 +1,43 @@
-## TemplateDevEnv
-_For Kotlin see [TemplateDevEnvKt](https://github.com/CleanroomMC/TemplateDevEnvKt)_
+# Structure Compass Legacy
 
-Template workspace for modding Minecraft 1.12.2. Licensed under MIT, it is made for public use.
+Minecraft 1.12.2 / Cleanroom 的结构指南针。当前版本为 `0.1.0`，正在分批实现整合包模组兼容。
 
-This template runs on **Java 25**, **Gradle 9.7.0** + **[RetroFuturaGradle](https://github.com/GTNewHorizons/RetroFuturaGradle) 2.0.3** + **Forge 14.23.5.2847**.
+右键打开列表，按中文、英文或模组名搜索。找到目标后，指针和 HUD 提供方向、水平距离与坐标。
+只搜索当前维度，使用生成规则预测，必要时验证临时地形。当前没有启用模拟搜索条目。
+无法可靠复现坐标的结构保留“不支持”条目和具体原因，不再提供仅概率相似的模拟结果。
+不读取已有结构坐标，不记录探索位置，不保存搜索历史。物品 NBT 仅保存当前导航目标。
 
-With **coremod and mixin support** that is easy to configure.
+```text
+石砖  铁锭   石砖
+铁锭  指南针 铁锭
+石砖  铁锭   石砖
+```
 
-### Instructions:
+安装 `build/libs/structurecompasslegacy-0.1.0.jar`，客户端和服务端使用同一版本。
+不要安装 `-dev.jar` 或 `-sources.jar`。首次运行自动生成 `config/structurecompasslegacy.cfg`。
 
-1. Click `use this template` at the top.
-2. Clone the repository that you have created with this template to your local machine.
-3. Make sure IDEA is using Java 25 for Gradle before you sync the project. Verify this by going to IDEA's `Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM`.
-4. Open the project folder in IDEA. When prompted, click "Load Gradle Project" as it detects the `build.gradle`, if you weren't prompted, right-click the project's `build.gradle` in IDEA, select `Link Gradle Project`, after completion, hit `Refresh All` in the gradle tab on the right.
-5. Run gradle tasks such as `runClient` and `runServer` in the IDEA gradle tab, or use the auto-imported run configurations like `1. Run Client`.
+- [逐结构兼容表](COMPATIBILITY.md)：当前 55 个条目及具体限制。
+- [测试说明](TESTING.md)：已执行检查、本轮测试重点和日志指标。
+- [实现说明](IMPLEMENTATION.md)：模块入口、隔离边界和剩余兼容工作。
 
-### Notes:
-- Dependencies script in [gradle/scripts/dependencies.gradle](gradle/scripts/dependencies.gradle), explanations are commented in the file.
-- Publishing script in [gradle/scripts/publishing.gradle](gradle/scripts/publishing.gradle).
-- When writing Mixins on IntelliJ, it is advisable to use latest [MinecraftDev Fork for RetroFuturaGradle](https://github.com/eigenraven/MinecraftDev/releases).
+## 构建
+
+沿用 Cleanroom TemplateDevEnv：Java 25 运行 Gradle 9.7.0 / RFG 2.0.3，输出 Java 8 字节码。
+目标验收环境为 Cleanroom `0.6.13-alpha`。
+
+```powershell
+.\gradlew.bat build
+python tools/generate_compat_docs.py --check
+```
+
+可选模组通过注册时绑定的公开接口接入，默认构建无需它们的 JAR。
+需要直接引用模组 API 时，可使用本地 `compileOnly` 依赖：
+
+```powershell
+.\gradlew.bat build '-PcompatModsDir=D:/path/to/mods' '-PcompatModJars=Atum-1.12.2-2.0.21.jar'
+```
+
+第三方模组不打包进指南针。个人目录不写入构建配置。
+
+候选计算与局部验证思路参考 [Simple Structure Scanner](https://github.com/Aedial/Simple-Structure-Scanner)。
+目前没有复制该项目的源代码。开发模板来自 [CleanroomMC/TemplateDevEnv](https://github.com/CleanroomMC/TemplateDevEnv)，保留其 MIT 许可。
