@@ -36,7 +36,7 @@ public abstract class ChunkSearchTask implements SearchTask {
                 return SearchStep.limit(limit.getMessage());
             } finally {
                 elapsed = System.nanoTime() - before;
-                longestCallNanos = Math.max(longestCallNanos, elapsed);
+                recordCallNanos(elapsed);
             }
 
             chunks.next();
@@ -66,6 +66,10 @@ public abstract class ChunkSearchTask implements SearchTask {
     @Override
     public long longestCallNanos() {
         return longestCallNanos;
+    }
+
+    protected final void recordCallNanos(long nanos) {
+        longestCallNanos = Math.max(longestCallNanos, nanos);
     }
 
     @Override

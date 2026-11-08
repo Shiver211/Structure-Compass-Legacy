@@ -3,14 +3,17 @@ package com.shiver.structurecompasslegacy.search;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import com.shiver.structurecompasslegacy.CompassConfig;
+import com.shiver.structurecompasslegacy.api.SearchBudget;
 import com.shiver.structurecompasslegacy.api.SearchContext;
+import com.shiver.structurecompasslegacy.api.SearchStep;
 import com.shiver.structurecompasslegacy.api.SearchTarget;
 import com.shiver.structurecompasslegacy.api.SearchTask;
 import com.shiver.structurecompasslegacy.api.StructureLocator;
 import com.shiver.structurecompasslegacy.mixin.MapGenBaseAccessor;
 import com.shiver.structurecompasslegacy.mixin.MapGenStructureInvoker;
-import com.shiver.structurecompasslegacy.simulation.SimulationScope;
 import com.shiver.structurecompasslegacy.simulation.GeneratorFactories;
+import com.shiver.structurecompasslegacy.simulation.SimulationScope;
 import com.shiver.structurecompasslegacy.simulation.SimulationSession;
 import com.shiver.structurecompasslegacy.simulation.SimulationWorld;
 
@@ -27,6 +30,7 @@ public final class MapStructureTask extends ChunkSearchTask {
     private final Function<SimulationWorld, MapGenStructure> factory;
     private final Predicate<StructureComponent> componentFilter;
     private final boolean validateLayout;
+    private final boolean terrainEnabled;
 
     private SimulationSession simulation;
     private MapGenStructure generator;
@@ -35,11 +39,20 @@ public final class MapStructureTask extends ChunkSearchTask {
             Function<SimulationWorld, MapGenStructure> factory,
             Predicate<StructureComponent> componentFilter,
             boolean validateLayout) {
+        return locator(factory, componentFilter, validateLayout, world -> true);
+    }
+
+    public static StructureLocator locator(
+            Function<SimulationWorld, MapGenStructure> factory,
+            Predicate<StructureComponent> componentFilter,
+            boolean validateLayout,
+            Predicate<WorldServer> needsTerrain) {
         return new StructureLocator() {
 
             @Override
             public SearchTask createTask(SearchContext context) {
-                return new MapStructureTask(context, factory, componentFilter, validateLayout);
+                return new MapStructureTask(
+                        context, factory, componentFilter, validateLayout, needsTerrain.test(context.source));
             }
 
             @Override
@@ -55,19 +68,58 @@ public final class MapStructureTask extends ChunkSearchTask {
             Function<SimulationWorld, MapGenStructure> factory,
             Predicate<StructureComponent> componentFilter,
             boolean validateLayout) {
+        this(context, factory, componentFilter, validateLayout, true);
+    }
+
+    public MapStructureTask(
+            SearchContext context,
+            Function<SimulationWorld, MapGenStructure> factory,
+            Predicate<StructureComponent> componentFilter,
+            boolean validateLayout,
+            boolean terrainEnabled) {
         super(context);
         this.factory = factory;
         this.componentFilter = componentFilter;
         this.validateLayout = validateLayout;
+        this.terrainEnabled = terrainEnabled;
+    }
+
+    @Override
+    public SearchStep advance(SearchBudget budget) throws Exception {
+        if (simulation == null) {
+            long before = System.nanoTime();
+            long elapsed;
+            try (SimulationScope ignored = SimulationScope.enter()) {
+                initializeSimulation();
+            } catch (SearchLimitException limit) {
+                return SearchStep.limit(limit.getMessage());
+            } finally {
+                elapsed = System.nanoTime() - before;
+                recordCallNanos(elapsed);
+            }
+            if (elapsed > CompassConfig.slowCallMillis * 1_000_000L) {
+                return SearchStep.limit("slow_call");
+            }
+            if (budget.exhausted()) {
+                return SearchStep.running();
+            }
+        }
+        return super.advance(budget);
+    }
+
+    private void initializeSimulation() {
+        simulation = terrainEnabled
+                ? new SimulationSession(context.source)
+                : SimulationSession.forBiomes(context.source);
+        generator = factory.apply(simulation.world());
+        ((MapGenBaseAccessor) generator).compassSetWorld(simulation.world());
     }
 
     @Override
     protected SearchTarget inspect(int chunkX, int chunkZ) {
         try (SimulationScope ignored = SimulationScope.enter()) {
             if (simulation == null) {
-                simulation = new SimulationSession(context.source);
-                generator = factory.apply(simulation.world());
-                ((MapGenBaseAccessor) generator).compassSetWorld(simulation.world());
+                initializeSimulation();
             }
 
             ((MapGenBaseAccessor) generator).compassSetRandom(SeedMath.mapGen(context.seed, chunkX, chunkZ));

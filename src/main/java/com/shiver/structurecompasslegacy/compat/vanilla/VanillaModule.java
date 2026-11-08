@@ -12,6 +12,8 @@ import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.search.MapStructureTask;
 import com.shiver.structurecompasslegacy.simulation.SimulationWorld;
 
+import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.ChunkGeneratorEnd;
 import net.minecraft.world.gen.ChunkGeneratorOverworld;
@@ -21,7 +23,6 @@ import net.minecraft.world.gen.structure.MapGenEndCity;
 import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraft.world.gen.structure.MapGenScatteredFeature;
-import net.minecraft.world.gen.structure.MapGenStronghold;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.MapGenVillage;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -49,28 +50,35 @@ public final class VanillaModule implements CompatModule {
 
     @Override
     public void register(StructureRegistry registry) {
+        Predicate<WorldServer> templeNeedsTerrain = world -> TEMPLES.containsKey(world.getWorldType().getClass().getName());
         register(registry, "village", 0,
-                world -> new MapGenVillage(flatOptions(world, "village")), null);
+                world -> new MapGenVillage(flatOptions(world, "village")), null, world -> false);
         register(registry, "mineshaft", 0,
-                world -> new MapGenMineshaft(flatOptions(world, "mineshaft")), null);
-        register(registry, "stronghold", 0,
-                world -> new MapGenStronghold(flatOptions(world, "stronghold")), null);
+                world -> new MapGenMineshaft(flatOptions(world, "mineshaft")), null, world -> false);
+        registry.activate("minecraft:stronghold",
+                DimensionRule.ofIds(0),
+                StrongholdTask.locator(), "", () -> true);
         register(registry, "ocean_monument", 0,
-                world -> new StructureOceanMonument(flatOptions(world, "oceanmonument")), null);
+                world -> new StructureOceanMonument(flatOptions(world, "oceanmonument")), null, world -> false);
         register(registry, "desert_pyramid", 0,
-                VanillaModule::temple, ComponentScatteredFeaturePieces.DesertPyramid.class::isInstance);
+                VanillaModule::temple, ComponentScatteredFeaturePieces.DesertPyramid.class::isInstance,
+                templeNeedsTerrain);
         register(registry, "jungle_temple", 0,
-                VanillaModule::temple, ComponentScatteredFeaturePieces.JunglePyramid.class::isInstance);
+                VanillaModule::temple, ComponentScatteredFeaturePieces.JunglePyramid.class::isInstance,
+                templeNeedsTerrain);
         register(registry, "swamp_hut", 0,
-                VanillaModule::temple, ComponentScatteredFeaturePieces.SwampHut.class::isInstance);
+                VanillaModule::temple, ComponentScatteredFeaturePieces.SwampHut.class::isInstance,
+                templeNeedsTerrain);
         register(registry, "igloo", 0,
-                VanillaModule::temple, ComponentScatteredFeaturePieces.Igloo.class::isInstance);
+                VanillaModule::temple, ComponentScatteredFeaturePieces.Igloo.class::isInstance,
+                templeNeedsTerrain);
         register(registry, "woodland_mansion", 0,
-                VanillaModule::mansion, null);
+                VanillaModule::mansion, null, world -> true);
         register(registry, "nether_fortress", -1,
-                world -> new MapGenNetherBridge(), null);
+                world -> new MapGenNetherBridge(), null, world -> false);
         register(registry, "end_city", 1,
-                world -> new MapGenEndCity((ChunkGeneratorEnd) world.simulationChunks().chunkGenerator), null);
+                world -> new MapGenEndCity((ChunkGeneratorEnd) world.simulationChunks().chunkGenerator), null,
+                world -> true);
     }
 
     private void register(
@@ -78,11 +86,12 @@ public final class VanillaModule implements CompatModule {
             String id,
             int dimension,
             Function<SimulationWorld, MapGenStructure> factory,
-            Predicate<StructureComponent> componentFilter) {
+            Predicate<StructureComponent> componentFilter,
+            Predicate<WorldServer> needsTerrain) {
         boolean validateLayout = componentFilter != null || id.equals("village") || id.equals("woodland_mansion");
         registry.activate("minecraft:" + id,
                 DimensionRule.ofIds(dimension),
-                MapStructureTask.locator(factory, componentFilter, validateLayout), "", () -> true);
+                MapStructureTask.locator(factory, componentFilter, validateLayout, needsTerrain), "", () -> true);
     }
 
     private static MapGenStructure temple(SimulationWorld world) {
@@ -100,12 +109,23 @@ public final class VanillaModule implements CompatModule {
                 : factory.apply(world);
     }
 
-    private static Map<String, String> flatOptions(SimulationWorld world, String feature) {
+    static boolean hasFlatFeature(World world, String feature) {
+        if (world.getWorldType() != WorldType.FLAT) {
+            return true;
+        }
+
+        FlatGeneratorInfo info = FlatGeneratorInfo.createFlatGeneratorFromString(
+                world.getWorldInfo().getGeneratorOptions());
+        return info.getWorldFeatures().containsKey(feature);
+    }
+
+    static Map<String, String> flatOptions(World world, String feature) {
         if (world.getWorldType() != WorldType.FLAT) {
             return Collections.emptyMap();
         }
 
-        FlatGeneratorInfo info = FlatGeneratorInfo.createFlatGeneratorFromString(world.getWorldInfo().getGeneratorOptions());
+        FlatGeneratorInfo info = FlatGeneratorInfo.createFlatGeneratorFromString(
+                world.getWorldInfo().getGeneratorOptions());
         Map<String, String> options = info.getWorldFeatures().get(feature);
         if (options == null) {
             throw new UnsupportedOperationException("Flat world does not generate " + feature);
