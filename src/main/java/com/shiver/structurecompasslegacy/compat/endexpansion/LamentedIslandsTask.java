@@ -38,7 +38,7 @@ final class LamentedIslandsTask extends ChunkSearchTask {
             @Override
             public String unavailableReason(WorldServer world) {
                 if (spacing.getAsInt() <= 16) {
-                    return "structurecompasslegacy.limitation.lamented_islands_spacing";
+                    return "structurecompasslegacy.reason.generation_disabled";
                 }
                 return GeneratorFactories.supports(world)
                         ? "" : "structurecompasslegacy.reason.generator_not_adapted";

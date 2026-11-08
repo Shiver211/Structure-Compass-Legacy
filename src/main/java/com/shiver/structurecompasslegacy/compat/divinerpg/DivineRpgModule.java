@@ -20,8 +20,7 @@ public final class DivineRpgModule implements CompatModule {
 
         for (DivineStructure structure : DivineStructure.values()) {
             ModuleRegistration dimension = structure.layer == 0 ? iceika : vethea;
-            dimension.prediction(structure.id, context -> new DivineStructureTask(context, structure),
-                    () -> true, "structurecompasslegacy.limitation.divinerpg_template");
+            dimension.prediction(structure.id, context -> new DivineStructureTask(context, structure));
         }
     }
 }

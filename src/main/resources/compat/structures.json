@@ -440,7 +440,7 @@
         "english": "Lamented Islands",
         "chinese": "哀叹群岛",
         "method": "PREDICTION",
-        "limitation": "lamented_islands_anchor",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       }
     ]
@@ -455,7 +455,7 @@
         "english": "Frost Archer Dungeon",
         "chinese": "冰霜弓箭手地牢",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -463,7 +463,7 @@
         "english": "Rollum Dungeon",
         "chinese": "罗鲁姆地牢",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -471,7 +471,7 @@
         "english": "Vethea Crypt I",
         "chinese": "梦魇墓穴 I",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -479,7 +479,7 @@
         "english": "Vethea Crypt II",
         "chinese": "梦魇墓穴 II",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -487,7 +487,7 @@
         "english": "Hive",
         "chinese": "蜂巢",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -495,7 +495,7 @@
         "english": "Vethea Temple I",
         "chinese": "梦魇神殿 I",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -503,7 +503,7 @@
         "english": "Vethea Temple II",
         "chinese": "梦魇神殿 II",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -511,7 +511,7 @@
         "english": "Quadrotic Post",
         "chinese": "夸德罗哨站",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -519,7 +519,7 @@
         "english": "Karos's Madhouse",
         "chinese": "卡洛斯疯人院",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -527,7 +527,7 @@
         "english": "Evergarden",
         "chinese": "永恒花园",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -535,7 +535,7 @@
         "english": "Raglok's Chamber",
         "chinese": "拉格洛克密室",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -543,7 +543,7 @@
         "english": "Wreck Hall",
         "chinese": "毁灭大厅",
         "method": "PREDICTION",
-        "limitation": "divinerpg_template",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       }
     ]
@@ -558,7 +558,7 @@
         "english": "Burning Flame Arena",
         "chinese": "炽焰竞技场",
         "method": "PREDICTION",
-        "limitation": "da_arena_anchor",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       },
       {
@@ -566,7 +566,7 @@
         "english": "Obsidilith Arena",
         "chinese": "黑曜石竞技场",
         "method": "PREDICTION",
-        "limitation": "da_arena_anchor",
+        "limitation": "",
         "status": "AWAITING_VALIDATION"
       }
     ]

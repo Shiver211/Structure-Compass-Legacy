@@ -43,7 +43,7 @@ public final class CompassNetwork {
             entry.setString("english", structure.englishName);
             entry.setString("chinese", structure.chineseName);
             entry.setString("mod", structure.modName);
-            entry.setString("method", StructureDefinition.SEARCH_METHOD);
+            entry.setTag("dimensions", structure.dimensions.toNbt());
             entry.setBoolean("available", unavailableReason.isEmpty());
             entry.setString("limitation", structure.limitation);
             entry.setString("unavailableReason", unavailableReason);

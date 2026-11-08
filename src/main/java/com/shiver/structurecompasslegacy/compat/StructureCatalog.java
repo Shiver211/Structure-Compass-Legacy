@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.shiver.structurecompasslegacy.api.DimensionRule;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
 import com.shiver.structurecompasslegacy.api.StructureRegistry;
 
@@ -33,7 +34,7 @@ public final class StructureCatalog {
             for (Entry entry : module.structures) {
                 registry.register(new StructureDefinition(
                         module.modId + ":" + entry.id, module.modName, entry.english, entry.chinese,
-                        world -> false, null, "", () -> true));
+                        DimensionRule.none(), null, "", () -> true));
             }
         }
     }

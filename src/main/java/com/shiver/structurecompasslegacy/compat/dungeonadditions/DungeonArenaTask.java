@@ -57,7 +57,7 @@ final class DungeonArenaTask extends ChunkSearchTask {
             @Override
             public String unavailableReason(WorldServer world) {
                 if (spacing.getAsInt() <= 16 || height.getAsInt() < 0 || height.getAsInt() > 255) {
-                    return "structurecompasslegacy.limitation.da_arena_parameters";
+                    return "structurecompasslegacy.reason.generation_disabled";
                 }
                 return GeneratorFactories.supportsBiomes(world)
                         ? "" : "structurecompasslegacy.reason.generator_not_adapted";

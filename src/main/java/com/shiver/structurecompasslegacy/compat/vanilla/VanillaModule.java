@@ -7,6 +7,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import com.shiver.structurecompasslegacy.api.CompatModule;
+import com.shiver.structurecompasslegacy.api.DimensionRule;
 import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.search.MapStructureTask;
 import com.shiver.structurecompasslegacy.simulation.SimulationWorld;
@@ -80,7 +81,7 @@ public final class VanillaModule implements CompatModule {
             Predicate<StructureComponent> componentFilter) {
         boolean validateLayout = componentFilter != null || id.equals("village") || id.equals("woodland_mansion");
         registry.activate("minecraft:" + id,
-                world -> world.provider.getDimension() == dimension,
+                DimensionRule.ofIds(dimension),
                 MapStructureTask.locator(factory, componentFilter, validateLayout), "", () -> true);
     }
 

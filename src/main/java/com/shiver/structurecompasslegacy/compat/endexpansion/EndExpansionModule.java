@@ -24,12 +24,10 @@ public final class EndExpansionModule implements CompatModule {
         Field excludedTypes = ModFields.bind(CONFIG, "biome_types_lamented_islands");
 
         // 原自然入口按维度 ID 判断，兼容 Nether API 替换的末地 provider。
-        ModuleRegistration entries = new ModuleRegistration(
-                registry, modId(), world -> world.provider.getDimension() == 1);
+        ModuleRegistration entries = new ModuleRegistration(registry, modId(), 1);
         entries.prediction("lamented_islands", LamentedIslandsTask.locator(
                 ModFields.integer(CONFIG, "structureFrequency"),
                 () -> (String[]) ModFields.read(excludedTypes, null)),
-                () -> structures.getAsBoolean() && islands.getAsBoolean(),
-                "structurecompasslegacy.limitation.lamented_islands_anchor");
+                () -> structures.getAsBoolean() && islands.getAsBoolean());
     }
 }

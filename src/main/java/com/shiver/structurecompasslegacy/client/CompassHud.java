@@ -4,7 +4,6 @@ import com.shiver.structurecompasslegacy.StructureCompassLegacy;
 import com.shiver.structurecompasslegacy.item.CompassTarget;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -33,7 +32,7 @@ public final class CompassHud {
         }
 
         String name = ClientText.name(target.englishName, target.chineseName);
-        minecraft.fontRenderer.drawStringWithShadow(name + " · " + I18n.format(target.method), 6, 6, 0xFFFFFF);
+        minecraft.fontRenderer.drawStringWithShadow(name, 6, 6, 0xFFFFFF);
         if (minecraft.player.dimension != target.dimension) {
             minecraft.fontRenderer.drawStringWithShadow(ClientText.translate("other_dimension", target.dimension),
                     6, 18, 0xFFCC66);

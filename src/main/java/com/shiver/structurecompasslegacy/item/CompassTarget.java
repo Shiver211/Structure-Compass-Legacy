@@ -14,14 +14,12 @@ public final class CompassTarget {
 
     public final String englishName;
     public final String chineseName;
-    public final String method;
     public final int dimension;
     public final BlockPos position;
 
     private CompassTarget(NBTTagCompound tag) {
         englishName = tag.getString("english");
         chineseName = tag.getString("chinese");
-        method = tag.getString("method");
         dimension = tag.getInteger("dimension");
         position = BlockPos.fromLong(tag.getLong("position"));
     }
@@ -41,7 +39,6 @@ public final class CompassTarget {
         tag.setString("structure", structure.id.toString());
         tag.setString("english", structure.englishName);
         tag.setString("chinese", structure.chineseName);
-        tag.setString("method", StructureDefinition.SEARCH_METHOD);
         tag.setInteger("dimension", dimension);
         tag.setLong("position", target.position.toLong());
         stack.setTagInfo(TARGET_KEY, tag);

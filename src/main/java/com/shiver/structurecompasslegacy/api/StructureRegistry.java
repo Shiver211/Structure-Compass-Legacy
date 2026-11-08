@@ -5,10 +5,8 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
-import java.util.function.Predicate;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.WorldServer;
 
 public final class StructureRegistry {
 
@@ -26,7 +24,7 @@ public final class StructureRegistry {
 
     public void activate(
             String id,
-            Predicate<WorldServer> dimensions,
+            DimensionRule dimensions,
             StructureLocator locator,
             String limitation,
             BooleanSupplier enabled) {

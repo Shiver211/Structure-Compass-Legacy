@@ -1,28 +1,31 @@
 package com.shiver.structurecompasslegacy.compat;
 
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.function.BooleanSupplier;
+import java.util.function.Function;
 
+import com.shiver.structurecompasslegacy.api.DimensionRule;
 import com.shiver.structurecompasslegacy.api.StructureLocator;
 import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.search.MapStructureTask;
 import com.shiver.structurecompasslegacy.simulation.SimulationWorld;
 
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.structure.MapGenStructure;
 
 public final class ModuleRegistration {
 
     private final StructureRegistry registry;
     private final String modId;
-    private final Predicate<WorldServer> dimensions;
+    private final DimensionRule dimensions;
 
     public ModuleRegistration(StructureRegistry registry, String modId, String providerClass) {
-        this(registry, modId, world -> world.provider.getClass().getName().equals(providerClass));
+        this(registry, modId, DimensionRule.ofProvider(providerClass));
     }
 
-    public ModuleRegistration(StructureRegistry registry, String modId, Predicate<WorldServer> dimensions) {
+    public ModuleRegistration(StructureRegistry registry, String modId, int... dimensionIds) {
+        this(registry, modId, DimensionRule.ofIds(dimensionIds));
+    }
+
+    public ModuleRegistration(StructureRegistry registry, String modId, DimensionRule dimensions) {
         this.registry = registry;
         this.modId = modId;
         this.dimensions = dimensions;

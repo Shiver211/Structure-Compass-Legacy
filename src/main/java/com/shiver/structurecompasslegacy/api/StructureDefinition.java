@@ -1,21 +1,18 @@
 package com.shiver.structurecompasslegacy.api;
 
 import java.util.function.BooleanSupplier;
-import java.util.function.Predicate;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
 
 public final class StructureDefinition {
 
-    public static final String SEARCH_METHOD = "structurecompasslegacy.method.prediction";
-
     public final ResourceLocation id;
     public final String modName;
     public final String englishName;
     public final String chineseName;
     public final String limitation;
-    public final Predicate<WorldServer> dimensions;
+    public final DimensionRule dimensions;
     public final StructureLocator locator;
     private final BooleanSupplier enabled;
 
@@ -24,7 +21,7 @@ public final class StructureDefinition {
             String modName,
             String englishName,
             String chineseName,
-            Predicate<WorldServer> dimensions,
+            DimensionRule dimensions,
             StructureLocator locator,
             String limitation,
             BooleanSupplier enabled) {

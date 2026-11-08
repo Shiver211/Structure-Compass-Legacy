@@ -111,28 +111,28 @@ Unseen’s 的炽焰竞技场、黑曜石竞技场提供起始点预测，待集
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
-| `endexpansion:lamented_islands` | 哀叹群岛 / Lamented Islands | 预测 | 已实现，待集中实测 | 导航到起始岛的模板起点（Y=90），群岛布局由模组生成。当前版本待集中实测。 |
+| `endexpansion:lamented_islands` | 哀叹群岛 / Lamented Islands | 预测 | 已实现，待集中实测 | — |
 
 ## DivineRPG — 1.0.0-patched
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
-| `divinerpg:archer_dungeon` | 冰霜弓箭手地牢 / Frost Archer Dungeon | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:rollum_dungeon` | 罗鲁姆地牢 / Rollum Dungeon | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:crypt_1` | 梦魇墓穴 I / Vethea Crypt I | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:crypt_2` | 梦魇墓穴 II / Vethea Crypt II | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:hive` | 蜂巢 / Hive | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:temple_1` | 梦魇神殿 I / Vethea Temple I | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:temple_2` | 梦魇神殿 II / Vethea Temple II | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:quadrotic_post` | 夸德罗哨站 / Quadrotic Post | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:karos_madhouse` | 卡洛斯疯人院 / Karos's Madhouse | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:evergarden` | 永恒花园 / Evergarden | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:raglok_chamber` | 拉格洛克密室 / Raglok's Chamber | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
-| `divinerpg:wreck_hall` | 毁灭大厅 / Wreck Hall | 预测 | 已实现，待集中实测 | 预测首个模板组件的位置、高度与旋转；跳过与同层大型结构共用生成区域的候选，可能略过更近的结构。待集中实测。 |
+| `divinerpg:archer_dungeon` | 冰霜弓箭手地牢 / Frost Archer Dungeon | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:rollum_dungeon` | 罗鲁姆地牢 / Rollum Dungeon | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:crypt_1` | 梦魇墓穴 I / Vethea Crypt I | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:crypt_2` | 梦魇墓穴 II / Vethea Crypt II | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:hive` | 蜂巢 / Hive | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:temple_1` | 梦魇神殿 I / Vethea Temple I | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:temple_2` | 梦魇神殿 II / Vethea Temple II | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:quadrotic_post` | 夸德罗哨站 / Quadrotic Post | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:karos_madhouse` | 卡洛斯疯人院 / Karos's Madhouse | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:evergarden` | 永恒花园 / Evergarden | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:raglok_chamber` | 拉格洛克密室 / Raglok's Chamber | 预测 | 已实现，待集中实测 | — |
+| `divinerpg:wreck_hall` | 毁灭大厅 / Wreck Hall | 预测 | 已实现，待集中实测 | — |
 
 ## Unseen's Dungeon Additions — 1.7.4.1
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
-| `da:nether_arena` | 炽焰竞技场 / Burning Flame Arena | 预测 | 已实现，待集中实测 | 预测自然网格和群系条件后的起始建筑坐标；不预测随机扩展房间。仅查询独立群系，不生成区块；待集中游戏实测。 |
-| `da:obsidilith_arena` | 黑曜石竞技场 / Obsidilith Arena | 预测 | 已实现，待集中实测 | 预测自然网格和群系条件后的起始建筑坐标；不预测随机扩展房间。仅查询独立群系，不生成区块；待集中游戏实测。 |
+| `da:nether_arena` | 炽焰竞技场 / Burning Flame Arena | 预测 | 已实现，待集中实测 | — |
+| `da:obsidilith_arena` | 黑曜石竞技场 / Obsidilith Arena | 预测 | 已实现，待集中实测 | — |
