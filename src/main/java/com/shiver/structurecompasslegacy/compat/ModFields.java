@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.util.function.BooleanSupplier;
 import java.util.function.IntSupplier;
 
-/** 只绑定模块明确列出的公开参数，不扫描或复制模组的全局状态。 */
 public final class ModFields {
 
     private ModFields() {

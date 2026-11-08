@@ -3,7 +3,6 @@ package com.shiver.structurecompasslegacy.compat;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-/** 可选模组的构造器在注册时绑定，搜索期间不再查找成员。 */
 public final class ModConstructor<T> {
 
     private final Constructor<? extends T> constructor;

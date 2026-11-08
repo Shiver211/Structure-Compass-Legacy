@@ -34,3 +34,7 @@ structurecompasslegacy.limitation.twilight_hollow_tree=巨型空心树使用独�
 structurecompasslegacy.limitation.dimensional_fracture=裂隙涉及跨维度连接与延迟生成队列，尚未完成状态隔离。
 structurecompasslegacy.limitation.aurorian_unseeded_random=生成概率使用非世界种子随机源，无法复现实际坐标；模拟存在位置偏差，已停止支持搜索。
 structurecompasslegacy.limitation.reference_height=水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。
+structurecompasslegacy.limitation.abyssal_darklands=结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。
+structurecompasslegacy.limitation.abyssal_decoration=生成依赖湖泊、要塞等前置流程及共享装饰随机源；尚未完成隔离复演，无法可靠定位。
+structurecompasslegacy.limitation.abyssal_shoggoth=各维度使用不同的自然生成入口，依赖矿物、湖泊或遗迹的随机消耗及跨区块地基检查；尚未适配。
+structurecompasslegacy.limitation.omothol_spacing=生成器用内存中的已生成位置集合排除邻近建筑，且随机状态受区块生成顺序影响；不读取这些记录时无法可靠复现坐标。

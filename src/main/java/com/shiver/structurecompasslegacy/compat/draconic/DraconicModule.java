@@ -39,7 +39,6 @@ public final class DraconicModule implements CompatModule {
     }
 
     static boolean generatesIn(WorldProvider provider) {
-        // DEWorldGenHandler 按维度 ID 分支，允许 Nether API 等模组替换末地 Provider。
         return provider.getDimension() == 1;
     }
 }

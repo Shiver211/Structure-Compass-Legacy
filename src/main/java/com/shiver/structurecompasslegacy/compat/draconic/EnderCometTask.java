@@ -41,7 +41,6 @@ final class EnderCometTask extends ChunkSearchTask {
             return null;
         }
 
-        // 彗星核心无地形放置条件；不需要调用会改动 Chunk.populating 的原生成器。
         return new BlockPos(x + 8, y, z + 8);
     }
 }

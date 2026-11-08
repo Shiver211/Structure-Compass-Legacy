@@ -29,8 +29,6 @@ public final class AurorianModule implements CompatModule {
                 "CHUNKS_BETWEEN_DUNGEONS", "GENERATE_DUNGEON", () -> density.getAsInt() / 2, 64);
         registerGrid(entries, "runestone_tower", "RunestoneTowerWorldGenerator",
                 "CHUNKS_BETWEEN_TOWERS", "GENERATE_TOWERS", () -> 0, 64);
-
-        // 四种遗迹的概率不由世界种子决定，保留目录中的不支持条目，不绑定模拟器。
     }
 
     private void registerGrid(

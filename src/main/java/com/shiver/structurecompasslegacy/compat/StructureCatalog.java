@@ -11,7 +11,6 @@ import com.shiver.structurecompasslegacy.api.SearchMethod;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
 import com.shiver.structurecompasslegacy.api.StructureRegistry;
 
-/** 先声明全部条目，再绑定定位器；可选接口失败不会让结构从列表中消失。 */
 public final class StructureCatalog {
 
     private StructureCatalog() {

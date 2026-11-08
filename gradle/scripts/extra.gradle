@@ -11,3 +11,10 @@ if (project.hasProperty('compatModsDir') && project.hasProperty('compatModJars')
         dependencies.add('compileOnly', rfg.deobf(files(new File(project.property('compatModsDir').toString(), name))))
     }
 }
+
+// 可选的目标版本核查只读取 JAR 字节码，不加载模组或启动游戏。
+if (project.hasProperty('compatModsDir')) {
+    tasks.named('test').configure {
+        systemProperty 'compatModsDir', project.property('compatModsDir').toString()
+    }
+}

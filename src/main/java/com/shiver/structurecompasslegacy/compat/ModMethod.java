@@ -3,7 +3,6 @@ package com.shiver.structurecompasslegacy.compat;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/** 绑定一个经过模块审核的公开方法。 */
 public final class ModMethod {
 
     private final Method method;

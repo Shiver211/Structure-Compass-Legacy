@@ -16,8 +16,8 @@ Minecraft 1.12.2 / Cleanroom 的结构指南针。当前版本为 `0.1.0`，正�
 安装 `build/libs/structurecompasslegacy-0.1.0.jar`，客户端和服务端使用同一版本。
 不要安装 `-dev.jar` 或 `-sources.jar`。首次运行自动生成 `config/structurecompasslegacy.cfg`。
 
-- [逐结构兼容表](COMPATIBILITY.md)：当前 55 个条目及具体限制。
-- [测试说明](TESTING.md)：已执行检查、本轮测试重点和日志指标。
+- [逐结构兼容表](COMPATIBILITY.md)：当前 75 个条目及具体限制。
+- [本批检查与测试项](reports/compat-batch-2026-11-08.md)：Nether API 末地城和深渊国度适配。
 - [实现说明](IMPLEMENTATION.md)：模块入口、隔离边界和剩余兼容工作。
 
 ## 构建
@@ -36,6 +36,14 @@ python tools/generate_compat_docs.py --check
 ```powershell
 .\gradlew.bat build '-PcompatModsDir=D:/path/to/mods' '-PcompatModJars=Atum-1.12.2-2.0.21.jar'
 ```
+
+只核查已安装分支的字节码时，无需添加编译依赖：
+
+```powershell
+.\gradlew.bat test '-PcompatModsDir=D:/path/to/mods'
+```
+
+指定目录后会核查 Nether API 1.4.5 与 AbyssalCraft 1.11.3；普通构建跳过这两项版本核查。
 
 第三方模组不打包进指南针。个人目录不写入构建配置。
 

@@ -439,5 +439,152 @@
         "limitation": "aurorian_unseeded_random"
       }
     ]
+  },
+  {
+    "modId": "abyssalcraft",
+    "modName": "AbyssalCraft",
+    "version": "1.12.2-1.11.3",
+    "structures": [
+      {
+        "id": "abyssal_stronghold",
+        "english": "Abyssal Stronghold",
+        "chinese": "深渊要塞",
+        "method": "PREDICTION",
+        "limitation": "reference_height"
+      },
+      {
+        "id": "dreadlands_mineshaft",
+        "english": "Dreadlands Mineshaft",
+        "chinese": "恐惧之地矿井",
+        "method": "PREDICTION",
+        "limitation": "reference_height"
+      },
+      {
+        "id": "jzahar_temple",
+        "english": "J'zahar's Temple",
+        "chinese": "扎哈尔神殿",
+        "method": "PREDICTION",
+        "limitation": "reference_height"
+      },
+      {
+        "id": "darklands_house_1",
+        "english": "Darklands House I",
+        "chinese": "黑暗之地房屋 I",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "darklands_house_2",
+        "english": "Darklands House II",
+        "chinese": "黑暗之地房屋 II",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "darklands_scion_1",
+        "english": "Darklands Scion Ruin I",
+        "chinese": "黑暗之地残迹 I",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "darklands_scion_2",
+        "english": "Darklands Scion Ruin II",
+        "chinese": "黑暗之地残迹 II",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "circular_shrine",
+        "english": "Circular Shrine",
+        "chinese": "环形神龛",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "circular_shrine_columns",
+        "english": "Circular Shrine with Columns",
+        "chinese": "柱式环形神龛",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "ritual_grounds",
+        "english": "Ritual Grounds",
+        "chinese": "仪式场地",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "ritual_grounds_columns",
+        "english": "Ritual Grounds with Columns",
+        "chinese": "柱式仪式场地",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "elevated_shrine",
+        "english": "Elevated Shrine",
+        "chinese": "高台神龛",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "elevated_shrine_large",
+        "english": "Large Elevated Shrine",
+        "chinese": "大型高台神龛",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_darklands"
+      },
+      {
+        "id": "abyssal_pillars",
+        "english": "Abyssal Wasteland Pillars",
+        "chinese": "深渊荒原支柱",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_decoration"
+      },
+      {
+        "id": "abyssal_ruin",
+        "english": "Abyssal Wasteland Ruin",
+        "chinese": "深渊荒原废墟",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_decoration"
+      },
+      {
+        "id": "shoggoth_lair",
+        "english": "Shoggoth Lair",
+        "chinese": "修格斯巢穴",
+        "method": "UNSUPPORTED",
+        "limitation": "abyssal_shoggoth"
+      },
+      {
+        "id": "omothol_city",
+        "english": "Omothol City",
+        "chinese": "奥穆索城市",
+        "method": "UNSUPPORTED",
+        "limitation": "omothol_spacing"
+      },
+      {
+        "id": "omothol_temple",
+        "english": "Omothol Temple",
+        "chinese": "奥穆索散布神殿",
+        "method": "UNSUPPORTED",
+        "limitation": "omothol_spacing"
+      },
+      {
+        "id": "omothol_tower",
+        "english": "Omothol Tower",
+        "chinese": "奥穆索高塔",
+        "method": "UNSUPPORTED",
+        "limitation": "omothol_spacing"
+      },
+      {
+        "id": "omothol_storage",
+        "english": "Omothol Storage",
+        "chinese": "奥穆索仓库",
+        "method": "UNSUPPORTED",
+        "limitation": "omothol_spacing"
+      }
+    ]
   }
 ]

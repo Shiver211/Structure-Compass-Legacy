@@ -6,10 +6,12 @@ import java.util.List;
 import com.shiver.structurecompasslegacy.StructureCompassLegacy;
 import com.shiver.structurecompasslegacy.api.CompatModule;
 import com.shiver.structurecompasslegacy.api.StructureRegistry;
+import com.shiver.structurecompasslegacy.compat.abyssalcraft.AbyssalCraftModule;
 import com.shiver.structurecompasslegacy.compat.aether.AetherModule;
 import com.shiver.structurecompasslegacy.compat.atum.AtumModule;
 import com.shiver.structurecompasslegacy.compat.aurorian.AurorianModule;
 import com.shiver.structurecompasslegacy.compat.draconic.DraconicModule;
+import com.shiver.structurecompasslegacy.compat.netherapi.NetherApiModule;
 import com.shiver.structurecompasslegacy.compat.thaumicaugmentation.ThaumicAugmentationModule;
 import com.shiver.structurecompasslegacy.compat.tofu.TofuModule;
 import com.shiver.structurecompasslegacy.compat.twilight.TwilightModule;
@@ -23,6 +25,8 @@ public final class CompatModules {
 
     public static void register(StructureRegistry registry) {
         List<CompatModule> modules = Arrays.asList(
+                new NetherApiModule(),
+                new AbyssalCraftModule(),
                 new AetherModule(),
                 new AtumModule(),
                 new TofuModule(),

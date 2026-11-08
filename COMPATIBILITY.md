@@ -2,7 +2,7 @@
 
 由 `tools/generate_compat_docs.py` 从 `src/main/resources/compat/structures.json` 生成。
 
-当前 55 项：预测 43 项、实验性模拟 0 项、暂不支持 12 项。
+当前 75 项：预测 46 项、实验性模拟 0 项、暂不支持 29 项。
 
 下表是当前实现批次，不是整合包全部结构清单。其余兼容工作见 `IMPLEMENTATION.md`。
 用户已测试并反馈两类问题：龙之研究末地维度误判、极光幽境模拟位置偏差。维度判定已修复，四项有偏差的模拟已停止支持；修复包待复测。其他暂未反馈问题。
@@ -10,7 +10,8 @@
 仅在来源模组已安装时注册条目，不按整合包配置删减目录。生成开关关闭或维度不匹配时，条目仍可见并显示原因。接口绑定失败时显示“暂不支持”，详情写入加载日志。
 
 预测读取种子、生成参数与必要的临时地形，不读取已有结构位置。Y=64 的候选中心只用于导航参考；未完整复演其他模组的生成器替换。
-Nether API 的末地地形尚无隔离适配，末地城在该环境显示不可搜索；混沌岛和彗星仅按规则预测，不依赖该地形工厂。
+Nether API 1.4.5 已接入独立末地生成器，用于末地城的基础地形与群系判定；模拟构造期间跳过附属结构工厂，不修改全局注册表。完整装饰、下界生成器仍未适配。混沌岛和彗星仅按规则预测，不依赖该地形工厂。
+本批新增深渊国度 20 个目录条目，其中 3 项预测、17 项暂不支持。尚未进行这批改动的游戏内验收。扎哈尔神殿是固定核心神殿，不代表支持其他奥穆索建筑；玩家触发的查伽洛斯巢穴与物品生成房屋不属于自然结构，未纳入。
 
 ## Minecraft — 1.12.2
 
@@ -106,3 +107,28 @@ Nether API 的末地地形尚无隔离适配，末地城在该环境显示不可
 | `theaurorian:umbra_tower` | 暗影高塔 / Umbra Tower | 暂不支持 | 生成概率使用非世界种子随机源，无法复现实际坐标；模拟存在位置偏差，已停止支持搜索。 |
 | `theaurorian:surface_ruin` | 地表遗迹 / Surface Ruin | 暂不支持 | 生成概率使用非世界种子随机源，无法复现实际坐标；模拟存在位置偏差，已停止支持搜索。 |
 | `theaurorian:underground_ruin` | 地下遗迹 / Underground Ruin | 暂不支持 | 生成概率使用非世界种子随机源，无法复现实际坐标；模拟存在位置偏差，已停止支持搜索。 |
+
+## AbyssalCraft — 1.12.2-1.11.3
+
+| 结构 ID | 名称 | 搜索方式 | 已知限制 |
+|---|---|---|---|
+| `abyssalcraft:abyssal_stronghold` | 深渊要塞 / Abyssal Stronghold | 预测 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
+| `abyssalcraft:dreadlands_mineshaft` | 恐惧之地矿井 / Dreadlands Mineshaft | 预测 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
+| `abyssalcraft:jzahar_temple` | 扎哈尔神殿 / J'zahar's Temple | 预测 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
+| `abyssalcraft:darklands_house_1` | 黑暗之地房屋 I / Darklands House I | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:darklands_house_2` | 黑暗之地房屋 II / Darklands House II | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:darklands_scion_1` | 黑暗之地残迹 I / Darklands Scion Ruin I | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:darklands_scion_2` | 黑暗之地残迹 II / Darklands Scion Ruin II | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:circular_shrine` | 环形神龛 / Circular Shrine | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:circular_shrine_columns` | 柱式环形神龛 / Circular Shrine with Columns | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:ritual_grounds` | 仪式场地 / Ritual Grounds | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:ritual_grounds_columns` | 柱式仪式场地 / Ritual Grounds with Columns | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:elevated_shrine` | 高台神龛 / Elevated Shrine | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:elevated_shrine_large` | 大型高台神龛 / Large Elevated Shrine | 暂不支持 | 结构选择与概率检查穿插地基验证及其他遗迹生成；尚未复演前置地形和随机消耗，无法可靠定位。 |
+| `abyssalcraft:abyssal_pillars` | 深渊荒原支柱 / Abyssal Wasteland Pillars | 暂不支持 | 生成依赖湖泊、要塞等前置流程及共享装饰随机源；尚未完成隔离复演，无法可靠定位。 |
+| `abyssalcraft:abyssal_ruin` | 深渊荒原废墟 / Abyssal Wasteland Ruin | 暂不支持 | 生成依赖湖泊、要塞等前置流程及共享装饰随机源；尚未完成隔离复演，无法可靠定位。 |
+| `abyssalcraft:shoggoth_lair` | 修格斯巢穴 / Shoggoth Lair | 暂不支持 | 各维度使用不同的自然生成入口，依赖矿物、湖泊或遗迹的随机消耗及跨区块地基检查；尚未适配。 |
+| `abyssalcraft:omothol_city` | 奥穆索城市 / Omothol City | 暂不支持 | 生成器用内存中的已生成位置集合排除邻近建筑，且随机状态受区块生成顺序影响；不读取这些记录时无法可靠复现坐标。 |
+| `abyssalcraft:omothol_temple` | 奥穆索散布神殿 / Omothol Temple | 暂不支持 | 生成器用内存中的已生成位置集合排除邻近建筑，且随机状态受区块生成顺序影响；不读取这些记录时无法可靠复现坐标。 |
+| `abyssalcraft:omothol_tower` | 奥穆索高塔 / Omothol Tower | 暂不支持 | 生成器用内存中的已生成位置集合排除邻近建筑，且随机状态受区块生成顺序影响；不读取这些记录时无法可靠复现坐标。 |
+| `abyssalcraft:omothol_storage` | 奥穆索仓库 / Omothol Storage | 暂不支持 | 生成器用内存中的已生成位置集合排除邻近建筑，且随机状态受区块生成顺序影响；不读取这些记录时无法可靠复现坐标。 |

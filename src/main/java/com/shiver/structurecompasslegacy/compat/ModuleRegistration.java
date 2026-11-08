@@ -13,7 +13,6 @@ import com.shiver.structurecompasslegacy.simulation.SimulationWorld;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.structure.MapGenStructure;
 
-/** 将条目声明留在各模组包，公共层只处理一致的注册格式。 */
 public final class ModuleRegistration {
 
     private final StructureRegistry registry;
