@@ -9,8 +9,11 @@ import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.compat.abyssalcraft.AbyssalCraftModule;
 import com.shiver.structurecompasslegacy.compat.aether.AetherModule;
 import com.shiver.structurecompasslegacy.compat.atum.AtumModule;
+import com.shiver.structurecompasslegacy.compat.betweenlands.BetweenlandsModule;
 import com.shiver.structurecompasslegacy.compat.aurorian.AurorianModule;
 import com.shiver.structurecompasslegacy.compat.draconic.DraconicModule;
+import com.shiver.structurecompasslegacy.compat.divinerpg.DivineRpgModule;
+import com.shiver.structurecompasslegacy.compat.endexpansion.EndExpansionModule;
 import com.shiver.structurecompasslegacy.compat.netherapi.NetherApiModule;
 import com.shiver.structurecompasslegacy.compat.thaumicaugmentation.ThaumicAugmentationModule;
 import com.shiver.structurecompasslegacy.compat.tofu.TofuModule;
@@ -26,6 +29,9 @@ public final class CompatModules {
     public static void register(StructureRegistry registry) {
         List<CompatModule> modules = Arrays.asList(
                 new NetherApiModule(),
+                new EndExpansionModule(),
+                new DivineRpgModule(),
+                new BetweenlandsModule(),
                 new AbyssalCraftModule(),
                 new AetherModule(),
                 new AtumModule(),

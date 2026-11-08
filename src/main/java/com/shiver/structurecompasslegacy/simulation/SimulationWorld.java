@@ -54,7 +54,7 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     private StructureBoundingBox placementBounds;
 
     SimulationWorld(WorldServer source) {
-        super(source.getMinecraftServer(), new MemorySaveHandler(), copyInfo(source),
+        super(source.getMinecraftServer(), new MemorySaveHandler(), WorldInfoCopies.copy(source.getWorldInfo()),
                 source.provider.getDimension(), new Profiler());
         mapStorage = new MapStorage((ISaveHandler) null);
         perWorldStorage = new MapStorage((ISaveHandler) null);
@@ -62,11 +62,7 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
         disableLevelSaving = true;
         rand.setSeed(getSeed());
         eventListeners.clear();
-        initialInfo = copyInfo(source);
-    }
-
-    private static WorldInfo copyInfo(WorldServer source) {
-        return new WorldInfo(source.getWorldInfo().cloneNBTCompound(null).copy());
+        initialInfo = WorldInfoCopies.copy(worldInfo);
     }
 
     @Override

@@ -44,6 +44,7 @@ public final class CompassNetwork {
             entry.setString("mod", structure.modName);
             entry.setString("method", route == null ? SearchMethod.UNSUPPORTED.translationKey() : route.translationKey());
             entry.setBoolean("available", structure.supports(player.getServerWorld()));
+            entry.setBoolean("supported", structure.hasLocator());
             entry.setBoolean("experimental", route != null && route.experimental);
             entry.setString("limitation", route == null ? structure.limitation : route.limitation);
             entry.setString("unavailableReason", structure.unavailableReason(player.getServerWorld()));

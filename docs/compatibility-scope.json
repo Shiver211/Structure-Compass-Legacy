@@ -1,0 +1,386 @@
+[
+  {
+    "modId": "aether_legacy",
+    "modName": "The Aether",
+    "jar": "aether-1.12.2-v1.5.4.1.jar",
+    "group": "规则预测"
+  },
+  {
+    "modId": "atum",
+    "modName": "Atum",
+    "jar": "Atum-1.12.2-2.0.21.jar",
+    "group": "规则预测"
+  },
+  {
+    "modId": "twilightforest",
+    "modName": "The Twilight Forest",
+    "jar": "twilightforest-1.12.2-3.15.1.jar",
+    "group": "规则预测"
+  },
+  {
+    "modId": "tofucraft",
+    "modName": "TofuCraftReload",
+    "jar": "TofuCraftReload-0.1.0.9.jar",
+    "group": "规则预测"
+  },
+  {
+    "modId": "thaumicaugmentation",
+    "modName": "Thaumic Augmentation",
+    "jar": "ThaumicAugmentation-1.12.2-2.1.14.jar",
+    "group": "规则预测"
+  },
+  {
+    "modId": "draconicevolution",
+    "modName": "Draconic Evolution",
+    "jar": "Draconic-Evolution-1.12.2-2.3.28.193-universal_tweaked-patched.jar",
+    "group": "规则预测"
+  },
+  {
+    "modId": "abyssalcraft",
+    "modName": "AbyssalCraft",
+    "jar": "AbyssalCraft-1.12.2-1.11.3.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "divinerpg",
+    "modName": "Divinerpg",
+    "jar": "divinerpg-1.0.0-patched.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "journey",
+    "modName": "Journey-Into-The-Light",
+    "jar": "journey-1.0.5.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "theaurorian",
+    "modName": "The Aurorian",
+    "jar": "theaurorian-1.12.2-1.2.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "endexpansion",
+    "modName": "End Expansion",
+    "jar": "EndExpansion-1.2-fix.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "db",
+    "modName": "Depths of Madness",
+    "jar": "The Depths of Madness - 0.2.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "da",
+    "modName": "Unseen's Dungeon Additions",
+    "jar": "unseens_dungeon_additions-1.7.4.1.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "raids",
+    "modName": "Raids",
+    "jar": "Raids-Backport-1.12.2-1.1.5.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "lostcities",
+    "modName": "Lost Cities LTS",
+    "jar": "lostcities-1.12-3.0.0.jar",
+    "group": "混合生成"
+  },
+  {
+    "modId": "astralsorcery",
+    "modName": "Astral Sorcery",
+    "jar": "astralsorcery-1.12.2-1.10.27.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "thaumcraft",
+    "modName": "Thaumcraft",
+    "jar": "Thaumcraft-1.12.2-6.1.BETA26.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "defiledlands",
+    "modName": "Defiled Lands",
+    "jar": "defiledlands-1.12.2-1.4.3.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "embers",
+    "modName": "Embers Unofficial Extended Life",
+    "jar": "embers-1.26.1.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "endreborn",
+    "modName": "End: Reborn",
+    "jar": "EndReborn [0.3.9].jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "evilcraft",
+    "modName": "EvilCraft",
+    "jar": "EvilCraft-1.12.2-0.10.78.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "lost_aether",
+    "modName": "Lost Aether Content",
+    "jar": "lost-aether-content-1.12.2-1.0.2.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "mowziesmobs",
+    "modName": "Mowzie's Mobs",
+    "jar": "mowziesmobs_1.12.2_1.5.8.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "oe",
+    "modName": "Oceanic Expanse",
+    "jar": "OceanicExpanse-1.2.2.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "pvj",
+    "modName": "Project: Vibrant Journeys",
+    "jar": "ProjectVibrantJourneys-1.12.2-1.6.4.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "suikecherry",
+    "modName": "Cherry_on_1.12.2",
+    "jar": "Cherry_on-1.12.2-1.3.35.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "quark",
+    "modName": "Quark: RotN Edition",
+    "jar": "QuarkRotN-r1.6-192.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "randomthings",
+    "modName": "Quantum Things",
+    "jar": "QuantumThings-MC-1.12.2-1.3.0.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "stygian",
+    "modName": "Stygian End",
+    "jar": "stygian-1.0.5.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "moretcon",
+    "modName": "Moar TCon",
+    "jar": "moretcon-V15b7a3.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "cofhworld",
+    "modName": "CoFH World",
+    "jar": "CoFHWorld-1.12.2-1.4.0.1-universal.jar",
+    "group": "常规生成"
+  },
+  {
+    "modId": "appliedenergistics2",
+    "modName": "AE2 Unofficial Extended Life",
+    "jar": "ae2-uel-0.57.0-patched.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "ae2_meteorite_addon",
+    "modName": "AE2 Meteorite Addon",
+    "jar": "ae2_meteorite_addon-1.5.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "AS_BattleTowers",
+    "modName": "AtomicStryker's Battletowers",
+    "jar": "BattleTowers-1.12.2.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "btfixes",
+    "modName": "Battle Towers Fixes",
+    "jar": "BTFixes-1.12.2-1.2.2.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "AS_Ruins",
+    "modName": "Ruins Spawning System",
+    "jar": "Ruins-1.12.2-patched.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "reccomplex",
+    "modName": "Recurrent Complex",
+    "jar": "RecurrentComplex-1.4.8.7.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "gctcore",
+    "modName": "GCT-Core",
+    "jar": "GCT-Core-1.0.41.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "gct_additions",
+    "modName": "Gct Additions",
+    "jar": "gct_additions-1.1.1.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "iceandfire",
+    "modName": "Ice and Fire: RotN Edition",
+    "jar": "IceAndFireRotN-1.9.1-1.3.3.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "erebus",
+    "modName": "Erebus",
+    "jar": "Erebus-1.0.32-patched.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "thebetweenlands",
+    "modName": "The Betweenlands",
+    "jar": "TheBetweenlands-3.9.6-universal.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "taiga",
+    "modName": "Tinkers Alloying Addon",
+    "jar": "TAIGA-Replant-Replant(1.0.0-beta).jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "tconstruct",
+    "modName": "Tinkers' Antique",
+    "jar": "TinkersAntique-1.12.2-2.13.0.209.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "waystones",
+    "modName": "Waystones",
+    "jar": "Waystones_1.12.2-4.1.0.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "lycanitesmobs",
+    "modName": "Lycanites Mobs",
+    "jar": "lycanitesmobs-1.12.2-2.0.8.10.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "dungeonsmod",
+    "modName": "Dungeons Mod",
+    "jar": "DungeonsMod-1.12.2-1.0.8.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "betternether",
+    "modName": "BetterNether RotN",
+    "jar": "BetterNetherRotN-1.12.2-0.1.9.4.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "netherex",
+    "modName": "NetherEx",
+    "jar": "NetherEx-1.12.2-2.2.5.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "netherized",
+    "modName": "Netherized",
+    "jar": "Netherized-1.12.2-0.3.8B.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "betterendforge",
+    "modName": "Better End",
+    "jar": "Better End-1.1.1-1.12.2.jar",
+    "group": "状态适配"
+  },
+  {
+    "modId": "actuallyadditions",
+    "modName": "Actually Additions",
+    "jar": "ActuallyAdditions-1.12.2-r152.jar",
+    "group": "村庄组件"
+  },
+  {
+    "modId": "binniecore",
+    "modName": "Binnie Core",
+    "jar": "binnie-mods-1.12.2-2.5.1.213.jar",
+    "group": "村庄组件"
+  },
+  {
+    "modId": "bountiful",
+    "modName": "Bountiful",
+    "jar": "Bountiful-1.12.2-2.2.3.jar",
+    "group": "村庄组件"
+  },
+  {
+    "modId": "cyclicmagic",
+    "modName": "Cyclic",
+    "jar": "Cyclic-1.12.2-1.20.14.jar",
+    "group": "村庄组件"
+  },
+  {
+    "modId": "forestry",
+    "modName": "Forestry",
+    "jar": "forestry_1.12.2-5.8.2.427.jar",
+    "group": "村庄组件"
+  },
+  {
+    "modId": "sakura",
+    "modName": "Sakura Reforged",
+    "jar": "sakura-1.2.0.jar",
+    "group": "村庄组件"
+  },
+  {
+    "modId": "biomesoplenty",
+    "modName": "Biomes O' Plenty",
+    "jar": "BiomesOPlenty-1.12.2-7.0.1.2844-universal-patched.jar",
+    "group": "生成环境"
+  },
+  {
+    "modId": "bettercaves",
+    "modName": "BetterCaves",
+    "jar": "BetterCaves-2.0.7.jar",
+    "group": "生成环境"
+  },
+  {
+    "modId": "nether_api",
+    "modName": "Nether API",
+    "jar": "Nether-API-v1.4.5-mc1.12.2.jar",
+    "group": "生成环境"
+  },
+  {
+    "modId": "extrautils2",
+    "modName": "Extra Utilities 2",
+    "jar": "extrautils2-1.12-1.9.9.jar",
+    "group": "生成环境"
+  },
+  {
+    "modId": "justenoughdimensions",
+    "modName": "Just Enough Dimensions",
+    "jar": "justenoughdimensions-1.12.2-1.6.0-dev.20211009.214847.jar",
+    "group": "生成环境"
+  },
+  {
+    "modId": "elementalend",
+    "modName": "Elemental End Portal",
+    "jar": "elementalend-1.0.0.jar",
+    "group": "生成环境"
+  },
+  {
+    "modId": "aether_legacy_addon",
+    "modName": "Aether Continuation",
+    "jar": "Aether Continuation v1.3.0.jar",
+    "group": "额外入口待审计"
+  }
+]

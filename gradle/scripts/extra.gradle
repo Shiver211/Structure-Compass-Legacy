@@ -40,6 +40,9 @@ tasks.register('verifyFoundationRuntime', JavaExec) {
     })
     systemProperty 'java.awt.headless', 'true'
     systemProperty 'mixin.env.disableRefMap', 'true'
+    if (project.hasProperty('compatModsDir')) {
+        systemProperty 'compatModsDir', project.property('compatModsDir').toString()
+    }
     jvmArgs '-Xverify:all'
     workingDir layout.buildDirectory.dir('foundation-runtime')
     doFirst {

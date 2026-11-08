@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class StructureCatalogTest {
 
     @Test
-    void unseededAurorianStructuresRemainVisibleButCannotBeSearched() {
+    void unseededAurorianStructuresKeepTheirCatalogEntriesButCannotBeSearched() {
         StructureRegistry registry = new StructureRegistry();
         StructureCatalog.register(registry, modId -> modId.equals("theaurorian"));
 
@@ -35,6 +35,35 @@ class StructureCatalogTest {
 
         assertEquals(11, registry.entries().size());
         assertNull(registry.get("atum:pyramid"));
+        assertNull(registry.get("endexpansion:lamented_islands"));
+        assertNull(registry.get("raids:pillager_outpost"));
+        assertNull(registry.get("divinerpg:hive"));
+        assertNull(registry.get("journey:corba_village"));
+        assertNull(registry.get("thebetweenlands:floating_island"));
+    }
+
+    @Test
+    void betweenlandsExclusionsAreAbsentAndPendingBuildingsKeepTheirReasons() {
+        StructureRegistry registry = new StructureRegistry();
+        StructureCatalog.register(registry, modId -> modId.equals("thebetweenlands"));
+        assertEquals(27, registry.entries().size());
+        for (String id : new String[] {"underground_ruins", "underwater_ruins", "spawner", "small_ruins"}) {
+            assertNull(registry.get("thebetweenlands:" + id));
+        }
+        assertFalse(registry.get("thebetweenlands:spirit_tree").hasLocator());
+        assertEquals("structurecompasslegacy.limitation.betweenlands_spirit_tree",
+                registry.get("thebetweenlands:spirit_tree").unavailableReason(null));
+    }
+
+    @Test
+    void orderDependentStructuresKeepTheirSpecificReason() {
+        StructureRegistry registry = new StructureRegistry();
+        StructureCatalog.register(registry, modId -> modId.equals("endexpansion") || modId.equals("raids"));
+        assertFalse(registry.get("endexpansion:ash_tower").hasLocator());
+        assertEquals("structurecompasslegacy.limitation.endexpansion_counter",
+                registry.get("endexpansion:ash_tower").unavailableReason(null));
+        assertEquals("structurecompasslegacy.limitation.raids_village_state",
+                registry.get("raids:pillager_outpost").unavailableReason(null));
     }
 
     @Test

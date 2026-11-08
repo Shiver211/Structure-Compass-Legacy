@@ -20,6 +20,8 @@ import com.shiver.structurecompasslegacy.api.SearchBudget;
 import com.shiver.structurecompasslegacy.api.SearchContext;
 import com.shiver.structurecompasslegacy.api.SearchStep;
 import com.shiver.structurecompasslegacy.api.SearchTask;
+import com.shiver.structurecompasslegacy.compat.betweenlands.BetweenlandsRuntimeCheck;
+import com.shiver.structurecompasslegacy.compat.netherapi.NetherInfoRuntimeCheck;
 import net.minecraft.init.Bootstrap;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.server.MinecraftServer;
@@ -68,6 +70,8 @@ public final class RuntimeVerificationMain {
         try {
             // 本任务核查功能与隔离，不把测试机冷启动/JIT 的墙钟时间当作游戏性能结论。
             CompassConfig.slowCallMillis = 10_000;
+            NetherInfoRuntimeCheck.verify(source);
+            BetweenlandsRuntimeCheck.verify();
             RuntimeIdIsolationCheck.verify(source);
             require(run(new FoundationTask(context, false)).state == SearchStep.State.EXHAUSTED, "state task failed");
             require(run(new IsolationGuardTask(context)).state == SearchStep.State.EXHAUSTED, "write guards failed");
