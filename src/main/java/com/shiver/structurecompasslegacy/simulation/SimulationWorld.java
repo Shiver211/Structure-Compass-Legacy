@@ -8,15 +8,9 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 import java.util.UUID;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
-import com.shiver.structurecompasslegacy.api.SearchTarget;
-import com.shiver.structurecompasslegacy.api.SearchBudget;
-import com.shiver.structurecompasslegacy.CompassConfig;
-import com.shiver.structurecompasslegacy.search.SearchLimitException;
 
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
@@ -25,11 +19,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.VillageCollection;
-import net.minecraft.world.World;
 import net.minecraft.world.NextTickListEntry;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -47,15 +41,7 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     private final Queue<ListenableFutureTask<Object>> scheduledTasks = new ArrayDeque<>();
     private final SimulationBlockTicks blockTicks = new SimulationBlockTicks();
     private final Map<UUID, Entity> simulationEntities = new HashMap<>();
-    private final Map<Class<?>, Object> candidateState = new HashMap<>();
     private final WorldInfo initialInfo;
-    private NextTickListEntry executingTick;
-    private boolean capturingPlacement;
-    private StructureBoundingBox placementBounds;
-
-    SimulationWorld(WorldServer source) {
-        this(source, true);
-    }
 
     SimulationWorld(WorldServer source, boolean terrainEnabled) {
         super(source.getMinecraftServer(), new MemorySaveHandler(terrainEnabled), WorldInfoCopies.copy(source.getWorldInfo()),
@@ -107,38 +93,7 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
             chunk.getTileEntityMap().remove(position);
         }
         updateColumnHeight(chunk, position);
-        if (capturingPlacement) {
-            capture(position);
-        }
         return true;
-    }
-
-    private void capture(BlockPos position) {
-        StructureBoundingBox block = new StructureBoundingBox(
-                position.getX(), position.getY(), position.getZ(),
-                position.getX(), position.getY(), position.getZ());
-        if (placementBounds == null) {
-            placementBounds = block;
-        } else {
-            placementBounds.expandTo(block);
-        }
-    }
-
-    public void beginPlacement() {
-        placementBounds = null;
-        capturingPlacement = true;
-    }
-
-    public SearchTarget finishPlacement() {
-        capturingPlacement = false;
-        if (placementBounds == null) {
-            return null;
-        }
-        BlockPos center = new BlockPos(
-                (placementBounds.minX + placementBounds.maxX) / 2,
-                (placementBounds.minY + placementBounds.maxY) / 2,
-                (placementBounds.minZ + placementBounds.maxZ) / 2);
-        return new SearchTarget(center, placementBounds);
     }
 
     private void updateColumnHeight(Chunk chunk, BlockPos position) {
@@ -160,7 +115,7 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
 
     @Override
     public void neighborChanged(@Nonnull BlockPos position, @Nonnull Block block, @Nonnull BlockPos fromPosition) {
-        // 目标生成流程需要的物理更新由对应适配器显式复演。
+        // 临时地形不触发方块物理更新。
     }
 
     @Override
@@ -298,7 +253,7 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
 
     @Override
     public boolean isBlockTickPending(@Nonnull BlockPos position, @Nonnull Block block) {
-        return executingTick != null && executingTick.position.equals(position) && executingTick.getBlock() == block;
+        return false;
     }
 
     @Override
@@ -308,12 +263,12 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
 
     @Override
     public void immediateBlockTick(@Nonnull BlockPos position, @Nonnull IBlockState state, @Nonnull Random random) {
-        throw new UnsupportedOperationException("Immediate block ticks need an explicit simulation stage");
+        throw new UnsupportedOperationException("Simulation does not execute block ticks");
     }
 
     @Override
     public boolean tickUpdates(boolean runAll) {
-        throw new UnsupportedOperationException("Use runScheduledBlockTicks with an audited block filter");
+        throw new UnsupportedOperationException("Simulation does not execute block ticks");
     }
 
     @Override
@@ -323,62 +278,12 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
 
     @Override
     public void updateEntities() {
-        throw new UnsupportedOperationException("Entity ticking needs an explicit simulation stage");
+        throw new UnsupportedOperationException("Simulation does not tick entities");
     }
 
     @Override
     public BlockPos findNearestStructure(String name, BlockPos position, boolean unexplored) {
         throw new UnsupportedOperationException("Native locate calls must be replaced by an audited adapter");
-    }
-
-    public boolean runScheduledBlockTicks(SearchBudget budget, Predicate<Block> allowed) {
-        try (SimulationScope ignored = SimulationScope.enter()) {
-            while (!blockTicks.isEmpty() && !budget.exhausted()) {
-                long started = System.nanoTime();
-                executingTick = blockTicks.poll();
-                try {
-                    if (!allowed.test(executingTick.getBlock())) {
-                        throw new UnsupportedOperationException("Block tick has not been adapted");
-                    }
-                    setTotalWorldTime(Math.max(getTotalWorldTime(), executingTick.scheduledTime));
-                    IBlockState state = getBlockState(executingTick.position);
-                    if (state.getBlock() == executingTick.getBlock()) {
-                        state.getBlock().updateTick(this, executingTick.position, state, rand);
-                    }
-                } finally {
-                    executingTick = null;
-                }
-                checkSlowCall(started);
-            }
-            return blockTicks.isEmpty();
-        }
-    }
-
-    public boolean runScheduledTasks(SearchBudget budget) {
-        try (SimulationScope ignored = SimulationScope.enter()) {
-            while (!scheduledTasks.isEmpty() && !budget.exhausted()) {
-                long started = System.nanoTime();
-                ListenableFutureTask<Object> task = scheduledTasks.remove();
-                task.run();
-                try {
-                    task.get();
-                } catch (Exception exception) {
-                    throw new IllegalStateException("Simulation task failed", exception);
-                }
-                checkSlowCall(started);
-            }
-            return scheduledTasks.isEmpty();
-        }
-    }
-
-    private void checkSlowCall(long started) {
-        if (System.nanoTime() - started > CompassConfig.slowCallMillis * 1_000_000L) {
-            throw new SearchLimitException("slow_call");
-        }
-    }
-
-    public <T> T candidateState(Class<T> type, Supplier<T> factory) {
-        return type.cast(candidateState.computeIfAbsent(type, key -> factory.get()));
     }
 
     public void beginCandidate() {
@@ -400,8 +305,6 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     }
 
     public void clearCandidate() {
-        capturingPlacement = false;
-        placementBounds = null;
         simulationChunks().clear();
         loadedEntityList.clear();
         unloadedEntityList.clear();
@@ -415,11 +318,8 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
         }
         scheduledTasks.clear();
         blockTicks.clear();
-        executingTick = null;
-        candidateState.clear();
         mapStorage = new MapStorage((ISaveHandler) null);
         perWorldStorage = new MapStorage((ISaveHandler) null);
         villageCollection = new VillageCollection(this);
     }
-
 }

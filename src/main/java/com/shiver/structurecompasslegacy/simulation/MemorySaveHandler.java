@@ -18,10 +18,6 @@ public final class MemorySaveHandler implements ISaveHandler {
     private final ResourceTemplateManager templates = new ResourceTemplateManager();
     final boolean terrainEnabled;
 
-    public MemorySaveHandler() {
-        this(true);
-    }
-
     MemorySaveHandler(boolean terrainEnabled) {
         this.terrainEnabled = terrainEnabled;
     }

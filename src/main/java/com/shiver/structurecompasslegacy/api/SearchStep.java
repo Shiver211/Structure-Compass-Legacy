@@ -6,8 +6,7 @@ public final class SearchStep {
         RUNNING,
         FOUND,
         EXHAUSTED,
-        LIMIT,
-        ERROR
+        LIMIT
     }
 
     public final State state;
@@ -36,7 +35,4 @@ public final class SearchStep {
         return new SearchStep(State.LIMIT, null, reason);
     }
 
-    public static SearchStep error(String reason) {
-        return new SearchStep(State.ERROR, null, reason);
-    }
 }

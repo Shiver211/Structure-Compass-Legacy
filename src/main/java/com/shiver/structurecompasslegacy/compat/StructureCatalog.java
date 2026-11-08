@@ -4,19 +4,19 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.function.Predicate;
 
 import com.google.gson.Gson;
-import com.shiver.structurecompasslegacy.api.SearchMethod;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
 import com.shiver.structurecompasslegacy.api.StructureRegistry;
+
+import net.minecraftforge.fml.common.Loader;
 
 public final class StructureCatalog {
 
     private StructureCatalog() {
     }
 
-    public static void register(StructureRegistry registry, Predicate<String> installed) {
+    public static void register(StructureRegistry registry) {
         Module[] modules;
         try (Reader reader = new InputStreamReader(
                 StructureCatalog.class.getResourceAsStream("/compat/structures.json"), StandardCharsets.UTF_8)) {
@@ -26,15 +26,14 @@ public final class StructureCatalog {
         }
 
         for (Module module : modules) {
-            if (!module.modId.equals("minecraft") && !installed.test(module.modId)) {
+            if (!module.modId.equals("minecraft") && !Loader.isModLoaded(module.modId)) {
                 continue;
             }
 
             for (Entry entry : module.structures) {
                 registry.register(new StructureDefinition(
                         module.modId + ":" + entry.id, module.modName, entry.english, entry.chinese,
-                        SearchMethod.UNSUPPORTED, world -> false, null,
-                        "structurecompasslegacy.limitation.binding_failed"));
+                        world -> false, null, "", () -> true));
             }
         }
     }

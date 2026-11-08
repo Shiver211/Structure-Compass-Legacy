@@ -2,7 +2,6 @@ package com.shiver.structurecompasslegacy.item;
 
 import com.shiver.structurecompasslegacy.api.SearchTarget;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
-import com.shiver.structurecompasslegacy.api.SearchRoute;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,7 +12,6 @@ public final class CompassTarget {
 
     private static final String TARGET_KEY = "CompassTarget";
 
-    public final String structureId;
     public final String englishName;
     public final String chineseName;
     public final String method;
@@ -21,7 +19,6 @@ public final class CompassTarget {
     public final BlockPos position;
 
     private CompassTarget(NBTTagCompound tag) {
-        structureId = tag.getString("structure");
         englishName = tag.getString("english");
         chineseName = tag.getString("chinese");
         method = tag.getString("method");
@@ -39,22 +36,21 @@ public final class CompassTarget {
     }
 
     public static void write(
-            ItemStack stack, StructureDefinition structure, SearchRoute route, SearchTarget target, int dimension) {
+            ItemStack stack, StructureDefinition structure, SearchTarget target, int dimension) {
         NBTTagCompound tag = new NBTTagCompound();
         tag.setString("structure", structure.id.toString());
         tag.setString("english", structure.englishName);
         tag.setString("chinese", structure.chineseName);
-        tag.setString("method", route.translationKey());
+        tag.setString("method", StructureDefinition.SEARCH_METHOD);
         tag.setInteger("dimension", dimension);
         tag.setLong("position", target.position.toLong());
         stack.setTagInfo(TARGET_KEY, tag);
     }
 
     public static void clear(ItemStack stack) {
-        if (stack.hasTagCompound()) {
-            if (stack.getTagCompound() != null) {
-                stack.getTagCompound().removeTag(TARGET_KEY);
-            }
+        NBTTagCompound tag = stack.getTagCompound();
+        if (tag != null) {
+            tag.removeTag(TARGET_KEY);
         }
     }
 

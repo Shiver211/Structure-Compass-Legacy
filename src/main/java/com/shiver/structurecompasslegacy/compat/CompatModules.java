@@ -10,6 +10,7 @@ import com.shiver.structurecompasslegacy.compat.abyssalcraft.AbyssalCraftModule;
 import com.shiver.structurecompasslegacy.compat.aether.AetherModule;
 import com.shiver.structurecompasslegacy.compat.atum.AtumModule;
 import com.shiver.structurecompasslegacy.compat.aurorian.AurorianModule;
+import com.shiver.structurecompasslegacy.compat.biomesoplenty.BiomesOPlentyModule;
 import com.shiver.structurecompasslegacy.compat.draconic.DraconicModule;
 import com.shiver.structurecompasslegacy.compat.divinerpg.DivineRpgModule;
 import com.shiver.structurecompasslegacy.compat.endexpansion.EndExpansionModule;
@@ -28,6 +29,7 @@ public final class CompatModules {
 
     public static void register(StructureRegistry registry) {
         List<CompatModule> modules = Arrays.asList(
+                new BiomesOPlentyModule(),
                 new NetherApiModule(),
                 new EndExpansionModule(),
                 new DivineRpgModule(),

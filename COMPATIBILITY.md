@@ -1,19 +1,20 @@
 # 当前结构兼容表
 
-由 `tools/generate_compat_docs.py` 从 `src/main/resources/compat/structures.json` 生成。
+条目与 `src/main/resources/compat/structures.json` 对应。
 
-当前 61 项：预测 61 项、实验性模拟 0 项。“已实现”表示有定位器，不等于整包验收完成。
+当前 61 项，均使用预测，必要时查询隔离地形。“已实现”表示有定位器，不等于整包验收完成。
 
-下表仅收录已接入的结构。未实现和已停止支持的结构已从游戏目录删除，原因与后续工作见[开发记录](docs/STRUCTURE_BACKLOG.md)。
+下表仅收录已接入的结构。未实现和已停止支持的结构已从游戏目录删除。
 用户已测试并反馈两类问题：龙之研究末地维度误判、极光幽境模拟位置偏差。维度判定已修复，四项有偏差的模拟已停止支持；修复包待复测。其他暂未反馈问题。
 
 仅在来源模组已安装时注册条目，不按整合包配置删减目录。已适配条目在生成开关关闭或维度不匹配时仍显示原因。接口绑定失败的条目不会发送到客户端，详情写入加载日志。
 
 预测读取种子、生成参数与必要的临时地形，不读取已有结构位置。Y=64 的候选中心只用于导航参考；未完整复演其他模组的生成器替换。
+BOP 7.0.1.2844 patched 的 BIOMESOP 世界接入私人群系图层和原生基础地形，神庙使用 BOP 群系规则，府邸使用其原生地形桥接器。模拟不重新应用共享群系设置，不替换全局图层；完整 BOP 地表与装饰仍未适配，未知群系地表调用继续拦截。
 Nether API 1.4.5 已接入独立末地生成器，用于末地城的基础地形与群系判定；模拟构造期间跳过附属结构工厂，不修改全局注册表。完整装饰、下界生成器仍未适配。混沌岛和彗星仅按规则预测，不依赖该地形工厂。
-本批核对 End Expansion 的八项主要结构及 Raids 前哨站。哀叹群岛提供起始岛预测，待集中实测。其他条目的待办或不支持原因见开发记录；End Expansion 的小型装饰遗迹仍待逐项审计。
-冒险模组优先批次新增 DivineRPG 的 12 项纯种子预测，包含两种冰雪地牢和梦魇世界十种大型建筑。跳过同层大型结构共用 populate 窗口的候选，避免生成优先级与覆盖影响；可能略过更近的结构。当前待集中实测，其他房屋与 Journey 条目见开发记录。
-新增 Unseen’s 的炽焰竞技场、黑曜石竞技场起始点预测，待集中实测。冰与火 RotN、Netherized、Lost Aether Content、Astral Sorcery、Battle Towers / BTFixes 的逐结构待办与限制见开发记录。
+End Expansion 的哀叹群岛提供起始岛预测，待集中实测。
+DivineRPG 的 12 项纯种子预测包含两种冰雪地牢和梦魇世界十种大型建筑。跳过同层大型结构共用 populate 窗口的候选，避免生成优先级与覆盖影响；可能略过更近的结构。当前待集中实测。
+Unseen’s 的炽焰竞技场、黑曜石竞技场提供起始点预测，待集中实测。
 
 ## Minecraft — 1.12.2
 
@@ -35,8 +36,8 @@ Nether API 1.4.5 已接入独立末地生成器，用于末地城的基础地形
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
-| `aether_legacy:silver_dungeon` | 白银地下城 / Silver Dungeon | 预测 | 已实现 | — |
-| `aether_legacy:golden_dungeon` | 黄金地下城 / Golden Dungeon | 预测 | 已实现 | — |
+| `aether_legacy:silver_dungeon` | 白银地牢 / Silver Dungeon | 预测 | 已实现 | — |
+| `aether_legacy:golden_dungeon` | 黄金地牢 / Golden Dungeon | 预测 | 已实现 | — |
 
 ## Atum 2 — 2.0.21
 
@@ -66,15 +67,15 @@ Nether API 1.4.5 已接入独立末地生成器，用于末地城的基础地形
 | `twilightforest:hedge_maze` | 树篱迷宫 / Hedge Maze | 预测 | 已实现 | — |
 | `twilightforest:naga_courtyard` | 娜迦庭院 / Naga Courtyard | 预测 | 已实现 | — |
 | `twilightforest:lich_tower` | 巫妖塔 / Lich Tower | 预测 | 已实现 | — |
-| `twilightforest:ice_tower` | 极光宫殿 / Aurora Palace | 预测 | 已实现 | — |
-| `twilightforest:quest_grove` | 探险者树林 / Quest Grove | 预测 | 已实现 | — |
+| `twilightforest:ice_tower` | 极光城堡 / Aurora Palace | 预测 | 已实现 | — |
+| `twilightforest:quest_grove` | 谜题羊树丛 / Quest Grove | 预测 | 已实现 | — |
 | `twilightforest:hydra_lair` | 九头蛇巢穴 / Hydra Lair | 预测 | 已实现 | — |
 | `twilightforest:labyrinth` | 牛头人迷宫 / Labyrinth | 预测 | 已实现 | — |
 | `twilightforest:dark_tower` | 黑暗高塔 / Dark Tower | 预测 | 已实现 | — |
 | `twilightforest:knight_stronghold` | 哥布林骑士要塞 / Knight Stronghold | 预测 | 已实现 | — |
 | `twilightforest:yeti_cave` | 雪怪洞穴 / Yeti Cave | 预测 | 已实现 | — |
 | `twilightforest:troll_cave` | 巨魔洞窟 / Troll Cave | 预测 | 已实现 | — |
-| `twilightforest:final_castle` | 最终城堡 / Final Castle | 预测 | 已实现 | — |
+| `twilightforest:final_castle` | 终焉城堡 / Final Castle | 预测 | 已实现 | — |
 | `twilightforest:mushroom_tower` | 蘑菇城堡 / Mushroom Tower | 预测 | 已实现 | — |
 
 ## Draconic Evolution — 2.3.28.193 tweaked-patched
@@ -94,9 +95,9 @@ Nether API 1.4.5 已接入独立末地生成器，用于末地城的基础地形
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
-| `theaurorian:moon_temple` | 月亮神殿 / Moon Temple | 预测 | 已实现 | — |
+| `theaurorian:moon_temple` | 月宫 / Moon Temple | 预测 | 已实现 | — |
 | `theaurorian:darkstone_dungeon` | 暗石地牢 / Darkstone Dungeon | 预测 | 已实现 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
-| `theaurorian:runestone_tower` | 符石高塔 / Runestone Tower | 预测 | 已实现 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
+| `theaurorian:runestone_tower` | 符石地牢 / Runestone Tower | 预测 | 已实现 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
 
 ## AbyssalCraft — 1.12.2-1.11.3
 

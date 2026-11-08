@@ -4,8 +4,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.BiConsumer;
-import java.util.function.LongSupplier;
 
 import com.shiver.structurecompasslegacy.CompassConfig;
 import com.shiver.structurecompasslegacy.StructureCompassLegacy;
@@ -13,9 +11,8 @@ import com.shiver.structurecompasslegacy.api.SearchBudget;
 import com.shiver.structurecompasslegacy.api.SearchContext;
 import com.shiver.structurecompasslegacy.api.SearchStep;
 import com.shiver.structurecompasslegacy.api.SearchTask;
-import com.shiver.structurecompasslegacy.api.SearchRoute;
-import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
+import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.item.CompassTarget;
 import com.shiver.structurecompasslegacy.network.CompassNetwork;
 
@@ -35,24 +32,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public final class SearchScheduler {
 
     private static final Logger LOGGER = LogManager.getLogger("structurecompasslegacy");
-    private final StructureRegistry registry;
-    private final BiConsumer<EntityPlayerMP, NBTTagCompound> sender;
-    private final LongSupplier clock;
+    private final StructureRegistry registry = StructureCompassLegacy.STRUCTURES;
 
     private final Map<UUID, Request> waiting = new LinkedHashMap<>();
 
     private Request active;
     private long ticks;
-
-    public SearchScheduler() {
-        this(StructureCompassLegacy.STRUCTURES, CompassNetwork::send, System::nanoTime);
-    }
-
-    SearchScheduler(StructureRegistry registry, BiConsumer<EntityPlayerMP, NBTTagCompound> sender, LongSupplier clock) {
-        this.registry = registry;
-        this.sender = sender;
-        this.clock = clock;
-    }
 
     public void submit(EntityPlayerMP player, EnumHand hand, long id, String structureId) {
         StructureDefinition structure;
@@ -116,7 +101,7 @@ public final class SearchScheduler {
             return;
         }
 
-        long tickStarted = clock.getAsLong();
+        long tickStarted = System.nanoTime();
         ticks++;
         if (active == null) {
             startNext();
@@ -128,12 +113,12 @@ public final class SearchScheduler {
             finish("cancelled", "context_changed");
             return;
         }
-        if (clock.getAsLong() - active.started >= CompassConfig.timeoutSeconds * 1_000_000_000L) {
+        if (System.nanoTime() - active.started >= CompassConfig.timeoutSeconds * 1_000_000_000L) {
             finish("limit", "timeout");
             return;
         }
 
-        advance(new SearchBudget(tickStarted, (long) (CompassConfig.tickBudgetMillis * 1_000_000L), clock));
+        advance(new SearchBudget(tickStarted, (long) (CompassConfig.tickBudgetMillis * 1_000_000L)));
     }
 
     private void startNext() {
@@ -144,7 +129,7 @@ public final class SearchScheduler {
 
         active = iterator.next();
         iterator.remove();
-        active.started = clock.getAsLong();
+        active.started = System.nanoTime();
         if (active.contextChanged()) {
             finish("cancelled", "context_changed");
             return;
@@ -157,11 +142,10 @@ public final class SearchScheduler {
                 return;
             }
             active.context = new SearchContext(active.world, active.player.getPosition());
-            active.route = active.structure.selectRoute(active.world);
             try {
-                active.task = active.route.locator.createTask(active.context);
+                active.task = active.structure.locator.createTask(active.context);
             } finally {
-                active.workNanos = clock.getAsLong() - active.started;
+                active.workNanos = System.nanoTime() - active.started;
                 active.initializationNanos = active.workNanos;
             }
             if (active.workNanos > CompassConfig.slowCallMillis * 1_000_000L) {
@@ -178,18 +162,18 @@ public final class SearchScheduler {
         if (budget.exhausted()) {
             return;
         }
-        long started = clock.getAsLong();
+        long started = System.nanoTime();
         try {
             SearchStep step;
             try {
                 step = active.task.advance(budget);
             } finally {
                 // 异常和资源超限的调用也计入主线程开销。
-                active.workNanos += clock.getAsLong() - started;
+                active.workNanos += System.nanoTime() - started;
             }
 
             if (step.state == SearchStep.State.FOUND) {
-                CompassTarget.write(active.stack, active.structure, active.route, step.target, active.context.dimension);
+                CompassTarget.write(active.stack, active.structure, step.target, active.context.dimension);
                 active.player.inventory.markDirty();
                 active.target = step.target.position.toLong();
                 finish("found", "");
@@ -197,8 +181,6 @@ public final class SearchScheduler {
                 finish("exhausted", "");
             } else if (step.state == SearchStep.State.LIMIT) {
                 finish("limit", step.reason);
-            } else if (step.state == SearchStep.State.ERROR) {
-                finish("error", step.reason);
             } else if (ticks % 5 == 0) {
                 sendProgress(active, "running", "");
             }
@@ -243,11 +225,11 @@ public final class SearchScheduler {
                 "Structure search {}: status={}, reason={}, elapsedMs={}, workMs={}, longestMs={}, "
                         + "checked={}, generatedChunks={}, peakCachedChunks={}, longestOperation={}",
                 request.structure.id, status, reason,
-                (clock.getAsLong() - request.started) / 1_000_000L,
+                (System.nanoTime() - request.started) / 1_000_000L,
                 request.workNanos / 1_000_000L, Math.max(request.initializationNanos, request.task.longestCallNanos()) / 1_000_000L,
                 request.task.checkedCandidates(), request.task.generatedChunks(), request.task.peakCachedChunks(),
                 request.initializationNanos > request.task.longestCallNanos()
-                        ? "task.initialize" : request.task.longestOperation());
+                        ? "task.initialize" : "task");
     }
 
     private void sendProgress(Request request, String status, String reason) {
@@ -261,21 +243,10 @@ public final class SearchScheduler {
         message.setString("status", status);
         message.setString("reason", reason);
         message.setLong("target", request.target);
-        message.setLong("elapsed", request.started == 0 ? 0 : (clock.getAsLong() - request.started) / 1_000_000L);
-        message.setLong("work", request.workNanos / 1_000_000L);
-        if (request.route != null) {
-            message.setString("structure", request.structure.id.toString());
-            message.setString("method", request.route.translationKey());
-            message.setBoolean("experimental", request.route.experimental);
-            message.setString("limitation", request.route.limitation);
-        }
-
+        message.setLong("elapsed", request.started == 0 ? 0 : (System.nanoTime() - request.started) / 1_000_000L);
         if (request.task != null) {
             message.setLong("checked", request.task.checkedCandidates());
             message.setLong("total", request.task.totalCandidates());
-            message.setInteger("chunks", request.task.generatedChunks());
-            message.setInteger("peakChunks", request.task.peakCachedChunks());
-            message.setLong("longest", Math.max(request.initializationNanos, request.task.longestCallNanos()) / 1_000_000L);
         }
 
         send(request.player, message);
@@ -283,7 +254,7 @@ public final class SearchScheduler {
 
     private void send(EntityPlayerMP player, NBTTagCompound message) {
         try {
-            sender.accept(player, message);
+            CompassNetwork.send(player, message);
         } catch (RuntimeException exception) {
             LOGGER.warn("Cannot send structure search progress", exception);
         }
@@ -326,7 +297,6 @@ public final class SearchScheduler {
         private final long id;
         private final StructureDefinition structure;
         private SearchContext context;
-        private SearchRoute route;
 
         private SearchTask task;
         private long started;

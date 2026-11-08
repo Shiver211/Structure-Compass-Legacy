@@ -4,7 +4,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.BooleanSupplier;
 
-import com.shiver.structurecompasslegacy.api.SearchMethod;
 import com.shiver.structurecompasslegacy.api.StructureLocator;
 import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.search.MapStructureTask;
@@ -52,15 +51,6 @@ public final class ModuleRegistration {
             StructureLocator locator,
             BooleanSupplier enabled,
             String limitation) {
-        registry.activate(modId + ":" + id, SearchMethod.PREDICTION, dimensions, locator, limitation, enabled);
-    }
-
-    public void simulation(
-            String id,
-            StructureLocator locator,
-            String limitation,
-            BooleanSupplier enabled) {
-        registry.activate(modId + ":" + id, SearchMethod.SIMULATION,
-                dimensions, locator, "structurecompasslegacy.limitation." + limitation, enabled);
+        registry.activate(modId + ":" + id, dimensions, locator, limitation, enabled);
     }
 }

@@ -1,12 +1,12 @@
 package com.shiver.structurecompasslegacy.compat.vanilla;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 import com.shiver.structurecompasslegacy.api.CompatModule;
-import com.shiver.structurecompasslegacy.api.SearchMethod;
 import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.search.MapStructureTask;
 import com.shiver.structurecompasslegacy.simulation.SimulationWorld;
@@ -28,6 +28,18 @@ import net.minecraft.world.gen.structure.StructureOceanMonument;
 import net.minecraft.world.gen.structure.WoodlandMansion;
 
 public final class VanillaModule implements CompatModule {
+
+    private static final Map<String, Function<SimulationWorld, MapGenStructure>> TEMPLES = new HashMap<>();
+    private static final Map<String, Function<SimulationWorld, MapGenStructure>> MANSIONS = new HashMap<>();
+
+    /** 世界类型可替换原版结构入口，兼容逻辑仍留在对应模组内。 */
+    public static void registerTerrainStructures(
+            String worldTypeClass,
+            Function<SimulationWorld, MapGenStructure> temple,
+            Function<SimulationWorld, MapGenStructure> mansion) {
+        TEMPLES.put(worldTypeClass, temple);
+        MANSIONS.put(worldTypeClass, mansion);
+    }
 
     @Override
     public String modId() {
@@ -53,7 +65,7 @@ public final class VanillaModule implements CompatModule {
         register(registry, "igloo", 0,
                 VanillaModule::temple, ComponentScatteredFeaturePieces.Igloo.class::isInstance);
         register(registry, "woodland_mansion", 0,
-                world -> new WoodlandMansion((ChunkGeneratorOverworld) world.simulationChunks().chunkGenerator), null);
+                VanillaModule::mansion, null);
         register(registry, "nether_fortress", -1,
                 world -> new MapGenNetherBridge(), null);
         register(registry, "end_city", 1,
@@ -67,13 +79,24 @@ public final class VanillaModule implements CompatModule {
             Function<SimulationWorld, MapGenStructure> factory,
             Predicate<StructureComponent> componentFilter) {
         boolean validateLayout = componentFilter != null || id.equals("village") || id.equals("woodland_mansion");
-        registry.activate("minecraft:" + id, SearchMethod.PREDICTION,
+        registry.activate("minecraft:" + id,
                 world -> world.provider.getDimension() == dimension,
                 MapStructureTask.locator(factory, componentFilter, validateLayout), "", () -> true);
     }
 
-    private static MapGenScatteredFeature temple(SimulationWorld world) {
+    private static MapGenStructure temple(SimulationWorld world) {
+        Function<SimulationWorld, MapGenStructure> factory = TEMPLES.get(world.getWorldType().getClass().getName());
+        if (factory != null) {
+            return factory.apply(world);
+        }
         return new MapGenScatteredFeature(flatOptions(world, "biome_1"));
+    }
+
+    private static MapGenStructure mansion(SimulationWorld world) {
+        Function<SimulationWorld, MapGenStructure> factory = MANSIONS.get(world.getWorldType().getClass().getName());
+        return factory == null
+                ? new WoodlandMansion((ChunkGeneratorOverworld) world.simulationChunks().chunkGenerator)
+                : factory.apply(world);
     }
 
     private static Map<String, String> flatOptions(SimulationWorld world, String feature) {

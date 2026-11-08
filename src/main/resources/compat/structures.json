@@ -102,7 +102,7 @@
       {
         "id": "silver_dungeon",
         "english": "Silver Dungeon",
-        "chinese": "白银地下城",
+        "chinese": "白银地牢",
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
@@ -110,7 +110,7 @@
       {
         "id": "golden_dungeon",
         "english": "Golden Dungeon",
-        "chinese": "黄金地下城",
+        "chinese": "黄金地牢",
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
@@ -251,7 +251,7 @@
       {
         "id": "ice_tower",
         "english": "Aurora Palace",
-        "chinese": "极光宫殿",
+        "chinese": "极光城堡",
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
@@ -259,7 +259,7 @@
       {
         "id": "quest_grove",
         "english": "Quest Grove",
-        "chinese": "探险者树林",
+        "chinese": "谜题羊树丛",
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
@@ -315,7 +315,7 @@
       {
         "id": "final_castle",
         "english": "Final Castle",
-        "chinese": "最终城堡",
+        "chinese": "终焉城堡",
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
@@ -376,7 +376,7 @@
       {
         "id": "moon_temple",
         "english": "Moon Temple",
-        "chinese": "月亮神殿",
+        "chinese": "月宫",
         "method": "PREDICTION",
         "limitation": "",
         "status": "IMPLEMENTED"
@@ -392,7 +392,7 @@
       {
         "id": "runestone_tower",
         "english": "Runestone Tower",
-        "chinese": "符石高塔",
+        "chinese": "符石地牢",
         "method": "PREDICTION",
         "limitation": "reference_height",
         "status": "IMPLEMENTED"

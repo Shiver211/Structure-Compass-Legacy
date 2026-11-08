@@ -20,10 +20,6 @@ public interface SearchTask extends AutoCloseable {
         return 0;
     }
 
-    default String longestOperation() {
-        return "task";
-    }
-
     @Override
     void close();
 }

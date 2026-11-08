@@ -132,8 +132,6 @@ public final class CompassScreen extends GuiScreen {
         if (!selected.getBoolean("available")) {
             String reason = selected.getString("unavailableReason");
             detail = I18n.hasKey(reason) ? I18n.format(reason) : reason;
-        } else if (selected.getBoolean("experimental")) {
-            detail = ClientText.translate("experimental") + " " + detail;
         }
 
         return detail;
@@ -172,13 +170,6 @@ public final class CompassScreen extends GuiScreen {
     public void updateProgress(NBTTagCompound message) {
         if (message.getLong("request") == requestId) {
             progress = message;
-            for (NBTTagCompound entry : entries) {
-                if (entry.getString("id").equals(message.getString("structure")) && message.hasKey("method")) {
-                    entry.setString("method", message.getString("method"));
-                    entry.setBoolean("experimental", message.getBoolean("experimental"));
-                    entry.setString("limitation", message.getString("limitation"));
-                }
-            }
         }
     }
 

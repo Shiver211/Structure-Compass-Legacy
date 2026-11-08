@@ -18,6 +18,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 public final class GeneratorFactories {
 
     private static final Map<String, Function<SimulationWorld, IChunkGenerator>> FACTORIES = new HashMap<>();
+    private static final Map<String, Function<SimulationWorld, IChunkGenerator>> WORLD_TYPES = new HashMap<>();
     private static final Set<String> BIOME_PROVIDERS = new HashSet<>();
 
     static {
@@ -35,7 +36,15 @@ public final class GeneratorFactories {
     }
 
     public static boolean supports(WorldServer world) {
+        if (world.provider.getClass().getName().equals("net.minecraft.world.WorldProviderSurface")) {
+            return isVanillaOverworld(world.getWorldType())
+                    || WORLD_TYPES.containsKey(world.getWorldType().getClass().getName());
+        }
         return FACTORIES.containsKey(world.provider.getClass().getName());
+    }
+
+    public static void registerWorldType(String typeClass, Function<SimulationWorld, IChunkGenerator> factory) {
+        WORLD_TYPES.put(typeClass, factory);
     }
 
     public static void registerBiomes(String providerClass) {
@@ -57,16 +66,24 @@ public final class GeneratorFactories {
 
     private static IChunkGenerator overworld(SimulationWorld world) {
         WorldType type = world.getWorldType();
+        Function<SimulationWorld, IChunkGenerator> factory = WORLD_TYPES.get(type.getClass().getName());
+        if (factory != null) {
+            return factory.apply(world);
+        }
         String options = world.getWorldInfo().getGeneratorOptions();
         if (type == WorldType.FLAT) {
             return new ChunkGeneratorFlat(world, world.getSeed(), false, options);
         }
 
-        if (type == WorldType.DEFAULT || type == WorldType.DEFAULT_1_1 || type == WorldType.LARGE_BIOMES
-                || type == WorldType.AMPLIFIED || type == WorldType.CUSTOMIZED) {
+        if (isVanillaOverworld(type)) {
             return new ChunkGeneratorOverworld(world, world.getSeed(), false, options);
         }
 
         throw new UnsupportedOperationException("No isolated terrain factory for " + type.getName());
+    }
+
+    private static boolean isVanillaOverworld(WorldType type) {
+        return type == WorldType.FLAT || type == WorldType.DEFAULT || type == WorldType.DEFAULT_1_1
+                || type == WorldType.LARGE_BIOMES || type == WorldType.AMPLIFIED || type == WorldType.CUSTOMIZED;
     }
 }

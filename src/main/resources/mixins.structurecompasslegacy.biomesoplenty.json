@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.shiver.structurecompasslegacy.compat.biomesoplenty.mixin",
+  "refmap": "mixins.structurecompasslegacy.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "WorldTypeBopMixin",
+    "BopTerrainMixin"
+  ],
+  "injectors": { "defaultRequire": 1 }
+}

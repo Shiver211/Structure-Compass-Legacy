@@ -12,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -47,7 +46,7 @@ public final class StructureCompassLegacy {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        StructureCatalog.register(STRUCTURES, Loader::isModLoaded);
+        StructureCatalog.register(STRUCTURES);
         new VanillaModule().register(STRUCTURES);
     }
 

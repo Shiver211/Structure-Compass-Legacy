@@ -2,7 +2,6 @@ package com.shiver.structurecompasslegacy.network;
 
 import com.shiver.structurecompasslegacy.StructureCompassLegacy;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
-import com.shiver.structurecompasslegacy.api.SearchRoute;
 import com.shiver.structurecompasslegacy.item.CompassTarget;
 
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -38,17 +37,16 @@ public final class CompassNetwork {
             if (!structure.hasLocator()) {
                 continue;
             }
-            SearchRoute route = structure.selectRoute(player.getServerWorld());
+            String unavailableReason = structure.unavailableReason(player.getServerWorld());
             NBTTagCompound entry = new NBTTagCompound();
             entry.setString("id", structure.id.toString());
             entry.setString("english", structure.englishName);
             entry.setString("chinese", structure.chineseName);
             entry.setString("mod", structure.modName);
-            entry.setString("method", route.translationKey());
-            entry.setBoolean("available", structure.supports(player.getServerWorld()));
-            entry.setBoolean("experimental", route.experimental);
-            entry.setString("limitation", route.limitation);
-            entry.setString("unavailableReason", structure.unavailableReason(player.getServerWorld()));
+            entry.setString("method", StructureDefinition.SEARCH_METHOD);
+            entry.setBoolean("available", unavailableReason.isEmpty());
+            entry.setString("limitation", structure.limitation);
+            entry.setString("unavailableReason", unavailableReason);
             structures.appendTag(entry);
         }
 

@@ -26,23 +26,13 @@ public final class StructureRegistry {
 
     public void activate(
             String id,
-            SearchMethod method,
             Predicate<WorldServer> dimensions,
             StructureLocator locator,
             String limitation,
             BooleanSupplier enabled) {
-        SearchRoute route = new SearchRoute(method, locator, limitation);
-        activate(id, dimensions,
-                method == SearchMethod.PREDICTION ? route : null,
-                method == SearchMethod.SIMULATION ? route : null, enabled);
-    }
-
-    public void activate(
-            String id,
-            Predicate<WorldServer> dimensions,
-            SearchRoute prediction,
-            SearchRoute simulation,
-            BooleanSupplier enabled) {
+        if (locator == null) {
+            throw new IllegalArgumentException("A structure needs a locator");
+        }
         StructureDefinition declared = get(id);
         if (declared == null) {
             throw new IllegalArgumentException("Undeclared structure: " + id);
@@ -53,14 +43,10 @@ public final class StructureRegistry {
 
         entries.put(declared.id, new StructureDefinition(
                 id, declared.modName, declared.englishName, declared.chineseName,
-                dimensions, prediction, simulation, declared.limitation, enabled));
+                dimensions, locator, limitation, enabled));
     }
 
     public Collection<StructureDefinition> entries() {
         return Collections.unmodifiableCollection(entries.values());
-    }
-
-    public void clear() {
-        entries.clear();
     }
 }

@@ -30,12 +30,6 @@ public final class SimulationBlockTicks {
         return pending.contains(new NextTickListEntry(position, block));
     }
 
-    public NextTickListEntry poll() {
-        NextTickListEntry entry = ordered.pollFirst();
-        pending.remove(entry);
-        return entry;
-    }
-
     public List<NextTickListEntry> within(StructureBoundingBox bounds, boolean remove) {
         List<NextTickListEntry> result = new ArrayList<>();
         Iterator<NextTickListEntry> iterator = ordered.iterator();
@@ -50,10 +44,6 @@ public final class SimulationBlockTicks {
             }
         }
         return result;
-    }
-
-    public boolean isEmpty() {
-        return pending.isEmpty();
     }
 
     public void clear() {
