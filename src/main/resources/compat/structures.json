@@ -100,6 +100,14 @@
     "version": "1.5.4.1",
     "structures": [
       {
+        "id": "bronze_dungeon",
+        "english": "Bronze Dungeon",
+        "chinese": "青铜地牢",
+        "method": "PREDICTION",
+        "limitation": "structurecompasslegacy.limitation.aether_bronze_region",
+        "status": "IMPLEMENTED"
+      },
+      {
         "id": "silver_dungeon",
         "english": "Silver Dungeon",
         "chinese": "白银地牢",
