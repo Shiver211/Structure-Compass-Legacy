@@ -46,7 +46,6 @@ structurecompasslegacy.dimension.omothol=奥穆索
 structurecompasslegacy.dimension.iceika=冰封之地
 structurecompasslegacy.dimension.vethea=梦魇世界
 structurecompasslegacy.dimension.betweenlands=交错次元
-structurecompasslegacy.reason.betweenlands_biome_layers=当前交错次元群系生成规则无法独立复现，此结构暂不支持搜索。
 structurecompasslegacy.limitation.betweenlands_island_anchor=定位浮空岛的生成中心，实际岛面随形状变化。
 structurecompasslegacy.limitation.betweenlands_root_anchor=定位巨型树根的生成起点，树根会沿曲线延伸。
 structurecompasslegacy.limitation.betweenlands_dungeon_region=定位污泥地牢所在区域，请在目标附近寻找入口。

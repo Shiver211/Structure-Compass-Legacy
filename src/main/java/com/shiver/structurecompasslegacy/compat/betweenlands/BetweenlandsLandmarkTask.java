@@ -1,8 +1,6 @@
 package com.shiver.structurecompasslegacy.compat.betweenlands;
 
-import com.shiver.structurecompasslegacy.api.SearchBudget;
 import com.shiver.structurecompasslegacy.api.SearchContext;
-import com.shiver.structurecompasslegacy.api.SearchStep;
 import com.shiver.structurecompasslegacy.api.SearchTarget;
 import com.shiver.structurecompasslegacy.search.ChunkSearchTask;
 import net.minecraft.util.math.BlockPos;
@@ -30,11 +28,6 @@ final class BetweenlandsLandmarkTask extends ChunkSearchTask {
         this.raisedIsles = raisedIsles;
         this.coarseIslands = coarseIslands;
         placement = new BetweenlandsPlacement(context.seed);
-    }
-
-    @Override
-    public SearchStep advance(SearchBudget budget) throws Exception {
-        return biomes == null ? SearchStep.limit("betweenlands_biome_layers") : super.advance(budget);
     }
 
     @Override
