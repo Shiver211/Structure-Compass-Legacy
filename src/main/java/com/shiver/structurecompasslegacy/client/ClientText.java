@@ -33,6 +33,7 @@ final class ClientText {
         keys.put("com.shinoow.abyssalcraft.common.world.WorldProviderOmothol", "omothol");
         keys.put("divinerpg.dimensions.iceika.WorldProviderIceika", "iceika");
         keys.put("divinerpg.dimensions.vethea.VetheaWorldProvider", "vethea");
+        keys.put("thebetweenlands.common.world.WorldProviderBetweenlands", "betweenlands");
         return Collections.unmodifiableMap(keys);
     }
 

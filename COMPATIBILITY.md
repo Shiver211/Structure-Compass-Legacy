@@ -2,7 +2,7 @@
 
 条目与 `src/main/resources/compat/structures.json` 对应。
 
-当前 61 项，均使用预测，必要时查询隔离地形。“已实现”表示有定位器，不等于整包验收完成。
+当前 64 项，均使用预测，必要时查询隔离地形。“已实现”表示有定位器，不等于整包验收完成。
 
 下表仅收录已接入的结构。未实现和已停止支持的结构已从游戏目录删除。
 用户已测试并反馈两类问题：龙之研究末地维度误判、极光幽境模拟位置偏差。维度判定已修复，四项有偏差的模拟已停止支持；修复包待复测。其他暂未反馈问题。
@@ -136,3 +136,11 @@ Unseen’s 的炽焰竞技场、黑曜石竞技场提供起始点预测，待集
 |---|---|---|---|---|
 | `da:nether_arena` | 炽焰竞技场 / Burning Flame Arena | 预测 | 已实现，待集中实测 | — |
 | `da:obsidilith_arena` | 黑曜石竞技场 / Obsidilith Arena | 预测 | 已实现，待集中实测 | — |
+
+## The Betweenlands — 3.9.6
+
+| 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
+|---|---|---|---|---|
+| `thebetweenlands:floating_island` | 浮空岛 / Floating Island | 种子预测 | 已实现 | 定位生成中心，实际岛面随形状变化。 |
+| `thebetweenlands:giant_root` | 巨型树根 / Giant Root | 种子预测 | 已实现 | 定位原生列表的第一条巨根起点，树根沿曲线延伸。 |
+| `thebetweenlands:sludge_worm_dungeon` | 污泥地牢 / Sludgeon | 区域预测 | 已实现，待整包实测 | 在目标附近寻找入口，Y 为参考高度；跳过无法完整枚举或候选范围无交集的空地。 |

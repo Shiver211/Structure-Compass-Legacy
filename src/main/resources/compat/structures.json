@@ -570,5 +570,36 @@
         "status": "AWAITING_VALIDATION"
       }
     ]
+  },
+  {
+    "modId": "thebetweenlands",
+    "modName": "The Betweenlands",
+    "version": "3.9.6",
+    "structures": [
+      {
+        "id": "floating_island",
+        "english": "Floating Island",
+        "chinese": "浮空岛",
+        "method": "PREDICTION",
+        "limitation": "structurecompasslegacy.limitation.betweenlands_island_anchor",
+        "status": "IMPLEMENTED"
+      },
+      {
+        "id": "giant_root",
+        "english": "Giant Root",
+        "chinese": "巨型树根",
+        "method": "PREDICTION",
+        "limitation": "structurecompasslegacy.limitation.betweenlands_root_anchor",
+        "status": "IMPLEMENTED"
+      },
+      {
+        "id": "sludge_worm_dungeon",
+        "english": "Sludgeon",
+        "chinese": "污泥地牢",
+        "method": "PREDICTION",
+        "limitation": "structurecompasslegacy.limitation.betweenlands_dungeon_region",
+        "status": "IMPLEMENTED"
+      }
+    ]
   }
 ]
