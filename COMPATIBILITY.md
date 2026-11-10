@@ -26,6 +26,12 @@
 | `aether_legacy:silver_dungeon` | 白银地牢 / Silver Dungeon | 预测 | 已实现 | — |
 | `aether_legacy:golden_dungeon` | 黄金地牢 / Golden Dungeon | 预测 | 已实现 | — |
 
+## Aether: Lost Content Addon — 1.0.2
+
+| 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
+|---|---|---|---|---|
+| `lost_aether:platinum_dungeon` | 铂金地牢 / Platinum Dungeon | 最近中心预测 | 已实现，待整包实测 | 按中心 X/Z 的水平距离检查候选。 |
+
 ## Atum 2 — 2.0.21
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |

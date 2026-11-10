@@ -126,6 +126,21 @@
     ]
   },
   {
+    "modId": "lost_aether",
+    "modName": "Aether: Lost Content Addon",
+    "version": "1.0.2",
+    "structures": [
+      {
+        "id": "platinum_dungeon",
+        "english": "Platinum Dungeon",
+        "chinese": "铂金地牢",
+        "method": "PREDICTION",
+        "limitation": "structurecompasslegacy.limitation.lost_aether_platinum_center",
+        "status": "AWAITING_VALIDATION"
+      }
+    ]
+  },
+  {
     "modId": "atum",
     "modName": "Atum 2",
     "version": "2.0.21",

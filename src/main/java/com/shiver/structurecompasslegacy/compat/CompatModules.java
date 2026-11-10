@@ -16,6 +16,7 @@ import com.shiver.structurecompasslegacy.compat.draconic.DraconicModule;
 import com.shiver.structurecompasslegacy.compat.divinerpg.DivineRpgModule;
 import com.shiver.structurecompasslegacy.compat.endexpansion.EndExpansionModule;
 import com.shiver.structurecompasslegacy.compat.dungeonadditions.DungeonAdditionsModule;
+import com.shiver.structurecompasslegacy.compat.lostaether.LostAetherModule;
 import com.shiver.structurecompasslegacy.compat.netherapi.NetherApiModule;
 import com.shiver.structurecompasslegacy.compat.thaumicaugmentation.ThaumicAugmentationModule;
 import com.shiver.structurecompasslegacy.compat.tofu.TofuModule;
@@ -38,6 +39,7 @@ public final class CompatModules {
                 new DungeonAdditionsModule(),
                 new AbyssalCraftModule(),
                 new AetherModule(),
+                new LostAetherModule(),
                 new AtumModule(),
                 new TofuModule(),
                 new TwilightModule(),

@@ -50,3 +50,4 @@ structurecompasslegacy.limitation.betweenlands_island_anchor=Locates the island 
 structurecompasslegacy.limitation.betweenlands_root_anchor=Locates a giant root generation start; the root extends along a curve.
 structurecompasslegacy.limitation.betweenlands_dungeon_region=Locates the Sludgeon area. Look for its entrance near the target.
 structurecompasslegacy.limitation.aether_bronze_region=Predicts a Bronze Dungeon area within 64 blocks along each horizontal axis; may skip nearby dungeons.
+structurecompasslegacy.limitation.lost_aether_platinum_center=Locates the Platinum Dungeon center X/Z; may skip closer dungeons.
