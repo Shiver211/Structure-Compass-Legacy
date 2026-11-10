@@ -15,6 +15,7 @@ import com.shiver.structurecompasslegacy.compat.betweenlands.BetweenlandsModule;
 import com.shiver.structurecompasslegacy.compat.draconic.DraconicModule;
 import com.shiver.structurecompasslegacy.compat.divinerpg.DivineRpgModule;
 import com.shiver.structurecompasslegacy.compat.endexpansion.EndExpansionModule;
+import com.shiver.structurecompasslegacy.compat.erebus.ErebusModule;
 import com.shiver.structurecompasslegacy.compat.dungeonadditions.DungeonAdditionsModule;
 import com.shiver.structurecompasslegacy.compat.lostaether.LostAetherModule;
 import com.shiver.structurecompasslegacy.compat.netherapi.NetherApiModule;
@@ -34,6 +35,7 @@ public final class CompatModules {
                 new BiomesOPlentyModule(),
                 new NetherApiModule(),
                 new BetweenlandsModule(),
+                new ErebusModule(),
                 new EndExpansionModule(),
                 new DivineRpgModule(),
                 new DungeonAdditionsModule(),

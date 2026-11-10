@@ -22,6 +22,7 @@ final class ClientText {
         keys.put("net.minecraft.world.WorldProviderSurface", "overworld");
         keys.put("net.minecraft.world.WorldProviderHell", "the_nether");
         keys.put("net.minecraft.world.WorldProviderEnd", "the_end");
+        keys.put("erebus.world.WorldProviderErebus", "erebus");
         keys.put("com.gildedgames.the_aether.world.AetherWorldProvider", "aether");
         keys.put("com.teammetallurgy.atum.world.WorldProviderAtum", "atum");
         keys.put("cn.mcmod.tofucraft.world.WorldProviderTofu", "tofu");

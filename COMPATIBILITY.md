@@ -2,7 +2,7 @@
 
 条目与 `src/main/resources/compat/structures.json` 对应。
 
-## Minecraft — 1.12.2
+## Minecraft
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
@@ -18,7 +18,7 @@
 | `minecraft:nether_fortress` | 下界要塞 / Nether Fortress | 预测 | 已实现 | — |
 | `minecraft:end_city` | 末地城 / End City | 预测 | 已实现 | — |
 
-## The Aether — 1.5.4.1
+## The Aether
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
@@ -26,13 +26,13 @@
 | `aether_legacy:silver_dungeon` | 白银地牢 / Silver Dungeon | 预测 | 已实现 | — |
 | `aether_legacy:golden_dungeon` | 黄金地牢 / Golden Dungeon | 预测 | 已实现 | — |
 
-## Aether: Lost Content Addon — 1.0.2
+## Aether: Lost Content Addon
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
 | `lost_aether:platinum_dungeon` | 铂金地牢 / Platinum Dungeon | 最近中心预测 | 已实现，待整包实测 | 按中心 X/Z 的水平距离检查候选。 |
 
-## Atum 2 — 2.0.21
+## Atum 2
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
@@ -42,7 +42,7 @@
 | `atum:lighthouse` | 灯塔 / Lighthouse | 预测 | 已实现 | — |
 | `atum:mineshaft` | 阿图姆矿井 / Atum Mineshaft | 预测 | 已实现 | — |
 
-## TofuCraft Reload — 0.1.0.9
+## TofuCraft Reload
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
@@ -50,7 +50,7 @@
 | `tofucraft:castle` | 豆腐城堡 / Tofu Castle | 预测 | 已实现 | — |
 | `tofucraft:mineshaft` | 豆腐矿井 / Tofu Mineshaft | 预测 | 已实现 | — |
 
-## The Twilight Forest — 3.15.1
+## The Twilight Forest
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
@@ -71,20 +71,20 @@
 | `twilightforest:final_castle` | 终焉城堡 / Final Castle | 预测 | 已实现 | — |
 | `twilightforest:mushroom_tower` | 蘑菇城堡 / Mushroom Tower | 预测 | 已实现 | — |
 
-## Draconic Evolution — 2.3.28.193 tweaked-patched
+## Draconic Evolution
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
 | `draconicevolution:chaos_island` | 混沌岛 / Chaos Island | 预测 | 已实现 | — |
 | `draconicevolution:ender_comet` | 末影彗星 / Ender Comet | 预测 | 已实现 | — |
 
-## Thaumic Augmentation — 2.1.14
+## Thaumic Augmentation
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
 | `thaumicaugmentation:eldritch_spire` | 邪术尖塔 / Eldritch Spire | 预测 | 已实现 | — |
 
-## The Aurorian — 1.2
+## The Aurorian
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
@@ -92,7 +92,7 @@
 | `theaurorian:darkstone_dungeon` | 暗石地牢 / Darkstone Dungeon | 预测 | 已实现 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
 | `theaurorian:runestone_tower` | 符石地牢 / Runestone Tower | 预测 | 已实现 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
 
-## AbyssalCraft — 1.12.2-1.11.3
+## AbyssalCraft
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
@@ -100,13 +100,13 @@
 | `abyssalcraft:dreadlands_mineshaft` | 恐惧之地矿井 / Dreadlands Mineshaft | 预测 | 已实现 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
 | `abyssalcraft:jzahar_temple` | 扎哈尔神殿 / J'zahar's Temple | 预测 | 已实现 | 水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。 |
 
-## End Expansion — 1.2-fix
+## End Expansion
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
 | `endexpansion:lamented_islands` | 哀叹群岛 / Lamented Islands | 预测 | 已实现，待集中实测 | — |
 
-## DivineRPG — 1.0.0-patched
+## DivineRPG
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
@@ -123,17 +123,26 @@
 | `divinerpg:raglok_chamber` | 拉格洛克密室 / Raglok's Chamber | 预测 | 已实现，待集中实测 | — |
 | `divinerpg:wreck_hall` | 毁灭大厅 / Wreck Hall | 预测 | 已实现，待集中实测 | — |
 
-## Unseen's Dungeon Additions — 1.7.4.1
+## Unseen's Dungeon Additions
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
 | `da:nether_arena` | 炽焰竞技场 / Burning Flame Arena | 预测 | 已实现，待集中实测 | — |
 | `da:obsidilith_arena` | 黑曜石竞技场 / Obsidilith Arena | 预测 | 已实现，待集中实测 | — |
 
-## The Betweenlands — 3.9.6
+## The Betweenlands
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
 | `thebetweenlands:floating_island` | 浮空岛 / Floating Island | 种子预测 | 已实现 | 定位生成中心，实际岛面随形状变化。 |
 | `thebetweenlands:giant_root` | 巨型树根 / Giant Root | 种子预测 | 已实现 | 定位原生列表的第一条巨根起点，树根沿曲线延伸。 |
 | `thebetweenlands:sludge_worm_dungeon` | 污泥地牢 / Sludgeon | 区域预测 | 已实现，待整包实测 | 在目标附近寻找入口，Y 为参考高度；跳过无法完整枚举或候选范围无交集的空地。 |
+
+## The Erebus
+
+保持原版生成规则。两种结构的位置受已生成结构与探索顺序影响，候选区域不保证最终生成，也不保证附近必有结构。已有原生位置记录可直接定位；新候选跳过已生成的触发区块，不加载真实区块。
+
+| 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
+|---|---|---|---|---|
+| `erebus:giant_eucalyptus` | 巨型猴面包树 | 候选区域预测 | 已实现，待整包实测 | - |
+| `erebus:antlion_pyramid` | 蚁狮领主金字塔 | 候选区域预测 | 已实现，待整包实测 | - |

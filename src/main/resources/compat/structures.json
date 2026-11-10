@@ -595,6 +595,29 @@
     ]
   },
   {
+    "modId": "erebus",
+    "modName": "The Erebus",
+    "version": "1.0.32-patched",
+    "structures": [
+      {
+        "id": "giant_eucalyptus",
+        "english": "Giant Eucalyptus",
+        "chinese": "巨型猴面包树",
+        "method": "PREDICTION",
+        "limitation": "structurecompasslegacy.limitation.erebus_giant_eucalyptus",
+        "status": "AWAITING_VALIDATION"
+      },
+      {
+        "id": "antlion_pyramid",
+        "english": "Antlion Overlord Pyramid",
+        "chinese": "蚁狮领主金字塔",
+        "method": "PREDICTION",
+        "limitation": "structurecompasslegacy.limitation.erebus_antlion_pyramid",
+        "status": "AWAITING_VALIDATION"
+      }
+    ]
+  },
+  {
     "modId": "thebetweenlands",
     "modName": "The Betweenlands",
     "version": "3.9.6",
