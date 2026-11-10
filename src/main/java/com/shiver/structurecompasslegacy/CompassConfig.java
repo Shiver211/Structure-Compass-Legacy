@@ -9,6 +9,7 @@ public final class CompassConfig {
     public static int radius = 4096;
     public static int timeoutSeconds = 60;
     public static double tickBudgetMillis = 2;
+    public static String[] blacklistedStructures = new String[0];
     public static int cachedChunks = 128;
     public static int generatedChunks = 512;
     public static int slowCallMillis = 50;
@@ -29,6 +30,9 @@ public final class CompassConfig {
         tickBudgetMillis = config.getFloat(
                 "tickBudgetMillis", "search", (float) tickBudgetMillis, 0.1F, 20F,
                 "Soft budget; a mod call cannot be interrupted.");
+        blacklistedStructures = config.getStringList(
+                "blacklistedStructures", "search", blacklistedStructures,
+                "Full structure IDs that cannot be searched, for example minecraft:village. Restart to apply.");
 
         cachedChunks = config.getInt(
                 "cachedChunks", "simulation", cachedChunks, 9, 1024,

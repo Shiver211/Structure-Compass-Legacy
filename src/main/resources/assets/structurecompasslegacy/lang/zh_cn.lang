@@ -29,6 +29,7 @@ structurecompasslegacy.limitation.binding_failed=未能绑定当前模组版本�
 structurecompasslegacy.limitation.reference_height=水平位置按生成规则定位；Y 为导航参考高度，实际入口高度随地形变化。
 structurecompasslegacy.reason.recursive_chunk=生成器递归请求了尚未完成的同一区块，已停止本次模拟。
 structurecompasslegacy.reason.unknown_structure=服务器没有此结构条目，请重新打开指南针列表。
+structurecompasslegacy.reason.blacklisted=本结构已被ed禁止搜索
 structurecompasslegacy.no_matches=没有匹配的结构。
 structurecompasslegacy.dimension.none=未配置
 structurecompasslegacy.dimension.overworld=主世界

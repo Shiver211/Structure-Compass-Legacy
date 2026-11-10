@@ -1,5 +1,8 @@
 package com.shiver.structurecompasslegacy.network;
 
+import java.util.Arrays;
+
+import com.shiver.structurecompasslegacy.CompassConfig;
 import com.shiver.structurecompasslegacy.StructureCompassLegacy;
 import com.shiver.structurecompasslegacy.api.StructureDefinition;
 import com.shiver.structurecompasslegacy.item.CompassTarget;
@@ -37,7 +40,9 @@ public final class CompassNetwork {
             if (!structure.hasLocator()) {
                 continue;
             }
-            String unavailableReason = structure.unavailableReason(player.getServerWorld());
+            String unavailableReason = Arrays.asList(CompassConfig.blacklistedStructures).contains(structure.id.toString())
+                    ? "structurecompasslegacy.reason.blacklisted"
+                    : structure.unavailableReason(player.getServerWorld());
             NBTTagCompound entry = new NBTTagCompound();
             entry.setString("id", structure.id.toString());
             entry.setString("english", structure.englishName);

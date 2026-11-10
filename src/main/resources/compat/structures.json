@@ -2,649 +2,430 @@
   {
     "modId": "minecraft",
     "modName": "Minecraft",
-    "version": "1.12.2",
     "structures": [
       {
         "id": "village",
         "english": "Village",
-        "chinese": "村庄",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "村庄"
       },
       {
         "id": "mineshaft",
         "english": "Mineshaft",
-        "chinese": "废弃矿井",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "废弃矿井"
       },
       {
         "id": "stronghold",
         "english": "Stronghold",
-        "chinese": "要塞",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "要塞"
       },
       {
         "id": "ocean_monument",
         "english": "Ocean Monument",
-        "chinese": "海底神殿",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "海底神殿"
       },
       {
         "id": "desert_pyramid",
         "english": "Desert Pyramid",
-        "chinese": "沙漠神殿",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "沙漠神殿"
       },
       {
         "id": "jungle_temple",
         "english": "Jungle Temple",
-        "chinese": "丛林神庙",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "丛林神庙"
       },
       {
         "id": "swamp_hut",
         "english": "Swamp Hut",
-        "chinese": "沼泽小屋",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "沼泽小屋"
       },
       {
         "id": "igloo",
         "english": "Igloo",
-        "chinese": "雪屋",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "雪屋"
       },
       {
         "id": "woodland_mansion",
         "english": "Woodland Mansion",
-        "chinese": "林地府邸",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "林地府邸"
       },
       {
         "id": "nether_fortress",
         "english": "Nether Fortress",
-        "chinese": "下界要塞",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "下界要塞"
       },
       {
         "id": "end_city",
         "english": "End City",
-        "chinese": "末地城",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "末地城"
       }
     ]
   },
   {
     "modId": "aether_legacy",
     "modName": "The Aether",
-    "version": "1.5.4.1",
     "structures": [
       {
         "id": "bronze_dungeon",
         "english": "Bronze Dungeon",
-        "chinese": "青铜地牢",
-        "method": "PREDICTION",
-        "limitation": "structurecompasslegacy.limitation.aether_bronze_region",
-        "status": "IMPLEMENTED"
+        "chinese": "青铜地牢"
       },
       {
         "id": "silver_dungeon",
         "english": "Silver Dungeon",
-        "chinese": "白银地牢",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "白银地牢"
       },
       {
         "id": "golden_dungeon",
         "english": "Golden Dungeon",
-        "chinese": "黄金地牢",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "黄金地牢"
       }
     ]
   },
   {
     "modId": "lost_aether",
     "modName": "Aether: Lost Content Addon",
-    "version": "1.0.2",
     "structures": [
       {
         "id": "platinum_dungeon",
         "english": "Platinum Dungeon",
-        "chinese": "铂金地牢",
-        "method": "PREDICTION",
-        "limitation": "structurecompasslegacy.limitation.lost_aether_platinum_center",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "铂金地牢"
       }
     ]
   },
   {
     "modId": "atum",
     "modName": "Atum 2",
-    "version": "2.0.21",
     "structures": [
       {
         "id": "pyramid",
         "english": "Pyramid",
-        "chinese": "金字塔",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "金字塔"
       },
       {
         "id": "tomb",
         "english": "Tomb",
-        "chinese": "陵墓",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "陵墓"
       },
       {
         "id": "girafi_tomb",
         "english": "Girafi Tomb",
-        "chinese": "吉拉菲之墓",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "吉拉菲之墓"
       },
       {
         "id": "lighthouse",
         "english": "Lighthouse",
-        "chinese": "灯塔",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "灯塔"
       },
       {
         "id": "mineshaft",
         "english": "Atum Mineshaft",
-        "chinese": "阿图姆矿井",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "阿图姆矿井"
       }
     ]
   },
   {
     "modId": "tofucraft",
     "modName": "TofuCraft Reload",
-    "version": "0.1.0.9",
     "structures": [
       {
         "id": "village",
         "english": "Tofu Village",
-        "chinese": "豆腐村庄",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "豆腐村庄"
       },
       {
         "id": "castle",
         "english": "Tofu Castle",
-        "chinese": "豆腐城堡",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "豆腐城堡"
       },
       {
         "id": "mineshaft",
         "english": "Tofu Mineshaft",
-        "chinese": "豆腐矿井",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "豆腐矿井"
       }
     ]
   },
   {
     "modId": "twilightforest",
     "modName": "The Twilight Forest",
-    "version": "3.15.1",
     "structures": [
       {
         "id": "small_hill",
         "english": "Small Hollow Hill",
-        "chinese": "小型空心山丘",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "小型空心山丘"
       },
       {
         "id": "medium_hill",
         "english": "Medium Hollow Hill",
-        "chinese": "中型空心山丘",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "中型空心山丘"
       },
       {
         "id": "large_hill",
         "english": "Large Hollow Hill",
-        "chinese": "大型空心山丘",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "大型空心山丘"
       },
       {
         "id": "hedge_maze",
         "english": "Hedge Maze",
-        "chinese": "树篱迷宫",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "树篱迷宫"
       },
       {
         "id": "naga_courtyard",
         "english": "Naga Courtyard",
-        "chinese": "娜迦庭院",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "娜迦庭院"
       },
       {
         "id": "lich_tower",
         "english": "Lich Tower",
-        "chinese": "巫妖塔",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "巫妖塔"
       },
       {
         "id": "ice_tower",
         "english": "Aurora Palace",
-        "chinese": "极光城堡",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "极光城堡"
       },
       {
         "id": "quest_grove",
         "english": "Quest Grove",
-        "chinese": "谜题羊树丛",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "谜题羊树丛"
       },
       {
         "id": "hydra_lair",
         "english": "Hydra Lair",
-        "chinese": "九头蛇巢穴",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "九头蛇巢穴"
       },
       {
         "id": "labyrinth",
         "english": "Labyrinth",
-        "chinese": "牛头人迷宫",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "牛头人迷宫"
       },
       {
         "id": "dark_tower",
         "english": "Dark Tower",
-        "chinese": "黑暗高塔",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "黑暗高塔"
       },
       {
         "id": "knight_stronghold",
         "english": "Knight Stronghold",
-        "chinese": "哥布林骑士要塞",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "哥布林骑士要塞"
       },
       {
         "id": "yeti_cave",
         "english": "Yeti Cave",
-        "chinese": "雪怪洞穴",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "雪怪洞穴"
       },
       {
         "id": "troll_cave",
         "english": "Troll Cave",
-        "chinese": "巨魔洞窟",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "巨魔洞窟"
       },
       {
         "id": "final_castle",
         "english": "Final Castle",
-        "chinese": "终焉城堡",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "终焉城堡"
       },
       {
         "id": "mushroom_tower",
         "english": "Mushroom Tower",
-        "chinese": "蘑菇城堡",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "蘑菇城堡"
       }
     ]
   },
   {
     "modId": "draconicevolution",
     "modName": "Draconic Evolution",
-    "version": "2.3.28.193 tweaked-patched",
     "structures": [
       {
         "id": "chaos_island",
         "english": "Chaos Island",
-        "chinese": "混沌岛",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "混沌岛"
       },
       {
         "id": "ender_comet",
         "english": "Ender Comet",
-        "chinese": "末影彗星",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "末影彗星"
       }
     ]
   },
   {
     "modId": "thaumicaugmentation",
     "modName": "Thaumic Augmentation",
-    "version": "2.1.14",
     "structures": [
       {
         "id": "eldritch_spire",
         "english": "Eldritch Spire",
-        "chinese": "邪术尖塔",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "邪术尖塔"
       }
     ]
   },
   {
     "modId": "theaurorian",
     "modName": "The Aurorian",
-    "version": "1.2",
     "structures": [
       {
         "id": "moon_temple",
         "english": "Moon Temple",
-        "chinese": "月宫",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "IMPLEMENTED"
+        "chinese": "月宫"
       },
       {
         "id": "darkstone_dungeon",
         "english": "Darkstone Dungeon",
-        "chinese": "暗石地牢",
-        "method": "PREDICTION",
-        "limitation": "reference_height",
-        "status": "IMPLEMENTED"
+        "chinese": "暗石地牢"
       },
       {
         "id": "runestone_tower",
         "english": "Runestone Tower",
-        "chinese": "符石地牢",
-        "method": "PREDICTION",
-        "limitation": "reference_height",
-        "status": "IMPLEMENTED"
+        "chinese": "符石地牢"
       }
     ]
   },
   {
     "modId": "abyssalcraft",
     "modName": "AbyssalCraft",
-    "version": "1.12.2-1.11.3",
     "structures": [
       {
         "id": "abyssal_stronghold",
         "english": "Abyssal Stronghold",
-        "chinese": "深渊要塞",
-        "method": "PREDICTION",
-        "limitation": "reference_height",
-        "status": "IMPLEMENTED"
+        "chinese": "深渊要塞"
       },
       {
         "id": "dreadlands_mineshaft",
         "english": "Dreadlands Mineshaft",
-        "chinese": "恐惧之地矿井",
-        "method": "PREDICTION",
-        "limitation": "reference_height",
-        "status": "IMPLEMENTED"
+        "chinese": "恐惧之地矿井"
       },
       {
         "id": "jzahar_temple",
         "english": "J'zahar's Temple",
-        "chinese": "扎哈尔神殿",
-        "method": "PREDICTION",
-        "limitation": "reference_height",
-        "status": "IMPLEMENTED"
+        "chinese": "扎哈尔神殿"
       }
     ]
   },
   {
     "modId": "endexpansion",
     "modName": "End Expansion",
-    "version": "1.2-fix",
     "structures": [
       {
         "id": "lamented_islands",
         "english": "Lamented Islands",
-        "chinese": "哀叹群岛",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "哀叹群岛"
       }
     ]
   },
   {
     "modId": "divinerpg",
     "modName": "DivineRPG",
-    "version": "1.0.0-patched",
     "structures": [
       {
         "id": "archer_dungeon",
         "english": "Frost Archer Dungeon",
-        "chinese": "冰霜弓箭手地牢",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "冰霜弓箭手地牢"
       },
       {
         "id": "rollum_dungeon",
         "english": "Rollum Dungeon",
-        "chinese": "罗鲁姆地牢",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "罗鲁姆地牢"
       },
       {
         "id": "crypt_1",
         "english": "Vethea Crypt I",
-        "chinese": "梦魇墓穴 I",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "梦魇墓穴 I"
       },
       {
         "id": "crypt_2",
         "english": "Vethea Crypt II",
-        "chinese": "梦魇墓穴 II",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "梦魇墓穴 II"
       },
       {
         "id": "hive",
         "english": "Hive",
-        "chinese": "蜂巢",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "蜂巢"
       },
       {
         "id": "temple_1",
         "english": "Vethea Temple I",
-        "chinese": "梦魇神殿 I",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "梦魇神殿 I"
       },
       {
         "id": "temple_2",
         "english": "Vethea Temple II",
-        "chinese": "梦魇神殿 II",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "梦魇神殿 II"
       },
       {
         "id": "quadrotic_post",
         "english": "Quadrotic Post",
-        "chinese": "夸德罗哨站",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "夸德罗哨站"
       },
       {
         "id": "karos_madhouse",
         "english": "Karos's Madhouse",
-        "chinese": "卡洛斯疯人院",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "卡洛斯疯人院"
       },
       {
         "id": "evergarden",
         "english": "Evergarden",
-        "chinese": "永恒花园",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "永恒花园"
       },
       {
         "id": "raglok_chamber",
         "english": "Raglok's Chamber",
-        "chinese": "拉格洛克密室",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "拉格洛克密室"
       },
       {
         "id": "wreck_hall",
         "english": "Wreck Hall",
-        "chinese": "毁灭大厅",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "毁灭大厅"
       }
     ]
   },
   {
     "modId": "da",
     "modName": "Unseen's Dungeon Additions",
-    "version": "1.7.4.1",
     "structures": [
       {
         "id": "nether_arena",
         "english": "Burning Flame Arena",
-        "chinese": "炽焰竞技场",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "炽焰竞技场"
       },
       {
         "id": "obsidilith_arena",
         "english": "Obsidilith Arena",
-        "chinese": "黑曜石竞技场",
-        "method": "PREDICTION",
-        "limitation": "",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "黑曜石竞技场"
       }
     ]
   },
   {
     "modId": "erebus",
     "modName": "The Erebus",
-    "version": "1.0.32-patched",
     "structures": [
       {
         "id": "giant_eucalyptus",
         "english": "Giant Eucalyptus",
-        "chinese": "巨型猴面包树",
-        "method": "PREDICTION",
-        "limitation": "structurecompasslegacy.limitation.erebus_giant_eucalyptus",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "巨型猴面包树"
       },
       {
         "id": "antlion_pyramid",
         "english": "Antlion Overlord Pyramid",
-        "chinese": "蚁狮领主金字塔",
-        "method": "PREDICTION",
-        "limitation": "structurecompasslegacy.limitation.erebus_antlion_pyramid",
-        "status": "AWAITING_VALIDATION"
+        "chinese": "蚁狮领主金字塔"
       }
     ]
   },
   {
     "modId": "thebetweenlands",
     "modName": "The Betweenlands",
-    "version": "3.9.6",
     "structures": [
       {
         "id": "floating_island",
         "english": "Floating Island",
-        "chinese": "浮空岛",
-        "method": "PREDICTION",
-        "limitation": "structurecompasslegacy.limitation.betweenlands_island_anchor",
-        "status": "IMPLEMENTED"
+        "chinese": "浮空岛"
       },
       {
         "id": "giant_root",
         "english": "Giant Root",
-        "chinese": "巨型树根",
-        "method": "PREDICTION",
-        "limitation": "structurecompasslegacy.limitation.betweenlands_root_anchor",
-        "status": "IMPLEMENTED"
+        "chinese": "巨型树根"
       },
       {
         "id": "sludge_worm_dungeon",
         "english": "Sludgeon",
-        "chinese": "污泥地牢",
-        "method": "PREDICTION",
-        "limitation": "structurecompasslegacy.limitation.betweenlands_dungeon_region",
-        "status": "IMPLEMENTED"
+        "chinese": "污泥地牢"
       }
     ]
   }

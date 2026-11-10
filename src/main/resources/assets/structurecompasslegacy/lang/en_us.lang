@@ -29,6 +29,7 @@ structurecompasslegacy.limitation.reference_height=Horizontal coordinates follow
 structurecompasslegacy.limitation.binding_failed=Could not bind compatibility for this mod version. See the compatibility loading error in the log.
 structurecompasslegacy.reason.recursive_chunk=Generation requested the same unfinished chunk recursively. Simulation stopped.
 structurecompasslegacy.reason.unknown_structure=The server has no matching structure entry. Reopen the compass.
+structurecompasslegacy.reason.blacklisted=Searching for this structure is disabled.
 structurecompasslegacy.no_matches=No matching structures.
 structurecompasslegacy.dimension.none=None
 structurecompasslegacy.dimension.overworld=Overworld
