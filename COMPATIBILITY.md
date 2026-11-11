@@ -110,6 +110,10 @@
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
+| `divinerpg:eden_altar` | 伊甸祭坛 / Eden Altar | 预测＋隔离地形核验 | 已实现，待游戏实测 | 选择搜索半径内水平距离最近的预测刷怪笼。 |
+| `divinerpg:wildwood_altar` | 原始森林祭坛 / Wildwood Altar | 预测＋隔离地形核验 | 已实现，待游戏实测 | 同上。 |
+| `divinerpg:apalachia_altar` | 附魔山脉祭坛 / Apalachia Altar | 预测＋隔离地形核验 | 已实现，待游戏实测 | 同上。 |
+| `divinerpg:skythern_altar` | 空境祭坛 / Skythern Altar | 预测＋隔离地形核验 | 已实现，待游戏实测 | 同上。 |
 | `divinerpg:archer_dungeon` | 冰霜弓箭手地牢 / Frost Archer Dungeon | 预测 | 已实现，待集中实测 | — |
 | `divinerpg:rollum_dungeon` | 罗鲁姆地牢 / Rollum Dungeon | 预测 | 已实现，待集中实测 | — |
 | `divinerpg:crypt_1` | 梦魇墓穴 I / Vethea Crypt I | 预测 | 已实现，待集中实测 | — |

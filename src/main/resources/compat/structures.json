@@ -315,6 +315,26 @@
     "modName": "DivineRPG",
     "structures": [
       {
+        "id": "eden_altar",
+        "english": "Eden Altar",
+        "chinese": "伊甸祭坛"
+      },
+      {
+        "id": "wildwood_altar",
+        "english": "Wildwood Altar",
+        "chinese": "原始森林祭坛"
+      },
+      {
+        "id": "apalachia_altar",
+        "english": "Apalachia Altar",
+        "chinese": "阿帕拉契亚祭坛"
+      },
+      {
+        "id": "skythern_altar",
+        "english": "Skythern Altar",
+        "chinese": "冰刺祭坛"
+      },
+      {
         "id": "archer_dungeon",
         "english": "Frost Archer Dungeon",
         "chinese": "冰霜弓箭手地牢"
