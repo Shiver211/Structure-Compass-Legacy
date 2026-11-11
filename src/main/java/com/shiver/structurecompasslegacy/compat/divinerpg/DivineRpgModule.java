@@ -35,9 +35,11 @@ public final class DivineRpgModule implements CompatModule {
                     altar.generatorClass, IChunkGenerator.class, World.class);
             Block grass = (Block) ModFields.read(
                     ModFields.bind("divinerpg.registry.BlockRegistry", altar.grassField), null);
+            Block spawner = (Block) ModFields.read(
+                    ModFields.bind("divinerpg.registry.BlockRegistry", altar.spawnerField), null);
             GeneratorFactories.register(altar.providerClass, world -> terrain.create(world));
             ModuleRegistration dimension = new ModuleRegistration(registry, modId(), altar.providerClass);
-            dimension.prediction(altar.id, context -> new DivineAltarTask(context, altar, grass),
+            dimension.prediction(altar.id, context -> new DivineAltarTask(context, altar, grass, spawner),
                     () -> true, "structurecompasslegacy.limitation.divinerpg_altar");
         }
     }

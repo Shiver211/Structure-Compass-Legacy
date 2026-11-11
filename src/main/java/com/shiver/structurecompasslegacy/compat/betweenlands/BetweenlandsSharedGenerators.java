@@ -22,25 +22,39 @@ final class BetweenlandsSharedGenerators {
             "GEN_SPAWNER", "GEN_TAR_POOL_DUNGEON", "GEN_GIANT_TREE", "GEN_WEEDWOOD_TREE",
             "GEN_SPAWNER_STRUCTURE", "GEN_SMALL_RUINS", "GEN_SMALL_HOLLOW_LOG", "GEN_SWAMP_TALLGRASS",
             "GEN_NETTLES", "GEN_ARROW_ARUM", "GEN_PICKEREL_WEED", "GEN_MARSH_HIBISCUS", "GEN_MARSH_MALLOW",
-            "GEN_BUTTON_BUSH", "GEN_SOFT_RUSH", "GEN_BOTTLE_BRUSH_GRASS"
+            "GEN_BUTTON_BUSH", "GEN_SOFT_RUSH", "GEN_BOTTLE_BRUSH_GRASS", "GEN_BIG_BULB_CAPPED_MUSHROOM",
+            "GEN_BULB_CAPPED_MUSHROOMS"
     };
 
     private final List<Slot> slots = new ArrayList<>();
 
     BetweenlandsSharedGenerators() {
+        this(GENERATORS);
+    }
+
+    BetweenlandsSharedGenerators(String... generators) {
         Class<?> helper = ModConstructor.type("thebetweenlands.common.world.gen.biome.decorator.DecorationHelper");
-        for (String name : GENERATORS) {
+        for (String name : generators) {
             Object generator = BetweenlandsReflection.read(BetweenlandsReflection.field(helper, name), null);
             for (Class<?> type = generator.getClass(); WorldGenerator.class.isAssignableFrom(type); type = type.getSuperclass()) {
-                for (Field field : type.getDeclaredFields()) {
-                    if (Modifier.isStatic(field.getModifiers())) {
-                        continue;
-                    }
-                    if (!Modifier.isFinal(field.getModifiers()) || List.class.isAssignableFrom(field.getType())
-                            || field.getType().isArray() || field.getType() == BlockPos.MutableBlockPos.class) {
-                        field.setAccessible(true);
-                        slots.add(new Slot(generator, field));
-                    }
+                addSlots(generator, type);
+            }
+        }
+    }
+
+    private void addSlots(Object owner, Class<?> type) {
+        for (Field field : type.getDeclaredFields()) {
+            if (Modifier.isStatic(field.getModifiers())) {
+                continue;
+            }
+            if (!Modifier.isFinal(field.getModifiers()) || List.class.isAssignableFrom(field.getType())
+                    || field.getType().isArray() || field.getType() == BlockPos.MutableBlockPos.class) {
+                field.setAccessible(true);
+                slots.add(new Slot(owner, field));
+                // 地下刷怪笼会复用内部位置提供器，恢复引用还不足以恢复其坐标、世界和随机源。
+                if (field.getType().getName().equals(
+                        "thebetweenlands.common.world.gen.biome.decorator.DecoratorPositionProvider")) {
+                    addSlots(BetweenlandsReflection.read(field, owner), field.getType());
                 }
             }
         }
@@ -48,6 +62,10 @@ final class BetweenlandsSharedGenerators {
 
     /** 原生工具是静态单例；每个同步步骤结束后恢复引用和可变内容。 */
     void run(Runnable action) {
+        if (slots.isEmpty()) {
+            action.run();
+            return;
+        }
         List<Snapshot> snapshots = new ArrayList<>(slots.size());
         for (Slot slot : slots) {
             snapshots.add(new Snapshot(slot));

@@ -20,49 +20,51 @@ final class BetweenlandsPopulation {
 
     // 保持 super.decorate → 洞穴各子项 → 地下结构 → 火焰 → 要塞的原生顺序。
     // 前两项的次数依赖噪声或随机数，在开始该项时再计算。
+    // 每项只保护它使用的共享工具；刷怪笼也会调用蘑菇、草和钟乳石工具。
     private final Decoration[] decorations = {
-            new Decoration("generateSpeleothemCluster", 0),
-            new Decoration("generateCavePotsCluster", 0),
-            new Decoration("generateLyestone", 100),
-            new Decoration("generateCaveThornsCluster", 140),
-            new Decoration("generateCaveMossCluster", 120),
-            new Decoration("generateCaveHangersCluster", 120),
-            new Decoration("generateUndergroundMossCluster", 25),
-            new Decoration("generateUndergroundLichenCluster", 5),
-            new Decoration("generateCaveGrassCluster", 120),
-            new Decoration("generateDeepmanSimulacrum", 5),
-            new Decoration("generateLakeCavernSimulacrum", 0.6F),
-            new Decoration("generateUndergroundPebbleClusterLand", 8),
-            new Decoration("generateUndergroundPebbleClusterWater", 8),
-            new Decoration("generateStagnantWaterPool", 2),
-            new Decoration("generateUndergroundRuins", 200),
-            new Decoration("generateSpawner", 1),
-            new Decoration("generateTarPoolDungeon", 1)
+            new Decoration("generateSpeleothemCluster", 0, "GEN_SPELEOTHEM"),
+            new Decoration("generateCavePotsCluster", 0, "GEN_CAVE_POTS"),
+            new Decoration("generateLyestone", 100, "LYESTONE"),
+            new Decoration("generateCaveThornsCluster", 140, "GEN_CAVE_THORNS"),
+            new Decoration("generateCaveMossCluster", 120, "GEN_CAVE_MOSS"),
+            new Decoration("generateCaveHangersCluster", 120, "GEN_CAVE_HANGERS"),
+            new Decoration("generateUndergroundMossCluster", 25, "GEN_MOSS_UNDERGROUND"),
+            new Decoration("generateUndergroundLichenCluster", 5, "GEN_LICHEN_UNDERGROUND"),
+            new Decoration("generateCaveGrassCluster", 120, "GEN_CAVE_GRASS"),
+            new Decoration("generateDeepmanSimulacrum", 5, "GEN_DEEPMAN_SIMULACRUM"),
+            new Decoration("generateLakeCavernSimulacrum", 0.6F, "GEN_LAKE_CAVERN_SIMULACRUM"),
+            new Decoration("generateUndergroundPebbleClusterLand", 8, "GEN_PEBBLE_CLUSTER_LAND"),
+            new Decoration("generateUndergroundPebbleClusterWater", 8, "GEN_PEBBLE_CLUSTER_WATER"),
+            new Decoration("generateStagnantWaterPool", 2, "GEN_STAGNANT_WATER_POOL"),
+            new Decoration("generateUndergroundRuins", 200, "GEN_UNDERGROUND_RUINS"),
+            new Decoration("generateSpawner", 1, "GEN_SPAWNER", "GEN_BIG_BULB_CAPPED_MUSHROOM",
+                    "GEN_BULB_CAPPED_MUSHROOMS", "GEN_SWAMP_TALLGRASS", "GEN_SPELEOTHEM"),
+            new Decoration("generateTarPoolDungeon", 1, "GEN_TAR_POOL_DUNGEON")
     };
 
     // 邻区块核验需要要塞之后的装饰：树木、遗迹和植物会影响目标起点及随机消耗。
     private final Decoration[] surfaceDecorations = {
-            new Decoration("generateGiantTree", 0.25F),
-            new Decoration("generateWeedwoodTree", 1),
-            new Decoration("generateSpawnerStructure", 0.2F),
-            new Decoration("generateSmallRuinsCluster", 2.2F),
+            new Decoration("generateGiantTree", 0.25F, "GEN_GIANT_TREE"),
+            new Decoration("generateWeedwoodTree", 1, "GEN_WEEDWOOD_TREE"),
+            new Decoration("generateSpawnerStructure", 0.2F, "GEN_SPAWNER_STRUCTURE"),
+            new Decoration("generateSmallRuinsCluster", 2.2F, "GEN_SMALL_RUINS"),
             new Decoration("generatePhragmites", 300),
-            new Decoration("generateSmallHollowLog", 5),
-            new Decoration("generateSwampTallgrassCluster", 30),
+            new Decoration("generateSmallHollowLog", 5, "GEN_SMALL_HOLLOW_LOG"),
+            new Decoration("generateSwampTallgrassCluster", 30, "GEN_SWAMP_TALLGRASS"),
             new Decoration("generateSundew", 5),
-            new Decoration("generateNettlesCluster", 2),
+            new Decoration("generateNettlesCluster", 2, "GEN_NETTLES"),
             new Decoration("generateWeepingBlue", 3),
             new Decoration("generateWisp", 4),
-            new Decoration("generateArrowArumCluster", 2),
-            new Decoration("generatePickerelWeedCluster", 2),
-            new Decoration("generateMarshHibiscusCluster", 2),
-            new Decoration("generateMarshMallowCluster", 2),
-            new Decoration("generateButtonBushCluster", 2),
-            new Decoration("generateSoftRushCluster", 90),
+            new Decoration("generateArrowArumCluster", 2, "GEN_ARROW_ARUM"),
+            new Decoration("generatePickerelWeedCluster", 2, "GEN_PICKEREL_WEED"),
+            new Decoration("generateMarshHibiscusCluster", 2, "GEN_MARSH_HIBISCUS"),
+            new Decoration("generateMarshMallowCluster", 2, "GEN_MARSH_MALLOW"),
+            new Decoration("generateButtonBushCluster", 2, "GEN_BUTTON_BUSH"),
+            new Decoration("generateSoftRushCluster", 90, "GEN_SOFT_RUSH"),
             new Decoration("generateBroomsedge", 40),
-            new Decoration("generateBottleBrushGrassCluster", 5),
-            new Decoration("generatePebbleClusterLand", 2),
-            new Decoration("generatePebbleClusterWater", 4)
+            new Decoration("generateBottleBrushGrassCluster", 5, "GEN_BOTTLE_BRUSH_GRASS"),
+            new Decoration("generatePebbleClusterLand", 2, "GEN_PEBBLE_CLUSTER_LAND"),
+            new Decoration("generatePebbleClusterWater", 4, "GEN_PEBBLE_CLUSTER_WATER")
     };
 
     private final BetweenlandsSharedGenerators shared;
@@ -169,7 +171,8 @@ final class BetweenlandsPopulation {
             if (group == decorations.length) {
                 verifyFortress();
             } else {
-                shared.run(() -> BetweenlandsReflection.call(decoration().method, null, decorator));
+                Decoration current = decoration();
+                current.shared.run(() -> BetweenlandsReflection.call(current.method, null, decorator));
             }
             remaining--;
         } else {
@@ -202,11 +205,13 @@ final class BetweenlandsPopulation {
 
         final Method method;
         final float attempts;
+        final BetweenlandsSharedGenerators shared;
 
-        Decoration(String name, float attempts) {
+        Decoration(String name, float attempts, String... generators) {
             Class<?> positions = ModConstructor.type(PACKAGE + "DecoratorPositionProvider");
             method = BetweenlandsReflection.method(PACKAGE + "DecorationHelper", name, positions);
             this.attempts = attempts;
+            shared = new BetweenlandsSharedGenerators(generators);
         }
     }
 }

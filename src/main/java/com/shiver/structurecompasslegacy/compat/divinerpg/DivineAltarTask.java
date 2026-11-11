@@ -21,6 +21,7 @@ final class DivineAltarTask implements SearchTask {
     private final ChunkDistanceOrder chunks;
     private final DivineAltar altar;
     private final Block grass;
+    private final Block spawner;
     private final DivineAltarPlacement placement;
     private SimulationSession simulation;
     private SearchTarget nearest;
@@ -28,7 +29,7 @@ final class DivineAltarTask implements SearchTask {
     private long stopDistanceSquared;
     private long longestCall;
 
-    DivineAltarTask(SearchContext context, DivineAltar altar, Block grass) {
+    DivineAltarTask(SearchContext context, DivineAltar altar, Block grass, Block spawner) {
         this.context = context;
         // 刷怪笼在触发区块的 (+8..+24,+8..+24)，以 (+16,+16) 排序。
         // 它到排序中心最多相差 sqrt(8²+8²) < 12 格，搜索边界也需扩大。
@@ -36,6 +37,7 @@ final class DivineAltarTask implements SearchTask {
                 context.radius + 12);
         this.altar = altar;
         this.grass = grass;
+        this.spawner = spawner;
         placement = new DivineAltarPlacement(context.seed);
         nearestDistanceSquared = (long) context.radius * context.radius + 1;
         stopDistanceSquared = (long) (context.radius + 12) * (context.radius + 12);
@@ -87,6 +89,10 @@ final class DivineAltarTask implements SearchTask {
         SearchTarget target = placement.layout(altar, chunkX, chunkZ);
         if (target == null || distanceSquared(target.position) >= nearestDistanceSquared) {
             return null;
+        }
+
+        if (DivineAltarLoaded.ready(context.source, target, chunkX, chunkZ)) {
+            return DivineAltarLoaded.find(context.source, altar, target, spawner);
         }
 
         try (SimulationScope ignored = SimulationScope.enter()) {
