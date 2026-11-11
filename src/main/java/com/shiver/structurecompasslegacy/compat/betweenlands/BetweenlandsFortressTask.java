@@ -11,6 +11,7 @@ import com.shiver.structurecompasslegacy.search.SearchLimitException;
 import com.shiver.structurecompasslegacy.simulation.SimulationScope;
 import com.shiver.structurecompasslegacy.simulation.SimulationSession;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.layer.GenLayer;
 
 final class BetweenlandsFortressTask implements SearchTask {
@@ -25,6 +26,7 @@ final class BetweenlandsFortressTask implements SearchTask {
     private SimulationSession simulation;
     private BetweenlandsTerrain terrain;
     private BetweenlandsPopulation population;
+    private BetweenlandsFortressCheck check;
     private int chunkX;
     private int chunkZ;
     private int stage = -1;
@@ -82,9 +84,23 @@ final class BetweenlandsFortressTask implements SearchTask {
                 population = new BetweenlandsPopulation();
                 return null;
             }
+            if (check != null) {
+                boolean[] done = new boolean[1];
+                terrain.run(() -> done[0] = check.step());
+                if (done[0]) {
+                    BlockPos result = check.result();
+                    check = null;
+                    stage = -1;
+                    simulation.beginCandidate();
+                    terrain.beginCandidate();
+                    return result == null ? null : new SearchTarget(result);
+                }
+                return null;
+            }
             if (stage == 0) {
                 simulation.beginCandidate();
                 terrain.beginCandidate();
+                BetweenlandsStorage.attach(simulation.world());
             }
             if (stage < TERRAIN_CHUNKS) {
                 // 原生装饰窗口先具备 2×2 基础地形；之后按原生查询补临时邻区块。
@@ -95,12 +111,16 @@ final class BetweenlandsFortressTask implements SearchTask {
                 boolean[] done = new boolean[1];
                 terrain.run(() -> done[0] = population.step());
                 if (done[0]) {
-                    SearchTarget target = terrain.fortress != null && context.contains(terrain.fortress)
-                            ? new SearchTarget(terrain.fortress) : null;
-                    stage = -1;
+                    BlockPos candidate = terrain.fortress;
                     simulation.beginCandidate();
                     terrain.beginCandidate();
-                    return target;
+                    if (candidate != null && context.contains(candidate)) {
+                        check = new BetweenlandsFortressCheck(simulation, terrain, population, candidate,
+                                chunkX, chunkZ, marsh0, marsh1);
+                    } else {
+                        stage = -1;
+                    }
+                    return null;
                 }
                 return null;
             }
@@ -142,6 +162,7 @@ final class BetweenlandsFortressTask implements SearchTask {
         simulation = null;
         terrain = null;
         population = null;
+        check = null;
         biomes = null;
     }
 }

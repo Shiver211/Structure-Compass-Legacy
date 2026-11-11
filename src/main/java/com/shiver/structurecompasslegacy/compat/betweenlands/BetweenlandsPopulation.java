@@ -40,6 +40,31 @@ final class BetweenlandsPopulation {
             new Decoration("generateTarPoolDungeon", 1)
     };
 
+    // 邻区块核验需要要塞之后的装饰：树木、遗迹和植物会影响目标起点及随机消耗。
+    private final Decoration[] surfaceDecorations = {
+            new Decoration("generateGiantTree", 0.25F),
+            new Decoration("generateWeedwoodTree", 1),
+            new Decoration("generateSpawnerStructure", 0.2F),
+            new Decoration("generateSmallRuinsCluster", 2.2F),
+            new Decoration("generatePhragmites", 300),
+            new Decoration("generateSmallHollowLog", 5),
+            new Decoration("generateSwampTallgrassCluster", 30),
+            new Decoration("generateSundew", 5),
+            new Decoration("generateNettlesCluster", 2),
+            new Decoration("generateWeepingBlue", 3),
+            new Decoration("generateWisp", 4),
+            new Decoration("generateArrowArumCluster", 2),
+            new Decoration("generatePickerelWeedCluster", 2),
+            new Decoration("generateMarshHibiscusCluster", 2),
+            new Decoration("generateMarshMallowCluster", 2),
+            new Decoration("generateButtonBushCluster", 2),
+            new Decoration("generateSoftRushCluster", 90),
+            new Decoration("generateBroomsedge", 40),
+            new Decoration("generateBottleBrushGrassCluster", 5),
+            new Decoration("generatePebbleClusterLand", 2),
+            new Decoration("generatePebbleClusterWater", 4)
+    };
+
     private final BetweenlandsSharedGenerators shared;
     private final Method ores;
     private final Method init;
@@ -63,6 +88,7 @@ final class BetweenlandsPopulation {
     private int remaining;
     private int fires;
     private boolean needsOres;
+    private boolean completeDecoration;
 
     BetweenlandsPopulation() {
         Class<?> positions = ModConstructor.type(PACKAGE + "DecoratorPositionProvider");
@@ -83,7 +109,12 @@ final class BetweenlandsPopulation {
     }
 
     void begin(BetweenlandsTerrain terrain, int chunkX, int chunkZ) {
+        begin(terrain, chunkX, chunkZ, false);
+    }
+
+    void begin(BetweenlandsTerrain terrain, int chunkX, int chunkZ, boolean completeDecoration) {
         this.terrain = terrain;
+        this.completeDecoration = completeDecoration;
         BetweenlandsStorage.attach(terrain.world);
         // 与原生 populate 共用生成器 Random，保留级联地形生成的随机重置行为。
         random = terrain.random();
@@ -117,13 +148,13 @@ final class BetweenlandsPopulation {
             fires++;
             return false;
         }
-        if (group > decorations.length) {
+        if (group > decorations.length + (completeDecoration ? surfaceDecorations.length : 0)) {
             decorator = null;
             terrain = null;
             return true;
         }
         if (remaining < 0) {
-            float tries = group == decorations.length ? FORTRESS_ATTEMPTS : decorations[group].attempts;
+            float tries = group == decorations.length ? FORTRESS_ATTEMPTS : decoration().attempts;
             if (group == 0) {
                 tries = 2 + ((Number) BetweenlandsReflection.call(additive, null, decorator)).intValue();
             } else if (group == 1) {
@@ -138,7 +169,7 @@ final class BetweenlandsPopulation {
             if (group == decorations.length) {
                 verifyFortress();
             } else {
-                shared.run(() -> BetweenlandsReflection.call(decorations[group].method, null, decorator));
+                shared.run(() -> BetweenlandsReflection.call(decoration().method, null, decorator));
             }
             remaining--;
         } else {
@@ -146,6 +177,11 @@ final class BetweenlandsPopulation {
             remaining = -1;
         }
         return false;
+    }
+
+    private Decoration decoration() {
+        return group < decorations.length ? decorations[group]
+                : surfaceDecorations[group - decorations.length - 1];
     }
 
     private void verifyFortress() {
