@@ -446,6 +446,11 @@
         "id": "sludge_worm_dungeon",
         "english": "Sludgeon",
         "chinese": "污泥地牢"
+      },
+      {
+        "id": "spirit_tree",
+        "english": "Spirit Tree",
+        "chinese": "灵魂树"
       }
     ]
   }

@@ -141,6 +141,7 @@
 | `thebetweenlands:floating_island` | 浮空岛 / Floating Island | 种子预测 | 已实现 | 定位生成中心，实际岛面随形状变化。 |
 | `thebetweenlands:giant_root` | 巨型树根 / Giant Root | 种子预测 | 已实现 | 定位原生列表的第一条巨根起点，树根沿曲线延伸。 |
 | `thebetweenlands:sludge_worm_dungeon` | 污泥地牢 / Sludgeon | 区域预测 | 已实现，待整包实测 | 在目标附近寻找入口，Y 为参考高度；跳过无法完整枚举或候选范围无交集的空地。 |
+| `thebetweenlands:spirit_tree` | 灵魂树 / Spirit Tree | 原生记录＋候选区域预测，按水平距离择近 | 已实现，受控生成对照通过，待整包实测 | 预测范围水平各轴 ±32 格。|
 
 ## The Erebus
 
