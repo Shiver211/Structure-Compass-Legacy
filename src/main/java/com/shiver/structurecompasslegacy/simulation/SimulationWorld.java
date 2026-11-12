@@ -19,7 +19,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.VillageCollection;
@@ -33,8 +32,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraft.world.storage.loot.LootTableManager;
-import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nonnull;
 
@@ -44,7 +41,6 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     private final Queue<ListenableFutureTask<Object>> scheduledTasks = new ArrayDeque<>();
     private final SimulationBlockTicks blockTicks = new SimulationBlockTicks();
     private final Map<UUID, Entity> simulationEntities = new HashMap<>();
-    private final Map<Capability<?>, Object> simulationCapabilities = new HashMap<>();
     private final WorldInfo initialInfo;
 
     SimulationWorld(WorldServer source, boolean terrainEnabled) {
@@ -53,12 +49,6 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
         mapStorage = new MapStorage((ISaveHandler) null);
         perWorldStorage = new MapStorage((ISaveHandler) null);
         villageCollection = new VillageCollection(this);
-        // 前置雕像会直接抽取战利品；使用独立缓存，仅按需读取 JAR 资源。
-        lootTable = new LootTableManager(null) {
-            @Override
-            public void reloadLootTables() {
-            }
-        };
         disableLevelSaving = true;
         rand.setSeed(getSeed());
         eventListeners.clear();
@@ -77,26 +67,6 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     @MethodsReturnNonnullByDefault
     public World init() {
         return this;
-    }
-
-    /** 适配器显式提供候选私有数据，不派发真实世界的能力注册事件。 */
-    public <T> void setSimulationCapability(Capability<T> capability, T value) {
-        simulationCapabilities.put(capability, value);
-    }
-
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        return (simulationCapabilities != null && simulationCapabilities.containsKey(capability))
-                || super.hasCapability(capability, facing);
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (simulationCapabilities != null && simulationCapabilities.containsKey(capability)) {
-            return (T) simulationCapabilities.get(capability);
-        }
-        return super.getCapability(capability, facing);
     }
 
     @Override
@@ -336,7 +306,6 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
 
     public void clearCandidate() {
         simulationChunks().clear();
-        simulationCapabilities.clear();
         loadedEntityList.clear();
         unloadedEntityList.clear();
         simulationEntities.clear();

@@ -57,7 +57,6 @@ structurecompasslegacy.limitation.erebus_antlion_pyramid=Candidate area, not a g
 structurecompasslegacy.limitation.betweenlands_island_anchor=Locates the island generation center; the island surface varies with its shape.
 structurecompasslegacy.limitation.betweenlands_root_anchor=Locates a giant root generation start; the root extends along a curve.
 structurecompasslegacy.limitation.betweenlands_dungeon_region=Locates the Sludgeon area. Look for its entrance near the target.
-structurecompasslegacy.limitation.betweenlands_fortress=Locates the Ghost Fortress; neighboring decoration and loading order may change the result, i.e., it may fail to locate. Not necessarily the closest fortress.
 structurecompasslegacy.limitation.aether_bronze_region=Predicts a Bronze Dungeon area within 64 blocks along each horizontal axis; may skip nearby dungeons.
 structurecompasslegacy.limitation.lost_aether_platinum_center=Locates the Platinum Dungeon center X/Z; may skip closer dungeons.
 structurecompasslegacy.limitation.divinerpg_altar=Locates the BOSS altar position; may not be the closest structure.

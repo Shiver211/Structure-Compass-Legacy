@@ -433,11 +433,6 @@
     "modName": "The Betweenlands",
     "structures": [
       {
-        "id": "wight_fortress",
-        "english": "Wight Fortress",
-        "chinese": "幽魂要塞"
-      },
-      {
         "id": "floating_island",
         "english": "Floating Island",
         "chinese": "浮空岛"

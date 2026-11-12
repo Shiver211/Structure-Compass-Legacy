@@ -10,7 +10,6 @@ import com.shiver.structurecompasslegacy.api.StructureRegistry;
 import com.shiver.structurecompasslegacy.compat.ModuleRegistration;
 import com.shiver.structurecompasslegacy.compat.ModFields;
 import com.shiver.structurecompasslegacy.compat.betweenlands.BetweenlandsLandmarkTask.Landmark;
-import com.shiver.structurecompasslegacy.simulation.GeneratorFactories;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 
@@ -31,12 +30,6 @@ public final class BetweenlandsModule implements CompatModule {
         Biome coarseIslands = (Biome) ModFields.read(ModFields.bind(BIOMES, "COARSE_ISLANDS"), null);
         int clearingId = Biome.getIdForBiome((Biome) ModFields.read(ModFields.bind(BIOMES, "SLUDGE_PLAINS_CLEARING"), null));
         ModuleRegistration entries = new ModuleRegistration(registry, modId(), PROVIDER);
-        int marsh0 = Biome.getIdForBiome((Biome) ModFields.read(ModFields.bind(BIOMES, "MARSH_0"), null));
-        int marsh1 = Biome.getIdForBiome((Biome) ModFields.read(ModFields.bind(BIOMES, "MARSH_1"), null));
-        GeneratorFactories.register(PROVIDER, BetweenlandsTerrain::new);
-        entries.prediction("wight_fortress", locator(layers, (context, biomes) ->
-                new BetweenlandsFortressTask(context, biomes, marsh0, marsh1)),
-                () -> true, "structurecompasslegacy.limitation.betweenlands_fortress");
         entries.prediction("floating_island", locator(layers, (context, biomes) ->
                 new BetweenlandsLandmarkTask(context, Landmark.FLOATING_ISLAND, biomes, raisedIsles, coarseIslands)),
                 () -> true, "structurecompasslegacy.limitation.betweenlands_island_anchor");

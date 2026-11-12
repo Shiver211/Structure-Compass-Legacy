@@ -57,7 +57,6 @@ structurecompasslegacy.limitation.erebus_antlion_pyramid=定位蚁狮领主金�
 structurecompasslegacy.limitation.betweenlands_island_anchor=定位浮空岛的生成中心，实际岛面随形状变化。
 structurecompasslegacy.limitation.betweenlands_root_anchor=定位巨型树根的生成起点，树根会沿曲线延伸。
 structurecompasslegacy.limitation.betweenlands_dungeon_region=定位污泥地牢所在区域，请在目标附近寻找入口。
-structurecompasslegacy.limitation.betweenlands_fortress=定位幽魂要塞位置，区块生成顺序可能改变结果，即可能定位失败；不一定是最近的要塞。
 structurecompasslegacy.limitation.aether_bronze_region=定位青铜地牢区域，请在目标水平各轴 ±32 格内寻找；不一定是最近的地牢。
 structurecompasslegacy.limitation.lost_aether_platinum_center=定位铂金地牢位置；不一定是最近的地牢。
 structurecompasslegacy.limitation.divinerpg_altar=定位 BOSS 祭坛位置，区块生成顺序可能改变结果，即可能定位失败；不一定是最近的结构。

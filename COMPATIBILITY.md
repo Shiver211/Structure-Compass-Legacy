@@ -139,7 +139,6 @@
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
 | `thebetweenlands:floating_island` | 浮空岛 / Floating Island | 种子预测 | 已实现 | 定位生成中心，实际岛面随形状变化。 |
-| `thebetweenlands:wight_fortress` | 幽魂要塞 / Wight Fortress | 隔离前置生成预测 | 已实现，待整包实测 | 探索顺序可能改变结果，不保证最近。 |
 | `thebetweenlands:giant_root` | 巨型树根 / Giant Root | 种子预测 | 已实现 | 定位原生列表的第一条巨根起点，树根沿曲线延伸。 |
 | `thebetweenlands:sludge_worm_dungeon` | 污泥地牢 / Sludgeon | 区域预测 | 已实现，待整包实测 | 在目标附近寻找入口，Y 为参考高度；跳过无法完整枚举或候选范围无交集的空地。 |
 
