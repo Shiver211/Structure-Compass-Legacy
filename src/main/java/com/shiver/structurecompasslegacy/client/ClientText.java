@@ -39,6 +39,8 @@ final class ClientText {
         keys.put("divinerpg.dimensions.apalachia.WorldProviderApalachia", "apalachia");
         keys.put("divinerpg.dimensions.skythern.WorldProviderSkythern", "skythern");
         keys.put("thebetweenlands.common.world.WorldProviderBetweenlands", "betweenlands");
+        keys.put("com.shiver.gct_additions.common.world.dimension.WorldWarpedRuin$WorldProviderMod", "warped_ruin");
+        keys.put("com.shiver.gct_additions.common.world.dimension.WorldAlfheim$WorldProviderMod", "alfheim");
         return Collections.unmodifiableMap(keys);
     }
 

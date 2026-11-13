@@ -453,5 +453,26 @@
         "chinese": "灵魂树"
       }
     ]
+  },
+  {
+    "modId": "gct_additions",
+    "modName": "Gct Additions",
+    "structures": [
+      {
+        "id": "seek_altar",
+        "english": "Seek Altar",
+        "chinese": "窥视祭坛"
+      },
+      {
+        "id": "reversed_dungeon",
+        "english": "Reversed Dungeon",
+        "chinese": "反物质精灵要塞"
+      },
+      {
+        "id": "elven_post",
+        "english": "Elven Post",
+        "chinese": "精灵哨站"
+      }
+    ]
   }
 ]
