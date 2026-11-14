@@ -27,6 +27,10 @@ public final class GctAdditionsModule implements CompatModule {
     @Override
     public void register(StructureRegistry registry) {
         registerGenerator(
+                DIMENSIONS + "WorldBesideVoid$WorldProviderMod",
+                DIMENSIONS + "WorldBesideVoid",
+                DIMENSIONS + "WorldBesideVoid$ChunkProviderModded");
+        registerGenerator(
                 WARPED_PROVIDER,
                 DIMENSIONS + "WorldWarpedRuin",
                 DIMENSIONS + "WorldWarpedRuin$ChunkProviderModded");

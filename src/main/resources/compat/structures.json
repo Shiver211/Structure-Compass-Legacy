@@ -474,5 +474,26 @@
         "chinese": "精灵哨站"
       }
     ]
+  },
+  {
+    "modId": "gctcore",
+    "modName": "GCT-Core",
+    "structures": [
+      {
+        "id": "crimson_temple",
+        "english": "Crimson Temple",
+        "chinese": "血腥神庙"
+      },
+      {
+        "id": "shadowberry_cave_minor",
+        "english": "Small Shadowberry Cave",
+        "chinese": "小型阴生浆果洞穴"
+      },
+      {
+        "id": "shadowberry_cave_bigger",
+        "english": "Large Shadowberry Cave",
+        "chinese": "大型阴生浆果洞穴"
+      }
+    ]
   }
 ]

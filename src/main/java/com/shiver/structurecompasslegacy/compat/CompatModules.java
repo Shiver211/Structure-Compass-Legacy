@@ -18,6 +18,7 @@ import com.shiver.structurecompasslegacy.compat.endexpansion.EndExpansionModule;
 import com.shiver.structurecompasslegacy.compat.erebus.ErebusModule;
 import com.shiver.structurecompasslegacy.compat.dungeonadditions.DungeonAdditionsModule;
 import com.shiver.structurecompasslegacy.compat.gctadditions.GctAdditionsModule;
+import com.shiver.structurecompasslegacy.compat.gctcore.GctCoreModule;
 import com.shiver.structurecompasslegacy.compat.lostaether.LostAetherModule;
 import com.shiver.structurecompasslegacy.compat.netherapi.NetherApiModule;
 import com.shiver.structurecompasslegacy.compat.thaumicaugmentation.ThaumicAugmentationModule;
@@ -49,7 +50,8 @@ public final class CompatModules {
                 new DraconicModule(),
                 new ThaumicAugmentationModule(),
                 new AurorianModule(),
-                new GctAdditionsModule());
+                new GctAdditionsModule(),
+                new GctCoreModule());
 
         for (CompatModule module : modules) {
             if (!Loader.isModLoaded(module.modId())) {

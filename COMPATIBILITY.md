@@ -157,3 +157,11 @@
 | `gct_additions:seek_altar` | 窥视祭坛 / Seek Altar | 区域网格预测＋隔离地形高度计算 | 已实现 | 定位祭坛中心方块。 |
 | `gct_additions:reversed_dungeon` | 反物质精灵要塞 / Reversed Dungeon | 区域网格预测＋隔离群系与地形计算 | 已实现 | 定位地下密室核心方块。 |
 | `gct_additions:elven_post` | 精灵哨站 / Elven Post | 区域网格预测＋隔离群系与地形计算 | 已实现 | 定位哨站中庭地坪。 |
+
+## GCT-Core
+
+| 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
+|---|---|---|---|---|
+| `gctcore:crimson_temple` | 猩红神殿 / Crimson Temple | 原生坐标记录＋种子预测与隔离地形 | 已实现，受控对照通过，待整包实测 | 维度 41。 |
+| `gctcore:shadowberry_cave_minor` | 小型阴生浆果洞穴 / Small Shadowberry Cave | 原生记录还原类型＋原生候选接口与隔离地形 | 已实现，受控对照通过，待整包实测 | 维度 42。 |
+| `gctcore:shadowberry_cave_bigger` | 大型阴生浆果洞穴 / Large Shadowberry Cave | 原生记录还原类型＋原生候选接口与隔离地形 | 已实现，受控对照通过，待整包实测 | 同上。 |
