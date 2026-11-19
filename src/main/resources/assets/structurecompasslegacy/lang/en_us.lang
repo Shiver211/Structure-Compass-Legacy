@@ -62,4 +62,5 @@ structurecompasslegacy.limitation.betweenlands_dungeon_region=Locates the Sludge
 structurecompasslegacy.limitation.betweenlands_spirit_tree=Locates the Spirit Tree generation position; may fail to detect, and no structure may exist at that position.
 structurecompasslegacy.limitation.aether_bronze_region=Predicts a Bronze Dungeon area within 64 blocks along each horizontal axis; may skip nearby dungeons.
 structurecompasslegacy.limitation.lost_aether_platinum_center=Locates the Platinum Dungeon center X/Z; may skip closer dungeons.
+structurecompasslegacy.limitation.gctcore_diamond_dungeon=The absolute values of the dungeon's X and Z coordinates are at least 3000 blocks.
 structurecompasslegacy.limitation.divinerpg_altar=Locates the BOSS altar position; may not be the closest structure.

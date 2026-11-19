@@ -480,6 +480,11 @@
     "modName": "GCT-Core",
     "structures": [
       {
+        "id": "diamond_dungeon",
+        "english": "Diamond Dungeon",
+        "chinese": "钻石地牢"
+      },
+      {
         "id": "crimson_temple",
         "english": "Crimson Temple",
         "chinese": "血腥神庙"

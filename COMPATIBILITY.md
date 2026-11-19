@@ -162,6 +162,7 @@
 
 | 结构 ID | 名称 | 搜索方式 | 开发状态 | 已知限制 |
 |---|---|---|---|---|
+| `gctcore:diamond_dungeon` | 钻石地牢 / Diamond Dungeon | 网格与种子预测 | 已实现，待整包实测 | 仅限天境。中心在 Y=100，X、Z 的绝对值均至少为 3000 格。 |
 | `gctcore:crimson_temple` | 猩红神殿 / Crimson Temple | 原生坐标记录＋种子预测与隔离地形 | 已实现，受控对照通过，待整包实测 | 维度 41。 |
 | `gctcore:shadowberry_cave_minor` | 小型阴生浆果洞穴 / Small Shadowberry Cave | 原生记录还原类型＋原生候选接口与隔离地形 | 已实现，受控对照通过，待整包实测 | 维度 42。 |
 | `gctcore:shadowberry_cave_bigger` | 大型阴生浆果洞穴 / Large Shadowberry Cave | 原生记录还原类型＋原生候选接口与隔离地形 | 已实现，受控对照通过，待整包实测 | 同上。 |

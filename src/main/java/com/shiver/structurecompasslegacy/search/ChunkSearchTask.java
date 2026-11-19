@@ -14,11 +14,15 @@ public abstract class ChunkSearchTask implements SearchTask {
     private long longestCallNanos;
 
     protected ChunkSearchTask(SearchContext context) {
-        this.context = context;
-        this.chunks = new ChunkSpiral(
+        this(context, new ChunkSpiral(
                 context.origin.getX() >> 4,
                 context.origin.getZ() >> 4,
-                (context.radius + 15) / 16);
+                (context.radius + 15) / 16));
+    }
+
+    protected ChunkSearchTask(SearchContext context, ChunkSpiral chunks) {
+        this.context = context;
+        this.chunks = chunks;
     }
 
     protected abstract SearchTarget inspect(int chunkX, int chunkZ) throws Exception;

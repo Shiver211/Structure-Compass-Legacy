@@ -62,4 +62,5 @@ structurecompasslegacy.limitation.betweenlands_dungeon_region=定位污泥地牢
 structurecompasslegacy.limitation.betweenlands_spirit_tree=定位灵魂树的生成位置，可能探测失败，该位置无对应结构。
 structurecompasslegacy.limitation.aether_bronze_region=定位青铜地牢区域，请在目标水平各轴 ±32 格内寻找；不一定是最近的地牢。
 structurecompasslegacy.limitation.lost_aether_platinum_center=定位铂金地牢位置；不一定是最近的地牢。
+structurecompasslegacy.limitation.gctcore_diamond_dungeon=注意：地牢的 X、Z 坐标绝对值都至少为 3000 格。
 structurecompasslegacy.limitation.divinerpg_altar=定位 BOSS 祭坛位置，区块生成顺序可能改变结果，即可能定位失败；不一定是最近的结构。
