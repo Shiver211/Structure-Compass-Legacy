@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.IntPredicate;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -27,11 +28,21 @@ public final class DimensionRule implements Predicate<WorldServer> {
     private final Kind kind;
     private final int[] ids;
     private final String providerClass;
+    private final IntPredicate dimensionFilter;
 
     private DimensionRule(Kind kind, int[] ids, String providerClass) {
+        this(kind, ids, providerClass, null);
+    }
+
+    private DimensionRule(Kind kind, int[] ids, String providerClass, IntPredicate dimensionFilter) {
         this.kind = kind;
         this.ids = ids;
         this.providerClass = providerClass;
+        this.dimensionFilter = dimensionFilter;
+    }
+
+    public static DimensionRule matchingIds(IntPredicate filter) {
+        return new DimensionRule(Kind.IDS, new int[0], "", filter);
     }
 
     public static DimensionRule none() {
@@ -70,6 +81,7 @@ public final class DimensionRule implements Predicate<WorldServer> {
         }
         if (kind == Kind.IDS) {
             int dimension = world.provider.getDimension();
+            if (dimensionFilter != null) return dimensionFilter.test(dimension);
             for (int id : ids) {
                 if (id == dimension) {
                     return true;
@@ -86,7 +98,9 @@ public final class DimensionRule implements Predicate<WorldServer> {
     public NBTTagList toNbt() {
         NBTTagList result = new NBTTagList();
         if (kind == Kind.IDS) {
-            for (int id : ids) {
+            int[] visible = dimensionFilter == null ? ids : Arrays.stream(DimensionManager.getStaticDimensionIDs())
+                    .mapToInt(Integer::intValue).filter(dimensionFilter).sorted().toArray();
+            for (int id : visible) {
                 if (DimensionManager.isDimensionRegistered(id)) {
                     DimensionType type = DimensionManager.getProviderType(id);
                     result.appendTag(dimensionTag(true, id, type.getName(), providerClassFor(id, type)));

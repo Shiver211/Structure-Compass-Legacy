@@ -15,6 +15,12 @@ import net.minecraft.world.storage.WorldInfo;
 public final class NetherApiModule implements CompatModule {
 
     private static final String WORLD_PACKAGE = "git.jbredwards.nether_api.mod.common.world.";
+    private static NetherWorldInfo info;
+
+    /** 在进入模拟前检查；Nether API 的 getter 会为缺失的出生点新建记录。 */
+    public static boolean hasExistingSpawn(World world) {
+        return info == null || info.hasExistingSpawn(world.getWorldInfo());
+    }
 
     @Override
     public String modId() {
@@ -26,7 +32,7 @@ public final class NetherApiModule implements CompatModule {
         GeneratorFactories.registerBiomes(WORLD_PACKAGE + "WorldProviderNether");
         Class<? extends WorldInfo> infoType = ModConstructor.type(WORLD_PACKAGE + "DerivedWorldInfoMulti")
                 .asSubclass(WorldInfo.class);
-        NetherWorldInfo info = new NetherWorldInfo(
+        info = new NetherWorldInfo(
                 infoType, ModConstructor.type(WORLD_PACKAGE + "DerivedWorldInfoMulti$Data"));
         WorldInfoCopies.register(infoType, info::snapshot);
 

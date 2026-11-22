@@ -1,11 +1,13 @@
 package com.shiver.structurecompasslegacy.simulation;
 
 import java.io.File;
+import java.util.function.Function;
 
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.storage.IChunkLoader;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraft.world.storage.IPlayerFileData;
 import net.minecraft.world.storage.ISaveHandler;
@@ -16,10 +18,10 @@ import javax.annotation.Nonnull;
 public final class MemorySaveHandler implements ISaveHandler {
 
     private final ResourceTemplateManager templates = new ResourceTemplateManager();
-    final boolean terrainEnabled;
+    final Function<SimulationWorld, IChunkGenerator> terrain;
 
-    MemorySaveHandler(boolean terrainEnabled) {
-        this.terrainEnabled = terrainEnabled;
+    MemorySaveHandler(Function<SimulationWorld, IChunkGenerator> terrain) {
+        this.terrain = terrain;
     }
 
     @Override

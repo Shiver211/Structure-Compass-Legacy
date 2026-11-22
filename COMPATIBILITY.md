@@ -166,3 +166,18 @@
 | `gctcore:crimson_temple` | 猩红神殿 / Crimson Temple | 原生坐标记录＋种子预测与隔离地形 | 已实现，受控对照通过，待整包实测 | 维度 41。 |
 | `gctcore:shadowberry_cave_minor` | 小型阴生浆果洞穴 / Small Shadowberry Cave | 原生记录还原类型＋原生候选接口与隔离地形 | 已实现，受控对照通过，待整包实测 | 维度 42。 |
 | `gctcore:shadowberry_cave_bigger` | 大型阴生浆果洞穴 / Large Shadowberry Cave | 原生记录还原类型＋原生候选接口与隔离地形 | 已实现，受控对照通过，待整包实测 | 同上。 |
+
+
+## 冰与火之歌（RotN 1.9.1-1.3.3）
+
+| 结构 ID | 名称 | GreedyCraft2 失落城市（111） |
+|---|---|---|
+| `iceandfire:fire_roost` | 火龙巢 | 实物核验或预测 X/Z，预测 Y 为海平面参考值 |
+| `iceandfire:ice_roost` | 冰龙巢 | 同上 |
+| `iceandfire:lightning_roost` | 电龙巢 | 同上 |
+| `iceandfire:fire_cave` | 火龙洞穴 | 实物核验或预测地下中心；检查该高度是否能看见天空 |
+| `iceandfire:ice_cave` | 冰龙洞穴 | 实物核验或预测原生中心 X/Y/Z |
+| `iceandfire:lightning_cave` | 电龙洞穴 | 同火龙洞穴，使用电龙的群系与随机分支 |
+| `iceandfire:siren_island` | 塞壬岛 | 实物核验或预测远离城市、铁路和道路的海洋 X/Z，预测 Y 为海平面参考值 |
+| `iceandfire:mausoleum` | 恐惧陵墓 | 实物核验或预测偏移后的地面中心；按模板朝向检查四周的恐惧方块 |
+

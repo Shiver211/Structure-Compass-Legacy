@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 import java.util.UUID;
+import java.util.function.Function;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
@@ -27,6 +28,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.storage.ISaveHandler;
@@ -43,8 +45,8 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     private final Map<UUID, Entity> simulationEntities = new HashMap<>();
     private final WorldInfo initialInfo;
 
-    SimulationWorld(WorldServer source, boolean terrainEnabled) {
-        super(source.getMinecraftServer(), new MemorySaveHandler(terrainEnabled), WorldInfoCopies.copy(source.getWorldInfo()),
+    SimulationWorld(WorldServer source, Function<SimulationWorld, IChunkGenerator> terrain) {
+        super(source.getMinecraftServer(), new MemorySaveHandler(terrain), WorldInfoCopies.copy(source.getWorldInfo()),
                 source.provider.getDimension(), new Profiler());
         mapStorage = new MapStorage((ISaveHandler) null);
         perWorldStorage = new MapStorage((ISaveHandler) null);
@@ -59,8 +61,8 @@ public final class SimulationWorld extends WorldServer implements SimulationMark
     @MethodsReturnNonnullByDefault
     protected IChunkProvider createChunkProvider() {
         // 父类构造期间执行：这里只使用 World 已初始化的 provider 和 worldInfo。
-        boolean terrainEnabled = ((MemorySaveHandler) saveHandler).terrainEnabled;
-        return new SimulationChunkProvider(this, terrainEnabled ? GeneratorFactories.create(this) : null);
+        MemorySaveHandler memory = (MemorySaveHandler) saveHandler;
+        return new SimulationChunkProvider(this, memory.terrain == null ? null : memory.terrain.apply(this));
     }
 
     @Override

@@ -27,6 +27,7 @@ final class ClientText {
         keys.put("com.teammetallurgy.atum.world.WorldProviderAtum", "atum");
         keys.put("cn.mcmod.tofucraft.world.WorldProviderTofu", "tofu");
         keys.put("twilightforest.world.WorldProviderTwilightForest", "twilight_forest");
+        keys.put("mcjty.lostcities.dimensions.world.LostWorldProvider", "lostcities");
         keys.put("thecodex6824.thaumicaugmentation.common.world.WorldProviderEmptiness", "emptiness");
         keys.put("com.shiroroku.theaurorian.World.AurorianWorldProvider", "aurorian");
         keys.put("com.shinoow.abyssalcraft.common.world.WorldProviderAbyss", "abyssal_wasteland");

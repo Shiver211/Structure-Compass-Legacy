@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.DerivedWorldInfo;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldInfo;
+import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 /** Nether API 的序列化和出生点 getter 都会调用 Data.load；只复制已经加载的出生点状态。 */
@@ -23,8 +24,10 @@ final class NetherWorldInfo {
     private final Field x;
     private final Field y;
     private final Field z;
+    private final Class<? extends WorldSavedData> spawnDataType;
 
     NetherWorldInfo(Class<? extends WorldInfo> infoType, Class<?> dataType) {
+        spawnDataType = dataType.asSubclass(WorldSavedData.class);
         parent = ReflectionHelper.findField(DerivedWorldInfo.class, new String[] {"delegate", "field_76115_a"});
         owner = ReflectionHelper.findField(infoType, new String[] {"delegate", "field_76115_a"});
         dimension = ReflectionHelper.findField(infoType, new String[] {"dimension", "field_76105_j"});
@@ -33,6 +36,22 @@ final class NetherWorldInfo {
         x = ReflectionHelper.findField(dataType, "x");
         y = ReflectionHelper.findField(dataType, "y");
         z = ReflectionHelper.findField(dataType, "z");
+    }
+
+    boolean hasExistingSpawn(WorldInfo source) {
+        if (!owner.getDeclaringClass().isInstance(source)) {
+            return true;
+        }
+        int id = (Integer) ModFields.read(dimension, source);
+        if (id == 0) {
+            return true;
+        }
+        World world = (World) ModFields.read(owner, source);
+        return world.loadData(spawnDataType, spawnDataKey(id)) != null;
+    }
+
+    private static String spawnDataKey(int id) {
+        return "nether_api:spawn_point_data_" + id;
     }
 
     NBTTagCompound snapshot(WorldInfo source) {
@@ -45,7 +64,7 @@ final class NetherWorldInfo {
 
         World world = (World) ModFields.read(owner, source);
         Map<?, ?> entries = (Map<?, ?>) ModFields.read(loadedData, world.getMapStorage());
-        Object spawn = entries.get("nether_api:spawn_point_data_" + id);
+        Object spawn = entries.get(spawnDataKey(id));
         if (spawn == null) {
             // 不用默认出生点掩盖缺失数据，也不触发原方法的磁盘加载或记录创建。
             throw new UnsupportedOperationException("Nether API spawn data is not loaded for dimension " + id);

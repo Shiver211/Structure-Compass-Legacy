@@ -500,5 +500,51 @@
         "chinese": "大型阴生浆果洞穴"
       }
     ]
+  },
+  {
+    "modId": "iceandfire",
+    "modName": "Ice and Fire",
+    "structures": [
+      {
+        "id": "fire_roost",
+        "english": "Fire Dragon Roost",
+        "chinese": "火龙巢"
+      },
+      {
+        "id": "ice_roost",
+        "english": "Ice Dragon Roost",
+        "chinese": "冰龙巢"
+      },
+      {
+        "id": "lightning_roost",
+        "english": "Lightning Dragon Roost",
+        "chinese": "电龙巢"
+      },
+      {
+        "id": "fire_cave",
+        "english": "Fire Dragon Cave",
+        "chinese": "火龙洞穴"
+      },
+      {
+        "id": "ice_cave",
+        "english": "Ice Dragon Cave",
+        "chinese": "冰龙洞穴"
+      },
+      {
+        "id": "lightning_cave",
+        "english": "Lightning Dragon Cave",
+        "chinese": "电龙洞穴"
+      },
+      {
+        "id": "siren_island",
+        "english": "Siren Island",
+        "chinese": "塞壬岛"
+      },
+      {
+        "id": "mausoleum",
+        "english": "Dread Mausoleum",
+        "chinese": "恐惧陵墓"
+      }
+    ]
   }
 ]
